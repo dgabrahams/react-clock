@@ -145,28 +145,28 @@ app.get('/images*', function (req, res) {
 });
 
 
-app.get('/themes*', function (req, res) {
-  // res.send('Birds home page');
-  console.log('In get: /themes*');
+// app.get('/themes*', function (req, res) {
+//   // res.send('Birds home page');
+//   console.log('In get: /themes*');
 
-	// switch(req.params[0]) {
+// 	// switch(req.params[0]) {
 
-	// }
+// 	// }
 
-	// var fileName = './js'+req.params[0];//becuase of the get, params os now shorter!
-	// console.log(fileName);
+// 	// var fileName = './js'+req.params[0];//becuase of the get, params os now shorter!
+// 	// console.log(fileName);
 
-    fs.readFile('./js'+req.params[0],function (err, data){
-        // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-        res.status(200);
-        res.setHeader('Content-Type', 'application/json');
-        res.setHeader('Content-Length', data.length);
-        res.write( JSON.stringify(data) );
-        res.end();
-    });
+//     fs.readFile('./js'+req.params[0],function (err, data){
+//         // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
+//         res.status(200);
+//         res.setHeader('Content-Type', 'application/json');
+//         res.setHeader('Content-Length', data.length);
+//         res.write( JSON.stringify(data) );
+//         res.end();
+//     });
 
-  // res.end();//THIS WAS CAUSING THE ERROR!!!
-});
+//   // res.end();//THIS WAS CAUSING THE ERROR!!!
+// });
 
 
 app.get('/time*', function (req, res) {
@@ -266,17 +266,25 @@ app.get('/*', function (req, res) {
 		    });
 	        break;
 	    case '/themes':
-	        MongoClient.connect(dBurl, function(err, db) {
-	            assert.equal(null, err);
-	            console.log("Connected successfully to server");
-				MongoClient.localResult = db.databaseName;
-				console.log('MongoClient.localResult: '+MongoClient.localResult);//works!!!!! 
-				getJSON(db, 'testThemes', res, req, function(data) {
-					res.write( JSON.stringify(data) );
-					res.end();
-					db.close();
+	   //      MongoClient.connect(dBurl, function(err, db) {
+	   //          assert.equal(null, err);
+	   //          console.log("Connected successfully to server");
+				// MongoClient.localResult = db.databaseName;
+				// console.log('MongoClient.localResult: '+MongoClient.localResult);//works!!!!! 
+				// getJSON(db, 'testThemes', res, req, function(data) {
+				// 	res.write( JSON.stringify(data) );
+				// 	res.end();
+				// 	db.close();
+				// });
+	   //      });
+				fs.readFile('./js'+req.params[0],function (err, data){
+				    // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
+				    res.status(200);
+				    res.setHeader('Content-Type', 'application/json');
+				    res.setHeader('Content-Length', data.length);
+				    res.write( JSON.stringify(data) );
+				    res.end();
 				});
-	        });
 	        break;
 	    default:
 	        res.write('<div>Welcome.</div>');
