@@ -161,7 +161,7 @@ app.get('/thyme*', function (req, res) {
         res.status(200);
         res.setHeader('Content-Type', 'text/html');
         //res.setHeader('Content-Length', data.length);
-        res.write(date);
+        res.write(typeof date);
         res.end();
 
 	});
@@ -271,31 +271,31 @@ app.get('/*', function (req, res) {
 				});
 	        });
 	        break;
-	    case '/time':
-		    var d = new Date();
+// 	    case '/time':
+// 		    var d = new Date();
 
-			var runTerminal = execSync("ntpdate -q '129.6.15.28'");//WORKS!
-			var e = new Date();
-			console.log('req ip: '+req.connection.remoteAddress);
+// 			var runTerminal = execSync("ntpdate -q '129.6.15.28'");//WORKS!
+// 			var e = new Date();
+// 			console.log('req ip: '+req.connection.remoteAddress);
 
-			var runTerminal_location = execSync("curl freegeoip.net/json/86.178.93.181");//WORKS! - ip for maida vale
-			console.log(runTerminal_location.toString('ascii'));
+// 			var runTerminal_location = execSync("curl freegeoip.net/json/86.178.93.181");//WORKS! - ip for maida vale
+// 			console.log(runTerminal_location.toString('ascii'));
 
-			var locationData = JSON.parse( runTerminal_location.toString('ascii') );
-			console.log( locationData );
+// 			var locationData = JSON.parse( runTerminal_location.toString('ascii') );
+// 			console.log( locationData );
 
-//will utc date get issues when it is close to a change over...if used on local time the time is different, a straight off new Date() object gets the right time, new Date().getUTCHours() is wrong when local machine is in british summer time.
-			var resObj = {
-				'T3' : Math.round(+new Date()/1000),
-				'T2' : Math.round(d/1000),
-				'ntp': runTerminal.toString('ascii'),
-				'date': ( parseInt(d.getUTCMonth())+1 )+'/'+d.getUTCDate()+'/'+d.getUTCFullYear(),
-				'timeZone' : JSON.stringify(locationData)
-			}
+// //will utc date get issues when it is close to a change over...if used on local time the time is different, a straight off new Date() object gets the right time, new Date().getUTCHours() is wrong when local machine is in british summer time.
+// 			var resObj = {
+// 				'T3' : Math.round(+new Date()/1000),
+// 				'T2' : Math.round(d/1000),
+// 				'ntp': runTerminal.toString('ascii'),
+// 				'date': ( parseInt(d.getUTCMonth())+1 )+'/'+d.getUTCDate()+'/'+d.getUTCFullYear(),
+// 				'timeZone' : JSON.stringify(locationData)
+// 			}
 
-			res.write( JSON.stringify(resObj) );
-			res.end();
-		    break;
+// 			res.write( JSON.stringify(resObj) );
+// 			res.end();
+// 		    break;
 	    default:
 	        res.write('<div>Welcome.</div>');
 	        res.end();
