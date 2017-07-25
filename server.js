@@ -149,7 +149,8 @@ app.get('/images*', function (req, res) {
 app.get('/thyme*', function (req, res) {
 	// res.send('Birds home page');
 	console.log('In get: /thyme*');
-	ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
+	// ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
+	ntpClient.getNetworkTime("129.6.15.28", 123, function(err, date) {
 	    if(err) {
 	        console.error(err);
 	        return;
