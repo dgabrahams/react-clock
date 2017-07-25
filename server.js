@@ -166,7 +166,7 @@ app.get('/thyme*', function (req, res) {
         // res.end();
 		// res.write( JSON.stringify(date) );
 		//new Date('2017-07-25T19:45:38.512Z')//works
-		res.write( new Date(JSON.stringify(date)) );
+		res.write( new Date(JSON.stringify(date)).toString() );
 		res.end();
 
 	});
