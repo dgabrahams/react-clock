@@ -149,6 +149,8 @@ app.get('/themes*', function (req, res) {
 	// res.send('Birds home page');
 	console.log('In get: /themes*');
 
+	console.log(req.params);
+
 	fs.readFile('./js'+req.params[0],function (err, data){
 	    // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
 	    var obj = JSON.parse(data);
