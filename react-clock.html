@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+  <head id="documentHead">
+    <meta charset="UTF-8" />
+    <title>Live Import Test</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-timezone.min.js"></script>
+    <script src="js/moment-timezone-with-data.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+
+  </head>
+  <body id="body-main">
+    <div id="example"></div>
+    <script type="text/babel">
+
+//https://stackoverflow.com/questions/7389328/detect-if-browser-tab-has-focus
+//window.onfocus and window.onblur - allows detection if the current tab is selected.
+
+//https://stackoverflow.com/questions/1060008/is-there-a-way-to-detect-if-a-browser-window-is-not-currently-active
+
+
+      var hasFocus=false;
+      var loaded = false;
+
+      // window.onload = function() {
+      //     if (hasFocus) alert('example');
+      //     loaded = true;
+      // };
+      // window.onfocus = function() { 
+      //     if (loaded) alert('example');
+      //     hasFocus = true;
+      // };
+      // window.onblur = function() { hasFocus = false; };
+
+
+
+      var NTPtime = 0;//global variable to pass NTP time between components.//not needed
+
+      var AddJS = React.createClass({
+        getInitialState: function() {
+          return {
+            src: 'thing'
+          };
+        },
+        componentDidMount: function() {
+            console.log('addJS: componentDidMount');
+            this.setState({src: this.props.src}, () => {
+                console.log(this.state.src);
+                let s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.src = this.state.src;
+                this.instance.appendChild(s);
+            });
+        },
+        render: function() {
+          return (
+            <div ref={(el) => (this.instance = el)} />
+          )
+        }
+      });
+
+      var OutputList = React.createClass({
+        render: function() {
+          return (
+            <ul>
+              {this.props.list.map(function(listValue){
+                return <li>{listValue.name}</li>;
+              })}
+            </ul>
+          )
+        }
+      });
+
+      var ThemeListOutput = React.createClass({
+        getInitialState: function() {
+          return {
+            themes: [{}],
+            selectValue:'AnalogueClock'
+          };
+        },
+        componentWillMount: function() {
+            var self = this;
+
+            var key = event.target.id;
+            var val = event.target.value;
+            var obj  = {};
+
+            this.props.list.map(function(listValue) {
+              obj = self.state;
+              obj[listValue.name.replace(" ", "")] = listValue;
+              self.setState(obj);//had to completely override, for some reason only the last added object in 'themes' key was being kept
+            });
+            console.log(this.state);
+        },
+        formAction: function() {
+
+            console.log('***form action***');
+            timerMain.removeTheme();
+            timerMain.hideThemeSelector();
+            console.log(this.state[this.state.selectValue].fileName);//works!
+            var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
+
+            ReactDOM.render(
+              <AddJS src={scriptSrc} />,
+              document.getElementById('js-import')
+            );
+        },
+        handleChange: function(e) {
+            console.log(this.state);
+            this.setState({selectValue: e.target.value}, () => {
+                console.log('from change handle: '+this.state.selectValue);
+            });
+            console.log(this.state);
+        },
+        render: function() {
+          return (
+            <form action="javascript:void(0);">
+              <select name="themeOptions" onChange={this.handleChange} >
+                {this.props.list.map(function(listValue){
+                  return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
+                })}
+              </select>
+              <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
+            </form>
+          )
+        }
+      });
+//javascript:void(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      var Timer3 = React.createClass({
+
+          getInitialState: function() {
+            return {};
+          },
+          componentWillMount: function () {
+          },
+          componentDidMount: function() {
+              ReactDOM.render(
+                <AddJS src='/js/digital-clock.js' />,
+                document.getElementById('js-import')
+              );
+          },
+          displayTime: function(xhttp,self,recieveTime,sentTime) {
+            // console.log(state);
+
+            //***** add the recieve time here (or in the actual xhttp request thing)
+            //need to get the send time from where this was evoked!!!!!
+
+            // console.log('*****sentTime*****');
+            // console.log(sentTime);
+            // console.log(sentTime.getUTCMilliseconds());
+            // console.log('*****recieveTime*****');
+            // console.log(recieveTime);
+            // console.log(recieveTime.getUTCMilliseconds());
+            // //res.write( 'time recieve request: '+ d.getUTCHours()+':'+d.getUTCMinutes()+':'+d.getUTCSeconds()+':'+ d.getUTCMilliseconds() + ' --- time sent reply: ' +e.getUTCHours()+':'+e.getUTCMinutes()+':'+e.getUTCSeconds()+':'+ e.getUTCMilliseconds() );
+            // console.log('**********');
+
+              //https://github.com/hueniverse/sntp/blob/master/lib/index.js
+                  // Timestamp Name          ID   When Generated
+                  // ------------------------------------------------------------
+                  // Originate Timestamp     T1   time request sent by client
+                  // Receive Timestamp       T2   time request received by server
+                  // Transmit Timestamp      T3   time reply sent by server
+                  // Destination Timestamp   T4   time reply received by client
+                  
+                  // The roundtrip delay d and system clock offset t are defined as:
+                  
+                  // d = (T4 - T1) - (T3 - T2)     t = ((T2 - T1) + (T3 - T4)) / 2
+
+            //var unix = Math.round(+new Date()/1000);//unix time stamp
+            var T1 = Math.round(sentTime/1000);//taken from local time
+            // console.log('T1: '+T1);
+
+            var T4 = Math.round(recieveTime/1000);//taken from local time
+            // console.log('T4: '+T4);
+
+            var totalTrip = Math.round(T4 - T1);//round trip total in seconds, both taken from current local time
+            console.log('totalTrip: '+totalTrip);
+
+            var response = '';
+            var T2, T3, output, outputString;
+
+
+
+            //if it doesn't take longer than 15 seconds
+            if (totalTrip <= 10) {
+              // console.log('totalTrip was <= 15');
+              //this means that the total trip was less than 15 seconds. 
+              //the request needs to be made at around 15-20 seconds past the current minute, this allows a safe passage of time.
+              //then, when it gets recived, within ths function the current time local time can be checked and the current minute and hour compared.
+              //the whole date can also be compared, and of course of local time zones need to be taken into consideration.
+              //BUT - HERE THE WHOLE DATE IS COMPARED ALREADY
+
+              //
+
+              //response = xhttp.responseText;
+              response = JSON.parse(xhttp.responseText);
+              T2 = parseInt(response['T2'], 10);
+              // console.log('T2: '+T2);
+
+              T3 = parseInt(response['T3'], 10);
+              // console.log('T3: '+T3);
+
+              // console.log('T1: '+typeof T1);
+              // console.log('T2: '+typeof T2);
+              // console.log('T3: '+typeof T3);
+              // console.log('T4: '+typeof T4);
+
+              var d = (T4 - T1) - (T3 - T2);
+              console.log('d: '+ d);
+
+              var t = ((T2 - T1) + (T3 - T4)) / 2;
+              console.log('t: '+ t);
+
+              //HERE - THESE RESULTS ACTUALLY TELL IF A DIFFERENT TIMEZONE IS USED. - ??? really±!!!!!
+
+              //
+
+
+
+
+              //response = 'thing';
+
+
+              
+              //response = JSON.parse(xhttp.responseText);
+              //response = xhttp.responseText;// Objects are not valid as a React child
+
+              // console.log(typeof xhttp.responseText);
+              // console.log( xhttp.responseText.toString() );
+              console.log( JSON.parse(xhttp.responseText) );
+
+              // output = response.ntp.split(",");
+              // console.log(output);
+              // output = output[3].split("\n");
+              //console.log(output);
+              // output = output[1].split(" ");
+              // console.log(output);
+
+
+          //docs on date formats:
+          //http://momentjs.com/docs/#/parsing/
+
+              // console.log( 'String(response.date): '+ String(response.date) );
+              // console.log( 'String(output[2]): '+ String(output[2]) );
+              // var res = response.ntp.match(/\s\d\d:\d\d:\d\d\s/g);
+              // console.log( 'res: '+ String(res).trim() );
+
+              var ntpTime = response.ntp.match(/\d\d:\d\d:\d\d/g);
+              console.log( 'ntpTime: '+ ntpTime );
+
+              //var dateString = String(response.date)+' '+String(output[2])+' UTC';//(BST)
+              // var dateString = String(response.date)+' '+String(output[2])+' (BST)';//NTP time with statement of time zone
+              // var dateString = String(response.date)+' '+String(ntpTime)+' (BST)';//NTP time with statement of time zone
+              // console.log('dateString: '+dateString);
+
+          // console.log('dateString: '+dateString);
+          // console.log('dateString: '+dateString);
+
+          // Math.round(sentTime/1000);//taken from local time
+
+              // console.log( new Date( String(dateString) ).toString() );
+
+          //https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+          //https://www.iana.org/time-zones
+
+              var timeZone = JSON.parse(response.timeZone);
+              console.log('timezone: '+timeZone.time_zone);
+
+              // var june = moment("2014-06-01T12:00:00Z");
+              // var june = moment( new Date( String(dateString) ).toString() );
+              // console.log( june.tz(timeZone.time_zone).format('ha  z') );
+              // console.log( june.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss ha  z') );
+              
+              //gets the correct time according to the timezone got from the ip address server side
+              console.log('*** NTP Conversion using timezone of IP ***');
+              var dateString = String(response.date)+' '+String(ntpTime);//NTP time WITHOUT statement of time zone
+              console.log('dateString: '+dateString);
+              var momentNTPtime = moment( new Date( String(dateString) ).toString() );
+              console.log( momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );
+              console.log('*******');
+
+              //works:
+              console.log('--* Time in Lima using NTP time *--');
+              console.log( momentNTPtime.tz('America/Lima').format('YYYY-MM-DD HH:mm:ss') );
+              console.log('--* Time in India General - Asia/Kolkata --- Calcutta *--');
+              console.log( momentNTPtime.tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss') );
+              console.log('--***--');
+
+
+
+              //convert the local date and the date with timezone to linux time and then compare
+
+
+
+              // console.log('timezone: '+response.timeZone.time_zone);
+
+
+              // outputString = 'Your time zone is: ' + timeZone.time_zone;
+              // outputString += '*** time at server is: ' + T3;
+              // outputString += '*** local time on computer is: ' + String(output[2]);
+              // outputString += '*** local time on computer is: ' + String(output[2]);
+
+              var currentLocalTime = new Date();
+
+              console.log('Your time zone is: ' + timeZone.time_zone);
+              console.log('NTP time is:                       ' + String(ntpTime) );
+              console.log('NTP time converted using timezone: ' + momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );
+              //utc does not work in british summer time.
+              //console.log('Local time on computer is:         ' + currentLocalTime.getUTCHours()+':'+currentLocalTime.getUTCMinutes()+':'+currentLocalTime.getUTCSeconds() );
+              console.log('Local time on computer is:         ' + currentLocalTime );
+
+
+
+              /////////// Check the difference between NTP time and local time, if everything down to the current minute is the same then it is ok - do not count seconds /////////// 
+              //remember unix time is universal throught the world. the same second ticks on every pc.
+              var convertedLocalTime = Math.round(currentLocalTime/1000);
+              // var convertedLocalTime = momentNTPtime.tz('America/Lima').unix();//fake current time as if it was in Lima, Peru - doesn't work, is this because linux time is the same all around the world?
+              //var convertedLocalTime = momentNTPtime.tz('America/Lima').unix();//fake current time as if it was in Lima, Peru
+              console.log('convertedLocalTime: '+convertedLocalTime);
+              var convertedNTPTime = momentNTPtime.tz(timeZone.time_zone).unix();
+              console.log('convertedNTPTime: '+convertedNTPTime);
+
+              //works to get lima time from NTP and then convert to what it would be in Linux time
+              console.log('--- *** ---');
+              var timeoutputTest = momentNTPtime.tz('America/Lima').format('YYYY-MM-DD HH:mm:ss');
+              console.log('timeoutputTest: '+timeoutputTest);
+              timeoutputTest = new Date(timeoutputTest);
+              console.log('timeoutputTest: '+timeoutputTest);
+              timeoutputTest = Math.round(timeoutputTest/1000);
+              console.log('timeoutputTest lima to local machine: '+timeoutputTest);
+              console.log('--- *** ---');
+
+        //why is this happening:
+        // Your time zone is: Europe/London
+        // App.js:169 NTP time is:                       00:07:28
+        // App.js:170 NTP time converted using timezone: 2017-06-28 00:07:28
+        // App.js:173 Local time on computer is:         Thu Jun 29 2017 00:07:30 GMT+0100 (BST)
+        // App.js:181 convertedLocalTime: 1498691251
+        // App.js:183 convertedNTPTime: 1498604848
+        // App.js:185 --- *** ---
+        // App.js:187 timeoutputTest: 2017-06-27 18:07:28
+        // App.js:189 timeoutputTest: Tue Jun 27 2017 18:07:28 GMT+0100 (BST)
+        // App.js:191 timeoutputTest: 1498583248
+        // App.js:192 --- *** ---
+        // App.js:197 Difference in seconds: 86403
+        //*******is it because I am currently in british summer time, and I am within that hour's difference between them?
+        //expected result then is that only after 1pm BST will the result be the current date.
+
+
+        //
+
+              // var limaTime = convertedLocalTime - convertedNTPTime;//local time will always be later than the NTP time recieved.
+              var limaTime = timeoutputTest - convertedNTPTime;//local time will always be later than the NTP time recieved.
+              console.log('Difference in seconds: '+limaTime);
+
+              outputString = 'Time difference in seconds between NTP time gathered from the server and current local time is: ' + limaTime + ' or '+(limaTime/3600)+' hours.';//60*60 = 3600 ... then divide new time by this to get hours
+              // Math.abs(num) => Always positive
+              // -Math.abs(num) => Always negative
+
+
+              console.log('--- *** ---');
+              timeoutputTest = momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss');
+              console.log('timeoutputTest: '+timeoutputTest);
+              timeoutputTest = new Date(timeoutputTest);
+              console.log('timeoutputTest: '+timeoutputTest);
+              timeoutputTest = Math.round(timeoutputTest/1000);
+              console.log('timeoutputTest: '+timeoutputTest);
+              console.log('--- *** ---');
+
+              var localDifference = timeoutputTest - convertedNTPTime;//local time will always be later than the NTP time recieved.
+              console.log('Difference in seconds NTP to local machine: '+localDifference);
+
+              outputString = 'Time difference in seconds between NTP time gathered from the server and current local time is: ' + localDifference + ' or '+(localDifference/3600)+' hours.';//60*60 = 3600 ... then divide new time by this to get hours
+
+
+        //add the delay from time gathered at server to when it was recieved at the local machine then subtract the ntp time
+        // Transmit Timestamp      T3   time reply sent by server
+        // Destination Timestamp   T4   time reply received by client
+              // localDifference = timeoutputTest+(T4 - T3) - convertedNTPTime;//local time will always be later than the NTP time recieved.
+              // console.log('Difference in seconds NTP to local machine: '+localDifference);
+
+
+        //totalTrip var has the total round trip.
+
+        /*
+              if (limaTime <= 15){
+                outputString += ' Your clock is within n seconds of Unix time.';
+              }
+        */
+
+            } else {
+              //this means any part of the date could be wrong as the seconds since 1st Jan 1970 were measured. - it doesn't as the two measurements were taken from the local time
+              //but - could the timezone do this?
+              outputString = 'There was greater than 10 seconds between the transmission and the receipt of data from the server.';
+            }
+
+            // console.log('from displayTime');
+            // var obj = JSON.parse(xhttp.responseText);
+            // console.log(xhttp);
+            // ReactDOM.render(
+            //   React.createElement('div', {id : 'timeID'}, outputString),
+            //   document.getElementById('time-display')
+            // );
+            // this.outputElement(outputString);
+            return outputString;
+          },
+          handleTheme: function(xhttp,self) {
+
+              var obj = JSON.parse(xhttp.responseText);
+              //console.log(obj);
+              //obj = [obj];
+              var newArray = [];
+
+              for (var prop in obj) {
+                  //console.log(`obj.${prop} = ${obj[prop]}`);
+                  // console.log(this.state.obj);
+                  newArray.push(obj[prop]);
+              }
+
+              ReactDOM.render(
+                <ThemeListOutput list={newArray} />,
+                document.getElementById('theme-list')
+              );
+          },
+          getJSON: function(url,cFunction) {
+        // only get needs to be implemented and tested.
+              var self = this;
+              var xhttp, sentTime;
+              xhttp=new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                  if (this.readyState === 4 && this.status === 200) {
+                    var recievedTime = new Date();
+                    cFunction(this,self,recievedTime, sentTime);
+                    // console.log(this.responseText);
+                  } else if(this.readyState === 4 && this.status === 500) {
+                    console.log('500 error...');
+                    console.log(this.readyState);
+                    console.log(this.responseText);
+                    console.log('*********');
+                  }//end else if
+              };
+              xhttp.open("GET", url, true);
+              xhttp.send();
+              sentTime = new Date();
+          },
+          xhttpGetTime: function(state) {
+              //check current seconds till the next minute.
+              //run below in a time out 5 seconds after the next minute.
+              var setRunTime = new Date().getUTCSeconds();
+              console.log('setRunTime: '+setRunTime);
+              setRunTime = (65-parseInt(setRunTime,10))*1000;
+              console.log('Program will run in: '+setRunTime);
+              var self = this;
+              setTimeout(function(){ 
+                console.log('current second: '+ new Date().getUTCSeconds() );
+                // self.getJSON('http://localhost:3001/time', this.displayTime);
+              }.bind(this), setRunTime);//result should run 5 seconds into the next minute.
+              this.getJSON('http://localhost:3001/time', this.displayTime);
+
+              //setTimeout(function() { this.setState({position: 1}); }.bind(this), 3000);
+          },
+          xhttpGetThemes: function(state) {
+              this.getJSON('http://localhost:3001/themes', this.handleTheme);
+          },
+          addThemeCSS: function (fileHref) {
+              var node = document.createElement("link");
+              node.setAttribute("id", "themeCSS");
+              node.setAttribute("rel", "stylesheet");
+              node.setAttribute("type", "text/css");
+              node.setAttribute("href", String(fileHref));
+              document.getElementById("documentHead").appendChild(node);
+          },
+          removeTheme: function() {
+              ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
+              ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
+              myRegistrationModal = '';
+              document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
+          },
+          hideThemeSelector: function() {
+              ReactDOM.unmountComponentAtNode(document.getElementById('theme-list'));
+          },
+          render: function() {
+            return (
+              <div className="App">
+                <div className="thing"><br />Do not send requests 15 seconds either side of a minute (15 seconds past to 45 seconds past)<br />Wait a minumum of 4 seconds between requests or you will get blocked!</div>
+                <button type="button" onClick={this.xhttpGetTime.bind(this)}>get time</button>
+                <button type="button" onClick={this.xhttpGetThemes.bind(this)}>Change Theme</button>
+                <div>&nbsp;</div>
+                <div id="time-display"></div>
+                <div>&nbsp;</div>
+                <div id="theme-list"></div>
+                <div>&nbsp;</div>
+                <div id="clock-display"></div>
+                <div>&nbsp;</div>
+                <div id="js-import"></div>
+              </div>
+            );
+          }
+
+      });
+
+      let timerMain = ReactDOM.render(React.createElement(Timer3, null), document.getElementById('example'));
+      //timerMain.xhttpGetTime()
+      //timerMain.removeTheme()
+
+
+
+    </script>
+
+  </body>
+</html>

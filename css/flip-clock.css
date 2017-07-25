@@ -1,0 +1,79 @@
+#hourTenTop,
+#hourTenBottom,
+#hourUnitTop,
+#hourUnitBottom,
+#minuteTenTop,
+#minuteTenBottom,
+#minuteUnitTop,
+#minuteUnitBottom {
+	/*
+	width:263px;
+	height:219px;
+	*/
+	width:132px;
+	height:110px;
+    background-size: 100%;
+}
+
+#hourTenMiddle,
+#hourUnitMiddle,
+#minuteTopMiddle,
+#minuteUnitMiddle {
+	/*
+	width:263px;
+	height:438px;
+	*/
+	width:132px;
+	height:220px;
+	top: 8px;/* margin of body default */
+	left: 8px;/* margin of body default */
+	position: absolute;
+	background-repeat: no-repeat;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+/*   -webkit-transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;*/
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    background-size: 100%;
+}
+
+.middle{
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+    opacity: 1 !important;
+}
+
+.middle2{
+    -webkit-transform: rotateZ(270deg); //rotates in 2d
+    transform: rotateZ(270deg);
+}
+
+.time-divider,
+.hourTenContainer,
+.hourUnitContainer,
+.minuteTenContainer,
+.minuteUnitContainer {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}
+
+.time-divider {
+	/*
+	height:438px;
+	*/
+	height:220px;
+}
+
+.time-divider-dot {
+	display: block;
+	/*
+	font-size: 150px;
+	*/
+	font-size: 100px;
+    line-height: 85px;
+    width: 30px;
+    text-align: left;
+}

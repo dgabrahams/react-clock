@@ -1,0 +1,31 @@
+body {
+	background-color: #ff0000;
+}
+
+.time-divider,
+#hours,
+#minutes {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+    font-size: 100px;
+    line-height: 1;
+}
+
+.time-divider {
+	/*
+	height:438px;
+	*/
+	height:220px;
+}
+
+.time-divider-dot {
+    display: block;
+    /* font-size: 150px; */
+    font-size: 62px;
+    line-height: 0.5;
+    /* width: 30px; */
+    /* text-align: left; */
+    height: 30px;
+    vertical-align: top;
+}

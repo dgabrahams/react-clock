@@ -1,0 +1,212 @@
+#clockFace {
+	width:500px;
+	height: 500px;
+	background-color: #00ffff;
+	position: relative;
+	top:20px;
+	left: 20px;
+	border-radius: 250px;
+}
+
+
+#hourHand {
+/*	width: 200px;
+	height: 16px;*/
+	width: 16px;
+	height: 200px;
+/*	left: 150px;
+	top: 242px;*/
+    left: 245px;
+    top: 150px;
+	position: absolute;
+/*    -webkit-transform: rotateZ(30deg);
+    transform: rotateZ(30deg);*/
+}
+
+#hourHandLeft {
+/*	width: 100px;
+	height: 16px;*/
+	width: 16px;
+	height: 100px;
+	display: inline-block;
+	background-color: #ff0000;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+#hourHandRight {
+/*	width: 100px;
+	height: 16px;*/
+	width: 16px;
+	height: 100px;
+	display: inline-block;
+	background-color: #00ffff;
+	opacity: 0;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+
+
+#minHand {
+/*	width: 350px;
+	height: 16px;*/
+	width: 16px;
+	height: 350px;
+/*	left: 75px;
+	top: 242px;*/
+    left: 245px;
+    top: 75px;
+	position: absolute;
+}
+
+#minHandLeft {
+/*	width: 175px;
+	height: 16px;*/
+	width: 16px;
+	height: 175px;
+	display: inline-block;
+	background-color: #DAA520;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+#minHandRight {
+/*	width: 175px;
+	height: 16px;*/
+	width: 16px;
+	height: 175px;
+	display: inline-block;
+
+	background-color: #00ffff;
+	opacity: 0;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+#secHand {
+	width: 16px;
+	height: 400px;
+	left: 245px;
+	top: 50px;
+	position: absolute;
+}
+
+/*#secHandInner {
+	width: 16px;
+	height: 400px;
+	left: 245px;
+	top: 50px;
+	position: absolute;
+}*/
+
+#secHandLeft {
+	width: 16px;
+	height: 200px;
+	display: inline-block;
+	background-color: #000000;
+	position: relative;
+	padding: 0px;
+	margin: 0px;	
+}
+
+#secHandRight {
+	width: 16px;
+	height: 200px;
+	display: inline-block;
+	background-color: #00ffff;
+	opacity: 0;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+
+#digit-12 {
+	left: 225px;
+}
+
+#digit-1 {
+	top: 40px;
+	left: 335px;
+}
+
+#digit-2 {
+	top:122px;
+	left: 415px;
+}
+
+#digit-3 {
+	top: 225px;
+	left: 450px;
+}
+
+#digit-4 {
+	top: 335px;/* was top: 340px; */
+	left: 415px;/* same left as digit 2 */
+}
+
+#digit-5 {
+	top: 415px;
+	left: 335px;/* same left as digit 1 */
+}
+
+#digit-6 {
+	top:450px;
+	left: 225px;
+}
+
+#digit-7 {
+	top: 415px;/* same top as digit 5 */
+	left: 120px;
+}
+
+#digit-8 {
+	top: 335px;/* same top as digit 4 */
+	left: 40px;
+}
+
+#digit-9 {
+	top: 225px;
+	left: 0px;
+}
+
+#digit-10 {
+	top:118px;/* same top as digit 2 but its 2 digits now */
+	left: 30px;/* same left as digit 8 but its 2 digits now */
+}
+
+#digit-11 {
+	top:35px;/* same top as digit 1 but its 2 digits now */
+	left: 110px;
+}
+
+.singleDigit {
+	font-size: 30px;
+	line-height: 30px;
+	position: absolute;
+	width: 35px;
+	height: 40px;
+	padding: 10px 0px 0px 15px;
+	/*background-color: #ff0000;*/
+}
+
+.doubleDigit {
+	font-size: 30px;
+	line-height: 30px;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	padding: 10px 0px 0px 10px;
+	background-color: #ff0000;
+}
