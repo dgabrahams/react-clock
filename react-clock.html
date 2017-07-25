@@ -75,6 +75,7 @@
         }
       });
 
+// [{ name: "Analogue Clock", fileName: "analogue-clock.js", cssFile: "analogue-clock.css" },{ name: "Flip Clock", fileName: "flip-clock.js", cssFile: "flip-clock.css" }]
       var ThemeListOutput = React.createClass({
         getInitialState: function() {
           return {
@@ -428,7 +429,7 @@
           handleTheme: function(xhttp,self) {
 
               var obj = JSON.parse(xhttp.responseText);
-              //console.log(obj);
+              console.log(obj);
               //obj = [obj];
               var newArray = [];
 
@@ -484,7 +485,7 @@
           },
           xhttpGetThemes: function(state) {
               // this.getJSON('http://localhost:3001/themes', this.handleTheme);
-              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/themes', this.displayTime);
+              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/themes', this.handleTheme);
           },
           addThemeCSS: function (fileHref) {
               var node = document.createElement("link");

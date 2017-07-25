@@ -2,11 +2,11 @@
 
 const express = require('express');
 const app = express();
-var Sntp = require('sntp');
-var url = require("url");
-var MongoClient = require('mongodb').MongoClient, assert = require('assert');
-const eventEmitter = require('events');
-var exec = require('child_process').exec;
+// var Sntp = require('sntp');
+//var url = require("url");
+// var MongoClient = require('mongodb').MongoClient, assert = require('assert');
+// const eventEmitter = require('events');
+//var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
 
 var ntpClient = require('ntp-client');
@@ -145,6 +145,28 @@ app.get('/images*', function (req, res) {
 });
 
 
+app.get('/themes*', function (req, res) {
+  // res.send('Birds home page');
+  console.log('In get: /themes*');
+
+	// switch(req.params[0]) {
+
+	// }
+
+	// var fileName = './js'+req.params[0];//becuase of the get, params os now shorter!
+	// console.log(fileName);
+
+    fs.readFile('./js'+req.params[0],function (err, data){
+        // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
+        res.status(200);
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Content-Length', data.length);
+        res.write( JSON.stringify(data) );
+        res.end();
+    });
+
+  // res.end();//THIS WAS CAUSING THE ERROR!!!
+});
 
 
 app.get('/time*', function (req, res) {
@@ -233,7 +255,6 @@ app.get('/*', function (req, res) {
 //still does the stuff below it!
 
     // htmlBody = '';//makes it fresh for each load
-	var url = 'mongodb://localhost:27017/test-db';
 	var dBurl = 'mongodb://localhost:27017/test-db-themes';
 
 	switch(req.url) {
@@ -243,43 +264,6 @@ app.get('/*', function (req, res) {
 		        res.write(data);
 		        res.end();
 		    });
-	        break;
-	    // case '/css/defaultClock.css':
-		   //  fs.readFile('./css/defaultClock.css',function (err, data){
-		   //      res.writeHead(200, {'Content-Type': 'text/css','Content-Length':data.length});
-		   //      res.write(data);
-		   //      res.end();
-		   //  });
-	    //     break;
-		// case '/js' + req.url.slice("/js".length):
-
-		// 	// console.log(req.url);
-	 //        // console.log('this is a js file');
-	 //        // res.write('data2');
-	 //        var filePath = '.'+req.url;
-	 //        console.log(filePath);
-		//     fs.readFile(filePath,function (err, data){
-		//         res.setHeader('Content-Type', 'text/javascript');
-		//         res.write(data);
-		//         res.end();
-		//     });
-	 //        // res.end();//this was causing the error!!!!
-	 //        break;
-	    case '/json':
-		    //could loop through an array here of all the json possibilities
-	        // break;
-	    case '/test':
-	        MongoClient.connect(url, function(err, db) {
-	            assert.equal(null, err);
-	            console.log("Connected successfully to server");
-				MongoClient.localResult = db.databaseName;
-				console.log('MongoClient.localResult: '+MongoClient.localResult);//works!!!!! 
-				getJSON(db, 'test2', res, req, function(data) {
-					res.write( JSON.stringify(data) );
-					res.end();
-					db.close();
-				});
-	        });
 	        break;
 	    case '/themes':
 	        MongoClient.connect(dBurl, function(err, db) {
@@ -345,46 +329,3 @@ app.use(function(err, req, res, next) {
 // app.listen(8080, function() {
 //   console.log('Server running at http://127.0.0.1:8080/');
 // });
-
-
-
-
-
-
-
-
-	    // case '/js/react.min.js':
-		   //  fs.readFile('./js/react.min.js',function (err, data){
-		   //      res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-		   //      res.write(data);
-		   //      res.end();
-		   //  });
-	    //     break;
-	    // case '/js/react-dom.min.js':
-		   //  fs.readFile('./js/react-dom.min.js',function (err, data){
-		   //      res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-		   //      res.write(data);
-		   //      res.end();
-		   //  });
-	    //     break;
-	    // case '/js/moment-timezone.min.js':
-		   //  fs.readFile('./js/moment-timezone.min.js',function (err, data){
-		   //      res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-		   //      res.write(data);
-		   //      res.end();
-		   //  });
-	    //     break;
-	    // case '/js/moment.min.js':
-		   //  fs.readFile('./js/moment.min.js',function (err, data){
-		   //      res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-		   //      res.write(data);
-		   //      res.end();
-		   //  });
-	    //     break;
-	    // case '/js/moment-timezone-with-data.js':
-		   //  fs.readFile('./js/moment-timezone-with-data.js',function (err, data){
-		   //      res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-		   //      res.write(data);
-		   //      res.end();
-		   //  });
-	    //     break;
