@@ -281,7 +281,7 @@ app.get('/*', function (req, res) {
 				    // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
 				    res.status(200);
 				    res.setHeader('Content-Type', 'application/json');
-				    res.setHeader('Content-Length', data.length);
+				    // res.setHeader('Content-Length', data.length);
 				    res.write( JSON.stringify(data) );
 				    res.end();
 				});
