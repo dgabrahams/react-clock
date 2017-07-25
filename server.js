@@ -154,24 +154,15 @@ app.get('/time*', function (req, res) {
 	var d = new Date();
 
 	ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
-	// ntpClient.getNetworkTime("129.6.15.28", 123, function(err, date) {
 	    if(err) {
 	        console.error(err);
 	        return;
 	    }
 	 
-	    console.log("Current time : ");
-	    console.log(date); // Mon Jul 08 2013 21:31:31 GMT+0200 (Paris, Madrid (heure d’été)) 
-
-  //       res.status(200);
+	    console.log("Current time : " +date);// Mon Jul 08 2013 21:31:31 GMT+0200 (Paris, Madrid (heure d’été)) 
 		// res.write( JSON.stringify(date) );//2017-07-25T19:45:38.512Z - can be put into a new Date() object passed as a string to get: Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
 		// // res.write( date.toString() );//outputs Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
-		// res.end();
 
-
-	   
-
-		// var runTerminal = execSync("ntpdate -q '129.6.15.28'");//WORKS!
 		var e = new Date();
 		console.log('req ip: '+req.connection.remoteAddress);
 

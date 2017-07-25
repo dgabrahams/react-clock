@@ -483,7 +483,8 @@
               //setTimeout(function() { this.setState({position: 1}); }.bind(this), 3000);
           },
           xhttpGetThemes: function(state) {
-              this.getJSON('http://localhost:3001/themes', this.handleTheme);
+              // this.getJSON('http://localhost:3001/themes', this.handleTheme);
+              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/themes', this.displayTime);
           },
           addThemeCSS: function (fileHref) {
               var node = document.createElement("link");
