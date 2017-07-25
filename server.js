@@ -186,7 +186,7 @@ app.get('/time*', function (req, res) {
 		var resObj = {
 			'T3' : Math.round(+new Date()/1000),
 			'T2' : Math.round(d/1000),
-			'ntp': runTerminal.toString('ascii'),
+			'ntp': JSON.stringify(date).toString('ascii'),
 			'date': ( parseInt(d.getUTCMonth())+1 )+'/'+d.getUTCDate()+'/'+d.getUTCFullYear(),
 			'timeZone' : JSON.stringify(locationData)
 		}
