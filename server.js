@@ -161,8 +161,10 @@ app.get('/thyme*', function (req, res) {
         res.status(200);
         res.setHeader('Content-Type', 'text/html');
         //res.setHeader('Content-Length', data.length);
-        res.write(typeof date);
-        res.end();
+        // res.write(typeof date);
+        // res.end();
+		res.write( JSON.stringify(date) );
+		res.end();
 
 	});
 
