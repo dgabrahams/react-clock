@@ -9,6 +9,8 @@ const eventEmitter = require('events');
 var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
 
+var ntpClient = require('ntp-client');
+
 var http = require('http'),
     fs = require('fs');
 
@@ -141,6 +143,25 @@ app.get('/images*', function (req, res) {
     });
 
 });
+
+
+
+app.get('/thyme*', function (req, res) {
+	// res.send('Birds home page');
+	console.log('In get: /thyme*');
+	ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
+	    if(err) {
+	        console.error(err);
+	        return;
+	    }
+	 
+	    console.log("Current time : ");
+	    console.log(date); // Mon Jul 08 2013 21:31:31 GMT+0200 (Paris, Madrid (heure d’été)) 
+	});
+
+});
+
+
 
 
 // app.route('/*').all(function(req,res,next) {
