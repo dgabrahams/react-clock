@@ -149,8 +149,8 @@ app.get('/images*', function (req, res) {
 app.get('/thyme*', function (req, res) {
 	// res.send('Birds home page');
 	console.log('In get: /thyme*');
-	// ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
-	ntpClient.getNetworkTime("129.6.15.28", 123, function(err, date) {
+	ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
+	// ntpClient.getNetworkTime("129.6.15.28", 123, function(err, date) {
 	    if(err) {
 	        console.error(err);
 	        return;
@@ -165,6 +165,8 @@ app.get('/thyme*', function (req, res) {
         // res.write(typeof date);
         // res.end();
 		res.write( JSON.stringify(date) );
+		//new Date('2017-07-25T19:45:38.512Z')//works
+		res.write( new Date(JSON.stringify(date)) );
 		res.end();
 
 	});
