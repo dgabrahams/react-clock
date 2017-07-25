@@ -158,8 +158,8 @@ app.get('/themes*', function (req, res) {
 	    res.status(200);
 	    res.setHeader('Content-Type', 'application/json');
 	    //res.setHeader('Content-Length', data.length);
-	    //res.write( JSON.stringify(data) );
-	    res.write( obj );
+	    res.write( JSON.stringify(obj) );
+	    // res.write( obj );
 	    res.end();
 	});
 
