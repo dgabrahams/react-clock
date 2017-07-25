@@ -159,7 +159,7 @@ app.get('/thyme*', function (req, res) {
 	    console.log(date); // Mon Jul 08 2013 21:31:31 GMT+0200 (Paris, Madrid (heure d’été)) 
 
         res.status(200);
-        res.setHeader('Content-Type', 'text/html');
+        //res.setHeader('Content-Type', 'text/html');
         //res.setHeader('Content-Length', data.length);
         // res.write(typeof date);
         // res.end();
