@@ -125,10 +125,11 @@ app.get('/css*', function (req, res) {
 
     fs.readFile('./css'+req.params[0],function (err, data){
         // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
+        var obj = JSON.parse(data);
         res.status(200);
         res.setHeader('Content-Type', 'text/css');
-        res.setHeader('Content-Length', data.length);
-        res.write(data);
+        // res.setHeader('Content-Length', data.length);
+        res.write(obj);
         res.end();
     });
 
