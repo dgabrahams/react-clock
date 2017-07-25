@@ -255,7 +255,7 @@ app.get('/*', function (req, res) {
 //still does the stuff below it!
 
     // htmlBody = '';//makes it fresh for each load
-	var dBurl = 'mongodb://localhost:27017/test-db-themes';
+	// var dBurl = 'mongodb://localhost:27017/test-db-themes';
 
 	switch(req.url) {
 	    case '/site':

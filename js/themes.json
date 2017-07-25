@@ -1,7 +1,7 @@
 {
-	'one' : { name: "Analogue Clock", fileName: "analogue-clock.js", cssFile: "analogue-clock.css" },
-	'two' : { name: "Flip Clock", fileName: "flip-clock.js", cssFile: "flip-clock.css" },
-	'three' : { name: "Digital Clock", fileName: "digital-clock.js", cssFile: "digital-clock.css" }
+	"one" : { "name": "Analogue Clock", "fileName": "analogue-clock.js", "cssFile": "analogue-clock.css" },
+	"two" : { "name": "Flip Clock", "fileName": "flip-clock.js", "cssFile": "flip-clock.css" },
+	"three" : { "name": "Digital Clock", "fileName": "digital-clock.js", "cssFile": "digital-clock.css" }
 }
 
 
