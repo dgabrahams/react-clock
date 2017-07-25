@@ -125,11 +125,10 @@ app.get('/css*', function (req, res) {
 
     fs.readFile('./css'+req.params[0],function (err, data){
         // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-        var obj = JSON.parse(data);
         res.status(200);
         res.setHeader('Content-Type', 'text/css');
-        // res.setHeader('Content-Length', data.length);
-        res.write(obj);
+        res.setHeader('Content-Length', data.length);
+        res.write(data);
         res.end();
     });
 
@@ -280,10 +279,12 @@ app.get('/*', function (req, res) {
 	   //      });
 				fs.readFile('./js'+req.params[0],function (err, data){
 				    // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
+				    var obj = JSON.parse(data);
 				    res.status(200);
 				    res.setHeader('Content-Type', 'application/json');
-				    // res.setHeader('Content-Length', data.length);
-				    res.write( JSON.stringify(data) );
+				    //res.setHeader('Content-Length', data.length);
+				    //res.write( JSON.stringify(data) );
+				    res.write( obj );
 				    res.end();
 				});
 	        break;
