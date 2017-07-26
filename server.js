@@ -270,29 +270,13 @@ app.get('/*', function (req, res) {
 		        res.end();
 		    });
 	        break;
-	   //  case '/themes':
-	   // //      MongoClient.connect(dBurl, function(err, db) {
-	   // //          assert.equal(null, err);
-	   // //          console.log("Connected successfully to server");
-				// // MongoClient.localResult = db.databaseName;
-				// // console.log('MongoClient.localResult: '+MongoClient.localResult);//works!!!!! 
-				// // getJSON(db, 'testThemes', res, req, function(data) {
-				// // 	res.write( JSON.stringify(data) );
-				// // 	res.end();
-				// // 	db.close();
-				// // });
-	   // //      });
-				// fs.readFile('./js'+req.params[0],function (err, data){
-				//     // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
-				//     var obj = JSON.parse(data);
-				//     res.status(200);
-				//     res.setHeader('Content-Type', 'application/json');
-				//     //res.setHeader('Content-Length', data.length);
-				//     //res.write( JSON.stringify(data) );
-				//     res.write( obj );
-				//     res.end();
-				// });
-	   //      break;
+	    case '/sitegeo':
+		    fs.readFile('geotest.html',function (err, data){
+		        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+		        res.write(data);
+		        res.end();
+		    });
+	        break;
 	    default:
 	        res.write('<div>Welcome.</div>');
 	        res.end();
