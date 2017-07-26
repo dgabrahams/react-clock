@@ -389,11 +389,12 @@
               console.log('timeoutputTest: '+timeoutputTest);
               console.log('--- *** ---');
 
-              var localDifference = timeoutputTest - convertedNTPTime;//local time will always be later than the NTP time recieved.
+              // var localDifference = timeoutputTest - convertedNTPTime;//local time will always be later than the NTP time recieved.
+              var localDifference = convertedNTPTime - timeoutputTest;//local time will always be later than the NTP time recieved.
               console.log('Difference in seconds NTP to local machine: '+localDifference);
 
               outputString = 'Time difference in seconds between NTP time gathered from the server and current local time is: ' + localDifference + ' or '+(localDifference/3600)+' hours.';//60*60 = 3600 ... then divide new time by this to get hours
-
+              outputString .= 'This was gathered by comparing the IP address of the country your computer was located against the time currently set on your machine. You might need to adjust your time zone settings or the time your machine is set to.';
 
         //add the delay from time gathered at server to when it was recieved at the local machine then subtract the ntp time
         // Transmit Timestamp      T3   time reply sent by server
@@ -423,6 +424,7 @@
               React.createElement('div', {id : 'time-report-content'}, outputString),
               document.getElementById('time-report')
             );
+
             // this.outputElement(outputString);
             // return outputString;
           },
