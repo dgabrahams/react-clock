@@ -15,6 +15,11 @@ var DefaultClock = React.createClass({
     timeGetter: function () {
         return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
     },
+    timeSetter: function (hours, minutes, seconds) {
+        this.setState({ hour: hours }, () => {});
+        this.setState({ minute: minutes }, () => {});
+        this.setState({ second: seconds }, () => {});
+    },
     checkTime: function (param) {
 
         console.log('----- checkTime -----');
@@ -88,4 +93,5 @@ var DefaultClock = React.createClass({
 //React.createElement('div', { id: 'hourTenTop', style: this.state.hourTenTop }),
 
 var myRegistrationModal = ReactDOM.render(React.createElement(DefaultClock, null), document.getElementById('clock-display'));
-
+// myRegistrationModal.timeGetter()
+// myRegistrationModal.timeSetter(22, 40, 25)
