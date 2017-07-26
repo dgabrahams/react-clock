@@ -185,7 +185,7 @@ app.get('/time*', function (req, res) {
 		var e = new Date();
 		// console.log('req ip: '+req.connection.remoteAddress);
 
-		// var runTerminal_location = execSync("curl freegeoip.net/json/86.178.93.181");//WORKS! - ip for maida vale
+		var runTerminal_location = execSync("curl freegeoip.net/json/86.178.93.181");//WORKS! - ip for maida vale
 		// var runTerminal_location = execSync("curl freegeoip.net/json/"+req.connection.remoteAddress);//WORKS! - ip for maida vale
 		// curl freegeoip.net/json/109.232.61.198
 		// console.log(runTerminal_location.toString('ascii'));
