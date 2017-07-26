@@ -186,8 +186,9 @@
             var totalTrip = Math.round(T4 - T1);//round trip total in seconds, both taken from current local time
             console.log('totalTrip: '+totalTrip);
 
-            var response = '';
-            var T2, T3, output, outputString;
+            // var response = '';
+            // var T2, T3, output, outputString;
+            var response, outputString;
 
             //if it doesn't take longer than 15 seconds
             if (totalTrip <= 10) {
@@ -202,22 +203,27 @@
 
                 //response = xhttp.responseText;
                 response = JSON.parse(xhttp.responseText);
-                T2 = parseInt(response['T2'], 10);
-                // console.log('T2: '+T2);
+                // T2 = parseInt(response['T2'], 10);
+                // // console.log('T2: '+T2);
 
-                T3 = parseInt(response['T3'], 10);
-                // console.log('T3: '+T3);
+                // T3 = parseInt(response['T3'], 10);
+                // // console.log('T3: '+T3);
 
-                // console.log('T1: '+typeof T1);
-                // console.log('T2: '+typeof T2);
-                // console.log('T3: '+typeof T3);
-                // console.log('T4: '+typeof T4);
+                // // console.log('T1: '+typeof T1);
+                // // console.log('T2: '+typeof T2);
+                // // console.log('T3: '+typeof T3);
+                // // console.log('T4: '+typeof T4);
 
-                var d = (T4 - T1) - (T3 - T2);
-                console.log('d: '+ d);
+                // var d = (T4 - T1) - (T3 - T2);
+                // console.log('d: '+ d);
 
-                var t = ((T2 - T1) + (T3 - T4)) / 2;
-                console.log('t: '+ t);
+                // var t = ((T2 - T1) + (T3 - T4)) / 2;
+                // console.log('t: '+ t);
+
+
+
+
+
 
                 console.log( JSON.parse(xhttp.responseText) );
 
@@ -234,7 +240,7 @@
                 // console.log('timezone: '+timeZone.time_zone);
                 
                 //gets the correct time according to the timezone got from the ip address server side
-                console.log('*** NTP Conversion using timezone of IP ***');
+                // console.log('*** NTP Conversion using timezone of IP ***');
                 var dateString = String(response.date)+' '+String(ntpTime);//NTP time WITHOUT statement of time zone
                 //console.log('dateString: '+dateString);
                 var momentNTPtime = moment( new Date( String(dateString) ).toString() );
@@ -245,17 +251,17 @@
 
                 console.log('Your time zone is: ' + timeZone.time_zone);
                 console.log('NTP time is:                       ' + String(ntpTime) );
-                console.log('NTP time converted using timezone: ' + momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );
+                // console.log('NTP time converted using timezone: ' + momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );
                 //utc does not work in british summer time.
                 //console.log('Local time on computer is:         ' + currentLocalTime.getUTCHours()+':'+currentLocalTime.getUTCMinutes()+':'+currentLocalTime.getUTCSeconds() );
                 console.log('Local time on computer is:         ' + currentLocalTime );
                 //remember unix time is universal throught the world. the same second ticks on every pc.
                 var convertedLocalTime = Math.round(currentLocalTime/1000);
-                console.log('convertedLocalTime: '+convertedLocalTime);
+                // console.log('convertedLocalTime: '+convertedLocalTime);
                 var convertedNTPTime = momentNTPtime.tz(timeZone.time_zone).unix();
-                console.log('convertedNTPTime: '+convertedNTPTime);
-                console.log('--- *** ---');
+                // console.log('convertedNTPTime: '+convertedNTPTime);
                 
+                console.log('--- *** ---');
                 var timeoutputTest = momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss');
                 console.log('timeoutputTest: '+timeoutputTest);
                 timeoutputTest = new Date(timeoutputTest);
