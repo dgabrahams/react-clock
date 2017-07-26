@@ -183,11 +183,17 @@ app.get('/time*', function (req, res) {
 		// // res.write( date.toString() );//outputs Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
 
 		var e = new Date();
-		console.log('req ip: '+req.connection.remoteAddress);
+		// console.log('req ip: '+req.connection.remoteAddress);
 
 		// var runTerminal_location = execSync("curl freegeoip.net/json/86.178.93.181");//WORKS! - ip for maida vale
-		var runTerminal_location = execSync("curl freegeoip.net/json/"+req.connection.remoteAddress);//WORKS! - ip for maida vale
-		console.log(runTerminal_location.toString('ascii'));
+		// var runTerminal_location = execSync("curl freegeoip.net/json/"+req.connection.remoteAddress);//WORKS! - ip for maida vale
+		// curl freegeoip.net/json/109.232.61.198
+		// console.log(runTerminal_location.toString('ascii'));
+		var ip = req.headers['x-forwarded-for'] || 
+             req.connection.remoteAddress || 
+             req.socket.remoteAddress ||
+             req.connection.socket.remoteAddress;
+        console.log('req ip: '+ip);
 
 		var locationData = JSON.parse( runTerminal_location.toString('ascii') );
 		console.log( locationData );
