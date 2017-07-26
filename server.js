@@ -2,18 +2,10 @@
 
 const express = require('express');
 const app = express();
-// var Sntp = require('sntp');
-//var url = require("url");
-// var MongoClient = require('mongodb').MongoClient, assert = require('assert');
-// const eventEmitter = require('events');
-//var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
-
 var ntpClient = require('ntp-client');
-
 var http = require('http'),
     fs = require('fs');
-
 
 //for express 4
 var bodyParser = require('body-parser');
@@ -22,43 +14,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-app.set('port', (process.env.PORT || 3001));
+app.set('port', (process.env.PORT || 3001));//Used at bottom to determine the port to run - default to 3001 when local
 
-// Express only serves static assets in production
+// Express only serves static assets in production - not needed?
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-}
-
-
-
-var getJSON = function(db, collectionName, res, req, callback) {
-   console.log('in function');
-   // var cursor =db.collection('test1').find();
-   var cursor =db.collection(collectionName).find();
-   var results = {};//works as a string and then to add JSON.stringify(doc)
-   var count = -1;
-   cursor.each(function(err, doc) {
-      assert.equal(err, null);
-      // console.log(count);
-      if (doc != null) {
-		count++;
-        results[count] = doc;
-        // console.log(typeof doc);
-      } else {
-      	// console.log('in function callback');
-        callback(results);
-      }
-   });
-};
-
-//runs terminal command.
-function consoleCallback(error, stdout, stderr) {
-	// sys.consoleCallback(stdout)
-	// console.log('stdout:');
-	console.log(stdout);
-	// var textReturn = stdout;
-	// return stdout;//for some reaons this outputs a whole object//its a callback function!!!!!
-	// return textReturn;
 }
 
 
@@ -66,20 +26,20 @@ app.all('*', function (req, res, next) {
 	
 	if ( req.params[0] != '/favicon.ico' ){
 
-		console.log(req.params);
-		console.log('In request for *');
+		// console.log(req.params);
+		console.log('In request for * - setting Headers');
 		// Website you wish to allow to connect
 		//res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
 		// Request methods you wish to allow
-		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+		// res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+		res.setHeader('Access-Control-Allow-Methods', 'GET');
 
 		// Request headers you wish to allow
-		res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+		// res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-		// Set to true if you need the website to include cookies in the requests sent
-		// to the API (e.g. in case you use sessions)
-		res.setHeader('Access-Control-Allow-Credentials', true);
+		// Set to true if you need the website to include cookies in the requests sent to the API (e.g. in case you use sessions)
+		// res.setHeader('Access-Control-Allow-Credentials', true);
 
 		next() // pass control to the next handler
 
@@ -88,27 +48,12 @@ app.all('*', function (req, res, next) {
 		res.end();
 	}
 
-	// if ( req.params[0].startsWith('/favicon.ico') ){
-
-	// } else {
-	// 	next() // pass control to the next handler
-	// }
-
 });
 
 app.get('/js*', function (req, res) {
-  // res.send('Birds home page');
-  console.log('In get: /js*');
-
-	// switch(req.params[0]) {
-
-	// }
-
-	// var fileName = './js'+req.params[0];//becuase of the get, params os now shorter!
-	// console.log(fileName);
+	console.log('In get: /js*');
 
     fs.readFile('./js'+req.params[0],function (err, data){
-        // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
         res.status(200);
         res.setHeader('Content-Type', 'text/javascript');
         res.setHeader('Content-Length', data.length);
@@ -116,15 +61,12 @@ app.get('/js*', function (req, res) {
         res.end();
     });
 
-  // res.end();//THIS WAS CAUSING THE ERROR!!!
 });
 
 app.get('/css*', function (req, res) {
-
 	console.log('In get: /css*');
 
     fs.readFile('./css'+req.params[0],function (err, data){
-        // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
         res.status(200);
         res.setHeader('Content-Type', 'text/css');
         res.setHeader('Content-Length', data.length);
@@ -146,20 +88,13 @@ app.get('/images*', function (req, res) {
 
 
 app.get('/themes*', function (req, res) {
-	// res.send('Birds home page');
 	console.log('In get: /themes*');
 
-	// console.log(req.params);
-
-	// fs.readFile('./js'+req.params[0],function (err, data){
 	fs.readFile('./js/themes.json',function (err, data){
-	    // res.writeHead(200, {'Content-Type': 'text/javascript','Content-Length':data.length});
 	    var obj = JSON.parse(data);
 	    res.status(200);
 	    res.setHeader('Content-Type', 'application/json');
-	    //res.setHeader('Content-Length', data.length);
 	    res.write( JSON.stringify(obj) );
-	    // res.write( obj );
 	    res.end();
 	});
 
@@ -167,8 +102,8 @@ app.get('/themes*', function (req, res) {
 
 
 app.get('/time*', function (req, res) {
-	// res.send('Birds home page');
-	console.log('In get: /thyme*');
+
+	console.log('In get: /time*');
 
 	var d = new Date();
 
@@ -183,12 +118,7 @@ app.get('/time*', function (req, res) {
 		// // res.write( date.toString() );//outputs Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
 
 		var e = new Date();
-		// console.log('req ip: '+req.connection.remoteAddress);
 
-		// var runTerminal_location = execSync("curl freegeoip.net/json/86.178.93.181");//WORKS! - ip for maida vale
-		// var runTerminal_location = execSync("curl freegeoip.net/json/"+req.connection.remoteAddress);//WORKS! - ip for maida vale
-		// curl freegeoip.net/json/109.232.61.198
-		// console.log(runTerminal_location.toString('ascii'));
 		var ip = req.headers['x-forwarded-for'] || 
              req.connection.remoteAddress || 
              req.socket.remoteAddress ||
@@ -196,6 +126,10 @@ app.get('/time*', function (req, res) {
         console.log('req ip: '+ip);
         var runTerminal_location = execSync("curl freegeoip.net/json/"+ip);//need to make sure it is ipv4 only!
         console.log(runTerminal_location.toString('ascii'));
+        //IP will default to the cetner of a country if it is not tied to a physical address: http://splinternews.com/how-an-internet-mapping-glitch-turned-a-random-kansas-f-1793856052
+        //Also, if there is only one router in a large area, it will default to that router for exmaple.
+        //Client side Location API is more accurate (best on mobile devices with GPS), and with wifi on can be very accurate (if not moving)
+        //freegeoip should give the country with around 95%-99% accuracy, the city with 50%-80% accuracy. http://whatismyipaddress.com/geolocation-accuracy
 
 		var locationData = JSON.parse( runTerminal_location.toString('ascii') );
 		console.log( locationData );
@@ -212,55 +146,12 @@ app.get('/time*', function (req, res) {
 		res.write( JSON.stringify(resObj) );
 		res.end();
 
-
-
 	});
 
 });
 
-
-
-
-// app.route('/*').all(function(req,res,next) {
-
-// app.route('/*').all(function(req,res,next) {
-// app.route('/*').all(function(req,res,next) {
 app.get('/*', function (req, res) {
-// app.get('/js*', function (req, res) {
-
-	console.log('In router: /*');
-	// // Website you wish to allow to connect
-	// res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-	// // Request methods you wish to allow
-	// res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-	// // Request headers you wish to allow
-	// res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-	// // Set to true if you need the website to include cookies in the requests sent
-	// // to the API (e.g. in case you use sessions)
-	// res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // console.log('req.connection.remoteAddress: ' + req.connection.remoteAddress);//works - returns ip address of visitor
-    // app.use( "/js*" , jsRequest(req, res, next) );
-// console.log(req.params);
-	// switch(req.params[0].startsWith('/js')) {
-
-	// }
-	// if( req.params[0].startsWith('/js') ){
-	// 	console.log('this is a js file from if');
-	// 	// res.write('data');
-	// 	// res.end();	
-	// 	next();
-	// } else if ( req.params[0].startsWith('/css') ){
-
-	// }
-
-//still does the stuff below it!
-
-    // htmlBody = '';//makes it fresh for each load
-	// var dBurl = 'mongodb://localhost:27017/test-db-themes';
+	console.log('In get: /*');
 
 	switch(req.url) {
 	    case '/site':
@@ -284,47 +175,14 @@ app.get('/*', function (req, res) {
 
 });
 
-function jsRequest(req, res, next){
-	console.log('jsRequest');
-}
-
-
-// app.get('/test', (req, res) => {
-// 	console.log('from new server');
-
-// 	// Website you wish to allow to connect
-// 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-// 	// Request methods you wish to allow
-// 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-// 	// Request headers you wish to allow
-// 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-// 	// Set to true if you need the website to include cookies in the requests sent
-// 	// to the API (e.g. in case you use sessions)
-// 	res.setHeader('Access-Control-Allow-Credentials', true);
-
-// 	res.write('<div>from new server</div>');//FF gives an XML parsing error if there are no tags in the text.
-// 	res.end();
-// });
-
-
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });
 
+//Error reporting
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   var reply = '500 Internal Error...thing...';
-
-  //doesn't work, of course!
-  // setTimeout(function(res,reply){  
-		// res.status(500).send(reply);
-  // }, 4000);
+  console.log(typeof err.stack);
   res.status(500).send(reply);
 });
-
-// app.listen(8080, function() {
-//   console.log('Server running at http://127.0.0.1:8080/');
-// });
