@@ -5,7 +5,25 @@
 </head>
 <body>
 
-<p>testing...testing</p>
+<p id="output">loading...</p>
+<p id="results"></p>
+
+<script type="text/javascript">
+	if ("geolocation" in navigator) {
+		console.log('Geolocation is available');
+		document.getElementById('output').innerHTML = 'Geolocation is available';
+
+		navigator.geolocation.getCurrentPosition(function(position) {
+		  //do_something(position.coords.latitude, position.coords.longitude);
+		  document.getElementById('results').innerHTML = "<span>Latitude: "+position.coords.latitude+"</span><br /><span>Longitude: "+position.coords.longitude+"</span>";
+		});
+
+	} else {
+	  console.log('Geolocation is available');
+	  document.getElementById('output').innerHTML = 'Geolocation is NOT available';
+	}
+
+</script>
 
 </body>
 </html>
