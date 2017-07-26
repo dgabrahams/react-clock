@@ -255,7 +255,8 @@
                 var convertedNTPTime = momentNTPtime.tz(timeZone.time_zone).unix();
                 console.log('convertedNTPTime: '+convertedNTPTime);
                 console.log('--- *** ---');
-                timeoutputTest = momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss');
+                
+                var timeoutputTest = momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss');
                 console.log('timeoutputTest: '+timeoutputTest);
                 timeoutputTest = new Date(timeoutputTest);
                 console.log('timeoutputTest: '+timeoutputTest);
