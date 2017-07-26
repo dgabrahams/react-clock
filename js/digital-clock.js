@@ -12,6 +12,9 @@ var DefaultClock = React.createClass({
             timerMain.addThemeCSS('/css/digital-clock.css');//works!
             this.checkTime('1');
     },
+    timeGetter: function () {
+        return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
+    },
     checkTime: function (param) {
 
         console.log('----- checkTime -----');

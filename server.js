@@ -119,10 +119,7 @@ app.get('/time*', function (req, res) {
 
 		var e = new Date();
 
-		var ip = req.headers['x-forwarded-for'] || 
-             req.connection.remoteAddress || 
-             req.socket.remoteAddress ||
-             req.connection.socket.remoteAddress;
+		var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress ||req.connection.socket.remoteAddress;
         console.log('req ip: '+ip);
         var runTerminal_location = execSync("curl freegeoip.net/json/"+ip);//need to make sure it is ipv4 only!
         console.log(runTerminal_location.toString('ascii'));
@@ -134,7 +131,7 @@ app.get('/time*', function (req, res) {
 		var locationData = JSON.parse( runTerminal_location.toString('ascii') );
 		console.log( locationData );
 
-//will utc date get issues when it is close to a change over...if used on local time the time is different, a straight off new Date() object gets the right time, new Date().getUTCHours() is wrong when local machine is in british summer time.
+		//will utc date get issues when it is close to a change over...if used on local time the time is different, a straight off new Date() object gets the right time, new Date().getUTCHours() is wrong when local machine is in british summer time.
 		var resObj = {
 			'T3' : Math.round(+new Date()/1000),
 			'T2' : Math.round(d/1000),

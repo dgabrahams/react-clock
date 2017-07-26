@@ -14,7 +14,7 @@
 
   </head>
   <body id="body-main">
-    <div id="example"></div>
+    <div id="react-main"></div>
     <script type="text/babel">
 
 //https://stackoverflow.com/questions/7389328/detect-if-browser-tab-has-focus
@@ -473,15 +473,12 @@
               setRunTime = (65-parseInt(setRunTime,10))*1000;
               console.log('Program will run in: '+setRunTime);
               var self = this;
-              setTimeout(function(){ 
-                console.log('current second: '+ new Date().getUTCSeconds() );
-                // self.getJSON('http://localhost:3001/time', this.displayTime);
-              }.bind(this), setRunTime);//result should run 5 seconds into the next minute.
+              // setTimeout(function(){ 
+              //   console.log('current second: '+ new Date().getUTCSeconds() );
+              //   // self.getJSON('http://localhost:3001/time', this.displayTime);
+              // }.bind(this), setRunTime);//result should run 5 seconds into the next minute.
               // this.getJSON('http://localhost:3001/time', this.displayTime);
               this.getJSON('https://aqueous-meadow-38089.herokuapp.com/time', this.displayTime);
-              //https://aqueous-meadow-38089.herokuapp.com/time
-
-              //setTimeout(function() { this.setState({position: 1}); }.bind(this), 3000);
           },
           xhttpGetThemes: function(state) {
               // this.getJSON('http://localhost:3001/themes', this.handleTheme);
@@ -524,7 +521,7 @@
 
       });
 
-      let timerMain = ReactDOM.render(React.createElement(Timer3, null), document.getElementById('example'));
+      let timerMain = ReactDOM.render(React.createElement(Timer3, null), document.getElementById('react-main'));
       //timerMain.xhttpGetTime()
       //timerMain.removeTheme()
 
