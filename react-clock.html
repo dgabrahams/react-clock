@@ -244,7 +244,7 @@
                 var dateString = String(response.date)+' '+String(ntpTime);//NTP time WITHOUT statement of time zone
                 //console.log('dateString: '+dateString);
                 var momentNTPtime = moment( new Date( String(dateString) ).toString() );
-                console.log( momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );
+                // console.log( momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );//doesn't give the right time as we are in summer time +1 hr, there is no indication of this being passed in.
                 console.log('*******');
 
                 var currentLocalTime = new Date();
@@ -260,6 +260,8 @@
                 // console.log('convertedLocalTime: '+convertedLocalTime);
                 var convertedNTPTime = momentNTPtime.tz(timeZone.time_zone).unix();
                 // console.log('convertedNTPTime: '+convertedNTPTime);
+
+                console.log('timezone test: '+ currentLocalTime.tz(timeZone.time_zone) );
                 
                 console.log('--- *** ---');
                 var timeoutputTest = momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss');
