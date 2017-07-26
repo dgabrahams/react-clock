@@ -393,8 +393,9 @@
               var localDifference = convertedNTPTime - timeoutputTest;//local time will always be later than the NTP time recieved.
               console.log('Difference in seconds NTP to local machine: '+localDifference);
 
-              if ( typeof String(localDifference).match(/-/g) === 'null' ) {
+              if ( String(localDifference).match(/-/g) === null ) {
                   console.log('this is not a negative number');
+                  localDifference = '+'+String(localDifference);
               }
 
               outputString = 'Time difference in seconds between NTP time gathered from the server and current local time is: ' + localDifference + ' or '+(localDifference/3600)+' hours.';//60*60 = 3600 ... then divide new time by this to get hours
