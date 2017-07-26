@@ -398,7 +398,7 @@
               if ( String(localDifference).match(/-/g) === null ) {
                   console.log('this is not a negative number');
                   localDifference = '+' + String(localDifference);
-                  differenceHours = '+' + String(localDifference);
+                  // differenceHours = '+' + String(localDifference);
               }
 
               outputString = 'Time difference in seconds between NTP time gathered from the server and current local time is: ' + localDifference + ' or '+ differenceHours +' hours.';//60*60 = 3600 ... then divide new time by this to get hours
