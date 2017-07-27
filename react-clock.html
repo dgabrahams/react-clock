@@ -149,8 +149,8 @@
             // var val = event.target.value;
             // var obj  = {};
 
-            console.log(this.props.list);
-            this.setState(this.props.list);
+            // console.log(this.props.list);
+            // this.setState(this.props.list);
 
             // this.props.list.map(function(listValue) {
             //   obj = self.state;
@@ -406,25 +406,29 @@
               //     // console.log(this.state.timezones);
               // });
 
-              var obj = JSON.parse(xhttp.responseText);
+              // var obj = JSON.parse(xhttp.responseText);
               // console.log(obj);
               //obj = [obj];
-              var newArray = [];
+              // var newArray = [];
 
-              for (var prop in obj) {
-                  //console.log(`obj.${prop} = ${obj[prop]}`);
-                  // console.log(this.state.obj);
-                  var newInnerObj = {};
-                  newInnerObj[prop] = obj[prop];
-                  //{}
-                   // prop : obj[prop]
-                  // newInnerArray
-                  // newArray.push(obj[prop]);
-                  newArray.push(newInnerObj);
-              }
+              // for (var prop in obj) {
+              //     //console.log(`obj.${prop} = ${obj[prop]}`);
+              //     // console.log(this.state.obj);
+              //     var newInnerObj = {};
+              //     newInnerObj[prop] = obj[prop];
+              //     //{}
+              //      // prop : obj[prop]
+              //     // newInnerArray
+              //     // newArray.push(obj[prop]);
+              //     newArray.push(newInnerObj);
+              // }
 
+              // ReactDOM.render(
+              //   <TimezoneListOutput list={newArray} />,
+              //   document.getElementById('timezone-display')
+              // );
               ReactDOM.render(
-                <TimezoneListOutput list={newArray} />,
+                <TimezoneListOutput list={JSON.parse(xhttp.responseText)} />,
                 document.getElementById('timezone-display')
               );
 
