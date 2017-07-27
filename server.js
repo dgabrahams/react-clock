@@ -100,6 +100,19 @@ app.get('/themes*', function (req, res) {
 
 });
 
+app.get('/timezones*', function (req, res) {
+	console.log('In get: /timezones*');
+
+	fs.readFile('./js/timezones.json',function (err, data){
+	    var obj = JSON.parse(data);
+	    res.status(200);
+	    res.setHeader('Content-Type', 'application/json');
+	    res.write( JSON.stringify(obj) );
+	    res.end();
+	});
+
+});
+
 
 app.get('/time*', function (req, res) {
 

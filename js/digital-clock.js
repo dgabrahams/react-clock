@@ -40,10 +40,16 @@ var DefaultClock = React.createClass({
 
             //require ISO format? : 2014-12-01T12:00:00Z
 
+            //A date being passed into a date() object calculates the new date from the CURRENT timezone a browser is in.
+
+            // get current date
+            // get time that is required to be + or -
+            //+ or - that form current time and set as the state value.
+
             console.log('currentTime before: '+currentTime);
             currentTime = moment( currentTime.toISOString() ).tz( String(this.state.timeZone) ).format();
             console.log('currentTime new: '+currentTime);
-            console.log('currentTime new: '+currentTime.toISOString() );
+            // console.log('currentTime new: '+currentTime.toISOString() );
 
             //require this format to set the timzezone of a new date: Wed Mar 25 2015 09:56:24 GMT+0500
             //currentTime = new Date(currentTime);

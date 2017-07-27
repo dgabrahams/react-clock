@@ -153,9 +153,12 @@
       var Timer3 = React.createClass({
 
           getInitialState: function() {
-            return {};
+            return {
+                timezones : null
+            };
           },
           componentWillMount: function () {
+              this.xhttpGetTimezones();
           },
           componentDidMount: function() {
               ReactDOM.render(
@@ -318,6 +321,12 @@
                 document.getElementById('theme-list')
               );
           },
+          handleTimezone: function(xhttp,self) {
+              var obj = JSON.parse(xhttp.responseText);
+              this.setState({ timezones: obj }, () => {
+                  console.log(this.state.timezones);
+              });
+          },
           getJSON: function(url,cFunction) {
         // only get needs to be implemented and tested.
               var self = this;
@@ -357,6 +366,9 @@
           xhttpGetThemes: function(state) {
               // this.getJSON('http://localhost:3001/themes', this.handleTheme);
               this.getJSON('https://aqueous-meadow-38089.herokuapp.com/themes', this.handleTheme);
+          },
+          xhttpGetTimezones: function(state) {
+              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/timezones', this.handleTimezone);
           },
           addThemeCSS: function (fileHref) {
               var node = document.createElement("link");
