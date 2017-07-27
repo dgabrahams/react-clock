@@ -394,7 +394,13 @@
               for (var prop in obj) {
                   //console.log(`obj.${prop} = ${obj[prop]}`);
                   // console.log(this.state.obj);
-                  newArray.push(obj[prop]);
+                  var newInnerObj = {};
+                  newInnerObj[prop] = obj[prop];
+                  //{}
+                   // prop : obj[prop]
+                  // newInnerArray
+                  // newArray.push(obj[prop]);
+                  newArray.push(newInnerObj);
               }
 
               ReactDOM.render(
