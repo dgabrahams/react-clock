@@ -181,11 +181,17 @@
             // console.log(this.state);
         },
         outputOption: function() {
-                  // for(key in this.props.list) {
-                  //     console.log('key: '+key);
-                  //     console.log('value: '+this.props.list[key]);
-                  // }
-              return '<option value=test>test</option>';
+
+              var array = [];
+
+              //try and use props for below
+              for(key in this.state.list) {
+                  // console.log('key: '+key);
+                  // console.log('value: '+this.props.list[key]);
+                  // indents.push(<span className='indent' key={i}></span>);
+                  array.push(<option value={key}>{key}</option>);
+              }
+              return array;
         },
         render: function() {
           return (
