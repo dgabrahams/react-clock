@@ -41,7 +41,7 @@ var DefaultClock = React.createClass({
             //require ISO format? : 2014-12-01T12:00:00Z
 
             console.log('currentTime before: '+currentTime);
-            currentTime = moment( currentTime.toISOString() ).tz(this.state.timeZone).format();
+            currentTime = moment( currentTime.toISOString() ).tz( String(this.state.timeZone) ).format();
             console.log('currentTime new: '+currentTime);
             currentTime = new Date(currentTime);
             console.log('currentTime new2: '+currentTime);
