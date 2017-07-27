@@ -162,7 +162,11 @@
         },
         formAction: function() {
 
-            // console.log('***form action***');
+            console.log('***form action***');
+            console.log( myRegistrationModal.timeZoneGetter() );
+            myRegistrationModal.timeZoneSetter(this.state.selectValue);
+            console.log( myRegistrationModal.timeZoneGetter() );
+            
             // timerMain.removeTheme();
             // timerMain.hideThemeSelector();
             // console.log(this.state[this.state.selectValue].fileName);//works!
@@ -174,11 +178,11 @@
             // );
         },
         handleChange: function(e) {
-            // console.log(this.state);
-            // this.setState({selectValue: e.target.value}, () => {
-            //     console.log('from change handle: '+this.state.selectValue);
-            // });
-            // console.log(this.state);
+            console.log(this.state);
+            this.setState({selectValue: e.target.value}, () => {
+                console.log('from change handle: '+this.state.selectValue);
+            });
+            console.log(this.state);
         },
         render: function() {
           return (
