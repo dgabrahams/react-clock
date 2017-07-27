@@ -180,27 +180,13 @@
             // });
             // console.log(this.state);
         },
-        outputOption: function() {
-
-              var array = [];
-
-              //try and use props for below
-              // for(key in this.props.list) {
-              //     // console.log('key: '+key);
-              //     // console.log('value: '+this.props.list[key]);
-              //     // indents.push(<span className='indent' key={i}></span>);
-              //     array.push(<option value={key}>{key}</option>);
-              // }
-              // return array;
-              // {this.outputOption()}
-        },
         render: function() {
           return (
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
                   {Object.keys(this.props.list).map(function(key) {
                       // return <div>Key: {key}, Value: {yourObject[key]}</div>;
-                      return <option value={key}>{key}</option>
+                      return <option value={key}>{key} {this.props.list[key]['UTCoffset']}</option>
                   })}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
