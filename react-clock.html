@@ -180,14 +180,18 @@
             // });
             // console.log(this.state);
         },
+        outputOption: function() {
+                  // for(key in this.props.list) {
+                  //     console.log('key: '+key);
+                  //     console.log('value: '+this.props.list[key]);
+                  // }
+              return '<option value=test>test</option>';
+        },
         render: function() {
           return (
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
-                  {for(key in this.props.list) {
-                      console.log('key: '+key);
-                      console.log('value: '+this.props.list[key]);
-                  }}
+                  {this.outputOption()}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
             </form>
