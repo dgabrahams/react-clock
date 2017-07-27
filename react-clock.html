@@ -185,8 +185,8 @@
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
                   {Object.keys(this.props.list).map(function(key) {
-                      // return <div>Key: {key}, Value: {yourObject[key]}</div>;['UTCoffset']
-                      return <option value={key}>{key} {this.state.list[key]}</option>
+                      // return <div>Key: {key}, Value: {yourObject[key]}</div>;['UTCoffset'] this.state.list[key]
+                      return <option value={key}>{key} {key.UTCoffset}</option>
                   })}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
