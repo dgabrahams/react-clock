@@ -43,8 +43,8 @@ var DefaultClock = React.createClass({
             console.log('currentTime before: '+currentTime);
             currentTime = moment( currentTime.toISOString() ).tz( String(this.state.timeZone) ).format();
             console.log('currentTime new: '+currentTime);
-            currentTime = new Date(currentTime);
-            console.log('currentTime new2: '+currentTime);
+            //currentTime = new Date(currentTime);
+            //console.log('currentTime new2: '+currentTime);
         }
 
         console.log('minutes: ' + currentTime.getMinutes());
