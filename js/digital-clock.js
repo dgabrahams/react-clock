@@ -41,7 +41,7 @@ var DefaultClock = React.createClass({
             //require ISO format? : 2014-12-01T12:00:00Z
 
             console.log('currentTime before: '+currentTime);
-            currentTime = moment( currentTime.toISOString() ).tz(this.state.timeZone);
+            currentTime = moment( currentTime.toISOString() ).tz(this.state.timeZone).format();
             console.log('currentTime new: '+currentTime);
             currentTime = new Date(currentTime);
             console.log('currentTime new2: '+currentTime);
@@ -118,3 +118,7 @@ var myRegistrationModal = ReactDOM.render(React.createElement(DefaultClock, null
 // myRegistrationModal.timeSetter(22, 40, 25)
 //myRegistrationModal.timeZoneSetter('America/Lima')
 // myRegistrationModal.timeZoneGetter()
+
+// moment( '2017-07-27T08:01:09.348Z' ).tz('America/Lima').format('YYYY-MM-DD HH:mm:ss')//works!
+// moment( '2017-07-27T08:01:09.348Z' ).tz('America/Lima').format()//works!
+
