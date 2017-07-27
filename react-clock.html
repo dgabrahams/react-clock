@@ -84,18 +84,18 @@
           };
         },
         componentWillMount: function() {
-            var self = this;
+            // var self = this;
 
-            var key = event.target.id;
-            var val = event.target.value;
-            var obj  = {};
+            // var key = event.target.id;
+            // var val = event.target.value;
+            // var obj  = {};
 
-            this.props.list.map(function(listValue) {
-              obj = self.state;
-              obj[listValue.name.replace(" ", "")] = listValue;
-              self.setState(obj);//had to completely override, for some reason only the last added object in 'themes' key was being kept
-            });
-            console.log(this.state);
+            // this.props.list.map(function(listValue) {
+            //   obj = self.state;
+            //   obj[listValue.name.replace(" ", "")] = listValue;
+            //   self.setState(obj);//had to completely override, for some reason only the last added object in 'themes' key was being kept
+            // });
+            // console.log(this.state);
         },
         formAction: function() {
 
@@ -147,9 +147,10 @@
 
             // var key = event.target.id;
             // var val = event.target.value;
-            var obj  = {};
+            // var obj  = {};
 
             console.log(this.props.list);
+            this.setState(this.props.list);
 
             // this.props.list.map(function(listValue) {
             //   obj = self.state;
@@ -183,7 +184,10 @@
           return (
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
-
+                  {for(key in this.props.list) {
+                      console.log('key: '+key);
+                      console.log('value: '+this.props.list[key]);
+                  }}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
             </form>
@@ -192,10 +196,10 @@
       });
 
 
+
                 // {this.props.list.map(function(listValue){
                 //   return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
                 // })}
-
 
 
 
@@ -387,7 +391,7 @@
               // });
 
               var obj = JSON.parse(xhttp.responseText);
-              console.log(obj);
+              // console.log(obj);
               //obj = [obj];
               var newArray = [];
 
