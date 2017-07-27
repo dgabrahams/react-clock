@@ -63,17 +63,17 @@
         }
       });
 
-      var OutputList = React.createClass({
-        render: function() {
-          return (
-            <ul>
-              {this.props.list.map(function(listValue){
-                return <li>{listValue.name}</li>;
-              })}
-            </ul>
-          )
-        }
-      });
+      // var OutputList = React.createClass({
+      //   render: function() {
+      //     return (
+      //       <ul>
+      //         {this.props.list.map(function(listValue){
+      //           return <li>{listValue.name}</li>;
+      //         })}
+      //       </ul>
+      //     )
+      //   }
+      // });
 
 // [{ name: "Analogue Clock", fileName: "analogue-clock.js", cssFile: "analogue-clock.css" },{ name: "Flip Clock", fileName: "flip-clock.js", cssFile: "flip-clock.css" }]
       var ThemeListOutput = React.createClass({
@@ -136,6 +136,65 @@
 
 
 
+      var TimezoneListOutput = React.createClass({
+        getInitialState: function() {
+          return {
+            themes: [{}]
+          };
+        },
+        componentWillMount: function() {
+            var self = this;
+
+            // var key = event.target.id;
+            // var val = event.target.value;
+            var obj  = {};
+
+            console.log(this.props.list);
+
+            // this.props.list.map(function(listValue) {
+            //   obj = self.state;
+            //   // obj[listValue.name.replace(" ", "")] = listValue;
+            //   obj[listValue.name.replace(" ", "")] = listValue;
+            //   self.setState(obj);//had to completely override, for some reason only the last added object in 'themes' key was being kept
+            // });
+            // console.log(this.state);
+        },
+        formAction: function() {
+
+            // console.log('***form action***');
+            // timerMain.removeTheme();
+            // timerMain.hideThemeSelector();
+            // console.log(this.state[this.state.selectValue].fileName);//works!
+            // var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
+
+            // ReactDOM.render(
+            //   <AddJS src={scriptSrc} />,
+            //   document.getElementById('js-import')
+            // );
+        },
+        handleChange: function(e) {
+            // console.log(this.state);
+            // this.setState({selectValue: e.target.value}, () => {
+            //     console.log('from change handle: '+this.state.selectValue);
+            // });
+            // console.log(this.state);
+        },
+        render: function() {
+          return (
+            <form action="javascript:void(0);">
+              <select name="themeOptions" onChange={this.handleChange} >
+
+              </select>
+              <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
+            </form>
+          )
+        }
+      });
+
+
+                // {this.props.list.map(function(listValue){
+                //   return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
+                // })}
 
 
 
@@ -322,10 +381,27 @@
               );
           },
           handleTimezone: function(xhttp,self) {
+              // var obj = JSON.parse(xhttp.responseText);
+              // this.setState({ timezones: obj }, () => {
+              //     // console.log(this.state.timezones);
+              // });
+
               var obj = JSON.parse(xhttp.responseText);
-              this.setState({ timezones: obj }, () => {
-                  console.log(this.state.timezones);
-              });
+              console.log(obj);
+              //obj = [obj];
+              var newArray = [];
+
+              for (var prop in obj) {
+                  //console.log(`obj.${prop} = ${obj[prop]}`);
+                  // console.log(this.state.obj);
+                  newArray.push(obj[prop]);
+              }
+
+              ReactDOM.render(
+                <TimezoneListOutput list={JSON.parse(xhttp.responseText)} />,
+                document.getElementById('timezone-display')
+              );
+
           },
           getJSON: function(url,cFunction) {
         // only get needs to be implemented and tested.
@@ -401,6 +477,8 @@
                 <div id="theme-list"></div>
                 <div>&nbsp;</div>
                 <div id="clock-display"></div>
+                <div>&nbsp;</div>
+                <div id="timezone-display"></div>
                 <div>&nbsp;</div>
                 <div id="js-import"></div>
               </div>
