@@ -24,6 +24,9 @@ var DefaultClock = React.createClass({
     timeZoneSetter: function (timeZone) {
         this.setState({ timeZone: timeZone }, () => {});
     },
+    timeZoneGetter: function (timeZone) {
+        return 'timeZone: ' + this.state.timeZone;
+    },
     checkTime: function (param) {
 
         console.log('----- checkTime -----');
@@ -35,8 +38,10 @@ var DefaultClock = React.createClass({
             // var momentNTPtime = moment( new Date( String(dateString) ).toString() );
             // momentNTPtime.tz(timeZone.time_zone).unix();
             console.log('currentTime before: '+currentTime);
-            currentTime = moment( currentTime.toString() ).tz(this.state.timeZone);
+            currentTime = moment( currentTime ).tz(this.state.timeZone);
             console.log('currentTime new: '+currentTime);
+            currentTime = new Date(currentTime);
+            console.log('currentTime new2: '+currentTime);
         }
 
         console.log('minutes: ' + currentTime.getMinutes());
@@ -108,3 +113,4 @@ var DefaultClock = React.createClass({
 var myRegistrationModal = ReactDOM.render(React.createElement(DefaultClock, null), document.getElementById('clock-display'));
 // myRegistrationModal.timeGetter()
 // myRegistrationModal.timeSetter(22, 40, 25)
+//myRegistrationModal.timeZoneSetter('America/Lima')
