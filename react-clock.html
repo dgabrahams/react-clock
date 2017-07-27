@@ -150,7 +150,7 @@
             // var obj  = {};
 
             // console.log(this.props.list);
-            // this.setState(this.props.list);
+            this.setState(this.props.list);
 
             // this.props.list.map(function(listValue) {
             //   obj = self.state;
@@ -186,7 +186,7 @@
               <select name="themeOptions" onChange={this.handleChange} >
                   {Object.keys(this.props.list).map(function(key) {
                       // return <div>Key: {key}, Value: {yourObject[key]}</div>;['UTCoffset']
-                      return <option value={key}>{key} {key['UTCoffset']}</option>
+                      return <option value={key}>{key} {this.state.list[key]}</option>
                   })}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
