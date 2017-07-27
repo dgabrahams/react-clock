@@ -3,6 +3,7 @@ var DefaultClock = React.createClass({
 
     getInitialState: function () {
         return {
+            timeZone: null,
             hour: 0,
             minute: 0,
             second: 0
@@ -20,11 +21,23 @@ var DefaultClock = React.createClass({
         this.setState({ minute: minutes }, () => {});
         this.setState({ second: seconds }, () => {});
     },
+    timeZoneSetter: function (timeZone) {
+        this.setState({ timeZone: timeZone }, () => {});
+    },
     checkTime: function (param) {
 
         console.log('----- checkTime -----');
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
+
+        if ( this.state.timeZone !== null ) {
+            //&& data !== undefined
+            // var momentNTPtime = moment( new Date( String(dateString) ).toString() );
+            // momentNTPtime.tz(timeZone.time_zone).unix();
+            console.log('currentTime before: '+currentTime);
+            currentTime = moment( currentTime.toString() ).tz(this.state.timeZone);
+            console.log('currentTime new: '+currentTime);
+        }
 
         console.log('minutes: ' + currentTime.getMinutes());
         console.log('seconds: ' + currentTime.getSeconds());

@@ -261,7 +261,7 @@
                 var convertedNTPTime = momentNTPtime.tz(timeZone.time_zone).unix();
                 // console.log('convertedNTPTime: '+convertedNTPTime);
 
-                console.log('timezone test: '+ moment( currentLocalTime.toString() ).tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );
+                console.log('timezone test: '+ moment( currentLocalTime.toString() ).tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss') );//but current local time is already set! so this isn't setting it according to the timezone!
                 
                 console.log('--- *** ---');
                 var timeoutputTest = momentNTPtime.tz(timeZone.time_zone).format('YYYY-MM-DD HH:mm:ss');
