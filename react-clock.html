@@ -185,19 +185,23 @@
               var array = [];
 
               //try and use props for below
-              for(key in this.props.list) {
-                  // console.log('key: '+key);
-                  // console.log('value: '+this.props.list[key]);
-                  // indents.push(<span className='indent' key={i}></span>);
-                  array.push(<option value={key}>{key}</option>);
-              }
-              return array;
+              // for(key in this.props.list) {
+              //     // console.log('key: '+key);
+              //     // console.log('value: '+this.props.list[key]);
+              //     // indents.push(<span className='indent' key={i}></span>);
+              //     array.push(<option value={key}>{key}</option>);
+              // }
+              // return array;
+              // {this.outputOption()}
         },
         render: function() {
           return (
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
-                  {this.outputOption()}
+                  {Object.keys(this.props.list).map(function(key) {
+                      // return <div>Key: {key}, Value: {yourObject[key]}</div>;
+                      return <option value={key}>{key}</option>
+                  })}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
             </form>
@@ -205,7 +209,9 @@
         }
       });
 
-
+// {Object.keys(yourObject).map(function(key) {
+//     return <div>Key: {key}, Value: {yourObject[key]}</div>;
+// })}
 
                 // {this.props.list.map(function(listValue){
                 //   return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
