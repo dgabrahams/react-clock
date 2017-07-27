@@ -43,6 +43,9 @@ var DefaultClock = React.createClass({
             console.log('currentTime before: '+currentTime);
             currentTime = moment( currentTime.toISOString() ).tz( String(this.state.timeZone) ).format();
             console.log('currentTime new: '+currentTime);
+            console.log('currentTime new: '+currentTime.toISOString() );
+
+            //require this format to set the timzezone of a new date: Wed Mar 25 2015 09:56:24 GMT+0500
             //currentTime = new Date(currentTime);
             //console.log('currentTime new2: '+currentTime);
         }
