@@ -163,10 +163,13 @@
         formAction: function() {
 
             console.log('***form action***');
-            console.log( myRegistrationModal.timeZoneGetter() );
-            myRegistrationModal.timeZoneSetter(this.state.selectValue);
-            console.log( myRegistrationModal.timeZoneGetter() );
-            
+            // console.log(this.state[this.state.selectValue]);//FINISH THIS
+            console.log(this.props.list[this.state.selectValue]);//FINISH THIS
+
+            // console.log( myRegistrationModal.timeZoneGetter() );
+            // myRegistrationModal.timeZoneSetter(this.state.selectValue);
+            // console.log( myRegistrationModal.timeZoneGetter() );
+
             // timerMain.removeTheme();
             // timerMain.hideThemeSelector();
             // console.log(this.state[this.state.selectValue].fileName);//works!
