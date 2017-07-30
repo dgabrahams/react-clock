@@ -57,7 +57,8 @@ var DefaultClock = React.createClass({
 
             console.log('this.state.timeZone: '+this.state.timeZone);
 
-            console.log('timeZone substring: '+this.state.timeZone.substring(1, 2) );
+            console.log('timeZone substring: '+this.state.timeZone.substring(1, 3) );
+            console.log('timeZone substring parseInt: '+ parseInt(this.state.timeZone.substring(1, 3)) );
 
 
             if ( this.state.timeZone.match(/\+/g) ) {
