@@ -4,7 +4,7 @@
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
-    font-size: 100px;
+    font-size: 120px;
     line-height: 1;
 }
 
@@ -16,13 +16,13 @@
 }
 
 .time-divider {
-    max-height: 100px;
+    max-height: 120px;
 }
 
 .time-divider-dot {
     display: block;
     /* font-size: 150px; */
-    font-size: 62px;
+    font-size: 82px;
     line-height: 0.5;
     /* width: 30px; */
     /* text-align: left; */
