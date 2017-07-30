@@ -9,3 +9,7 @@
 #change-theme-button {
 	text-align: center;
 }
+
+#theme-list {
+	display: inline-block;
+}
