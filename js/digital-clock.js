@@ -33,6 +33,13 @@ var DefaultClock = React.createClass({
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
 
+        console.log('minutes: ' + currentTime.getMinutes());
+        console.log('seconds: ' + currentTime.getSeconds());
+        console.log('milliseconds: ' + currentTime.getMilliseconds());
+
+        var minutes = currentTime.getMinutes();
+        var hours = currentTime.getHours();
+
         if ( this.state.timeZone !== null ) {
             //&& data !== undefined
             // var momentNTPtime = moment( new Date( String(dateString) ).toString() );
@@ -46,6 +53,14 @@ var DefaultClock = React.createClass({
             // get time that is required to be + or -
             //+ or - that form current time and set as the state value.
 
+            console.log('this.state.timeZone: '+this.state.timeZone);
+
+            if ( this.state.timeZone.match(/\+/g) ) {
+                console.log('contains +');
+            } else {
+                console.log('contains -');
+            }
+
 
             // console.log('currentTime before: '+currentTime);
             // currentTime = moment( currentTime.toISOString() ).tz( String(this.state.timeZone) ).format();
@@ -57,13 +72,6 @@ var DefaultClock = React.createClass({
             //currentTime = new Date(currentTime);
             //console.log('currentTime new2: '+currentTime);
         }
-
-        console.log('minutes: ' + currentTime.getMinutes());
-        console.log('seconds: ' + currentTime.getSeconds());
-        console.log('milliseconds: ' + currentTime.getMilliseconds());
-
-        var minutes = currentTime.getMinutes();
-        var hours = currentTime.getHours();
 
         if(param === '-1') {
             minutes = minutes+1;
