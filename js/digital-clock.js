@@ -22,7 +22,9 @@ var DefaultClock = React.createClass({
         this.setState({ second: seconds }, () => {});
     },
     timeZoneSetter: function (timeZone) {
-        this.setState({ timeZone: timeZone }, () => {});
+        this.setState({ timeZone: timeZone }, () => {
+            console.log('after setting timezone in theme component: ' + this.state.timeZone );
+        });
     },
     timeZoneGetter: function (timeZone) {
         return 'timeZone: ' + this.state.timeZone;
@@ -55,11 +57,18 @@ var DefaultClock = React.createClass({
 
             console.log('this.state.timeZone: '+this.state.timeZone);
 
+            console.log('timeZone substring: '+this.state.timeZone.substring(1, 2) );
+
+
             if ( this.state.timeZone.match(/\+/g) ) {
-                console.log('contains +');
+                // console.log('contains +');//works
+                // this.state.timeZone.charAt(2);
+
             } else {
-                console.log('contains -');
+                // console.log('contains -');//works
+
             }
+            console.log('char at 2: ' + this.state.timeZone.charAt(2));
 
 
             // console.log('currentTime before: '+currentTime);
