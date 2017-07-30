@@ -49,24 +49,10 @@ var DefaultClock = React.createClass({
         var hours = currentTime.getHours();
 
         if ( this.state.timeZoneValue !== null ) {
-            //&& data !== undefined
-            // var momentNTPtime = moment( new Date( String(dateString) ).toString() );
-            // momentNTPtime.tz(timeZone.time_zone).unix();
-
-            //require ISO format? : 2014-12-01T12:00:00Z
-
-            //A date being passed into a date() object calculates the new date from the CURRENT timezone a browser is in.
-
             // get current date
             // get time that is required to be + or -
             //+ or - that form current time and set as the state value.
-
             console.log('this.state.timeZone: '+this.state.timeZoneValue);
-
-            // console.log('timeZone substring: '+this.state.timeZone.substring(1, 3) );
-            // console.log('timeZone substring parseInt: '+ parseInt(this.state.timeZone.substring(1, 3)) );//works
-
-
             if ( this.state.timeZoneValue.match(/\+/g) ) {
                 // console.log('contains +');//works
                 // this.state.timeZone.charAt(2);
@@ -76,7 +62,6 @@ var DefaultClock = React.createClass({
                 hours = hours - parseInt(this.state.timeZoneValue.substring(1, 3));
             }
             // console.log('char at 2: ' + this.state.timeZone.charAt(2));
-
             console.log('hours changed: ' + hours);
 
             if (hours < 0) {
@@ -86,18 +71,6 @@ var DefaultClock = React.createClass({
 
             }
             // console.log('hours changed: ' + hours);
-
-
-
-            // console.log('currentTime before: '+currentTime);
-            // currentTime = moment( currentTime.toISOString() ).tz( String(this.state.timeZone) ).format();
-            // console.log('currentTime new: '+currentTime);
-            // // console.log('currentTime new: '+currentTime.toISOString() );
-
-
-            //require this format to set the timzezone of a new date: Wed Mar 25 2015 09:56:24 GMT+0500
-            //currentTime = new Date(currentTime);
-            //console.log('currentTime new2: '+currentTime);
         }
 
         if(param === '-1') {
@@ -131,10 +104,21 @@ var DefaultClock = React.createClass({
             console.log('Time till next minute in milliseconds: ' + setApplyTime);
             console.log('Time till next minute in seconds: ' + (setApplyTime/1000) );
 
+            var currentTimeZone = this.state.timeZone;
+
             setTimeout(function () {
 
-                    this.setState({ hour: hours }, () => {});
-                    this.setState({ minute: minutes }, () => {});
+//when timezone change the value set here is out of date when it comes to the first minute to be changed
+//the next minute afterwards is ok
+
+                    if ( this.state.timeZone === currentTimeZone ) {
+                        console.log('this.state.timeZone === currentTimeZone');
+                        this.setState({ hour: hours }, () => {});
+                        this.setState({ minute: minutes }, () => {});   
+                    } else {
+                        console.log('this.state.timeZone !== currentTimeZone');
+
+                    }//else
 
                     this.checkTime('-1', '0');
 
