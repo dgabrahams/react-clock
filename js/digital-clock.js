@@ -28,8 +28,8 @@ var DefaultClock = React.createClass({
         });
         this.setState({ timeZoneValue: timeZoneValue }, () => {
             console.log('from theme component timezonevalue: ' + this.state.timeZoneValue );
+            this.checkTime('1', '1');
         });
-        this.checkTime('1', '1');
     },
     timeZoneGetter: function () {
         return 'timeZone: ' + this.state.timeZone;
