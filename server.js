@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-var ntpRequestCount = 0;
+var ntpRequestCount = Math.floor(Date.now() / 1000);
 
 app.all('*', function (req, res, next) {
 	
