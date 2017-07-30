@@ -68,7 +68,7 @@ var DefaultClock = React.createClass({
 
             if ( parseInt(minutes) >= 60 ){
                 console.log('parseInt(minutes) >= 60: ' + minutes);
-                minutes = 60 - parseInt(minutes);
+                minutes = parseInt(minutes) - 60;
                 hours = parseInt(hours) + 1;
             }//end if
 
