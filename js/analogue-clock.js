@@ -13,7 +13,7 @@ var AnalogueClock = React.createClass({
     },
     componentWillMount: function () {
         timerMain.addThemeCSS('/css/analogue-clock.css');//works!
-        this.checkTime();
+        // this.checkTime();
     },
     checkTime: function () {
 
