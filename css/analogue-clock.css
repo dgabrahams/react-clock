@@ -134,7 +134,7 @@
 
 
 #digit-12 {
-    left: 233px;
+    left: 117px;
     padding: 10px 0px 0px 0px;
 }
 
@@ -149,8 +149,8 @@
 }
 
 #digit-3 {
-	top: 235px;
-	left: 450px;
+	top: 117px;
+	left: 223px;
 }
 
 #digit-4 {
@@ -180,8 +180,8 @@
 }
 
 #digit-9 {
-	top: 235px;
-	left: 0px;
+	top: 118px;
+	left: 5px;
 }
 
 #digit-10 {
@@ -213,4 +213,9 @@
 	height: 40px;
 	padding: 0px 0px 0px 0px;
 	background-color: #ff0000;*/
+}
+
+.textNode {
+	display: block;
+	text-align: center;
 }
