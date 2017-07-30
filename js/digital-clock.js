@@ -75,10 +75,11 @@ var DefaultClock = React.createClass({
             if ( parseInt(hours) < 0 ) {
                 console.log('hours < 0: ' + hours);
                 console.log('new hours: ' + (24 - parseInt(hours)));
-                // hours = 24 - hours;
+                hours = 24 - parseInt(hours);
             } else if ( parseInt(hours) >= 24 ) {
                 console.log('hours >= 24: ' + hours);
                 console.log('new hours: ' + (parseInt(hours) - 24));
+                hours = parseInt(hours) - 24;
             }
             // console.log('hours changed: ' + hours);
         }
