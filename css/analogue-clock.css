@@ -139,59 +139,58 @@
 }
 
 #digit-1 {
-	top: 40px;
-	left: 335px;
+    top: 25px;
+    left: 170px;
 }
 
 #digit-2 {
-	top:122px;
-	left: 415px;
+    top: 65px;
+    left: 210px;
 }
 
 #digit-3 {
-	top: 117px;
-	left: 223px;
+    top: 118px;
+    left: 225px;
 }
 
 #digit-4 {
-	top: 335px;/* was top: 340px; */
-	left: 415px;/* same left as digit 2 */
+    top: 171px;
+    left: 210px;
 }
 
 #digit-5 {
-	top: 415px;
-	left: 335px;/* same left as digit 1 */
+    top: 212px;
+    left: 170px;
 }
 
 #digit-6 {
-	top:450px;
-    left: 233px;
-    padding: 10px 0px 0px 0px;
+    top: 228px;
+    left: 117px;
 }
 
 #digit-7 {
-	top: 415px;/* same top as digit 5 */
-	left: 120px;
+    top: 212px;
+    left: 64px;
 }
 
 #digit-8 {
-	top: 335px;/* same top as digit 4 */
-	left: 40px;
+    top: 171px;
+    left: 22px;
 }
 
 #digit-9 {
-	top: 118px;
-	left: 5px;
+    top: 118px;
+    left: 5px;
 }
 
 #digit-10 {
-	top:118px;/* same top as digit 2 but its 2 digits now */
-	left: 30px;/* same left as digit 8 but its 2 digits now */
+    top: 63px;
+    left: 20px;
 }
 
 #digit-11 {
-	top:35px;/* same top as digit 1 but its 2 digits now */
-	left: 110px;
+    top: 24px;
+    left: 62px;
 }
 
 .singleDigit,
