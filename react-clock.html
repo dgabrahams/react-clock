@@ -114,7 +114,7 @@
           };
         },
         componentWillMount: function() {
-            var self = this;
+            // var self = this;
             // this.setState(this.props.list);//not required....
         },
         formAction: function() {
@@ -172,7 +172,7 @@
                 document.getElementById('js-import')
               );
           },
-          displayTime: function(xhttp,self,recieveTime,sentTime) {
+          displayTime: function(xhttp,recieveTime,sentTime) {
             //https://github.com/hueniverse/sntp/blob/master/lib/index.js
             // Timestamp Name          ID   When Generated
             // ------------------------------------------------------------
@@ -309,46 +309,26 @@
             // return outputString;
 
           },
-          handleTheme: function(xhttp,self) {
-
-              // var obj = JSON.parse(xhttp.responseText);
-              // console.log('from handle theme:');
-              // console.log(obj);
-              //obj = [obj];
-              // var newArray = [];
-
-              // for (var prop in obj) {
-              //     //console.log(`obj.${prop} = ${obj[prop]}`);
-              //     // console.log(this.state.obj);
-              //     newArray.push(obj[prop]);
-              // }
-
-              // ReactDOM.render(
-              //   <ThemeListOutput list={newArray} />,
-              //   document.getElementById('theme-list')
-              // );
-
+          handleTheme: function(xhttp) {
               ReactDOM.render(
                 <ThemeListOutput list={JSON.parse(xhttp.responseText)} />,
                 document.getElementById('theme-list')
               );
-
           },
-          handleTimezone: function(xhttp,self) {
+          handleTimezone: function(xhttp) {
               ReactDOM.render(
                 <TimezoneListOutput list={JSON.parse(xhttp.responseText)} />,
                 document.getElementById('timezone-display')
               );
           },
           getJSON: function(url,cFunction) {
-        // only get needs to be implemented and tested.
               var self = this;
               var xhttp, sentTime;
               xhttp=new XMLHttpRequest();
               xhttp.onreadystatechange = function() {
                   if (this.readyState === 4 && this.status === 200) {
                     var recievedTime = new Date();
-                    cFunction(this,self,recievedTime, sentTime);
+                    cFunction(this,recievedTime, sentTime);
                     // console.log(this.responseText);
                   } else if(this.readyState === 4 && this.status === 500) {
                     console.log('500 error...');
@@ -362,19 +342,8 @@
               sentTime = new Date();
           },
           xhttpGetTime: function(state) {
-              //check current seconds till the next minute.
-              //run below in a time out 5 seconds after the next minute.
-              // var setRunTime = new Date().getUTCSeconds();
-              // console.log('setRunTime: '+setRunTime);
-              // setRunTime = (65-parseInt(setRunTime,10))*1000;
-              // console.log('Program will run in: '+setRunTime);
-              // var self = this;
-              // setTimeout(function(){ 
-              //   console.log('current second: '+ new Date().getUTCSeconds() );
-              //   // self.getJSON('http://localhost:3001/time', this.displayTime);
-              // }.bind(this), setRunTime);//result should run 5 seconds into the next minute.
-              // this.getJSON('http://localhost:3001/time', this.displayTime);
-              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/time', this.displayTime);
+              // this.getJSON('https://aqueous-meadow-38089.herokuapp.com/time', this.displayTime);
+              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/time', this.requestTimeLoop);
           },
           xhttpGetThemes: function(state) {
               // this.getJSON('http://localhost:3001/themes', this.handleTheme);
@@ -382,6 +351,14 @@
           },
           xhttpGetTimezones: function(state) {
               this.getJSON('https://aqueous-meadow-38089.herokuapp.com/timezones', this.handleTimezone);
+          },
+          requestTimeLoop: function(xhttp,recieveTime,sentTime) {
+              console.log('from requestTimeLoop:');
+              console.log(xhttp);
+              // setTimeout(function(){ 
+              //   console.log('current second: '+ new Date().getUTCSeconds() );
+              //   // self.getJSON('http://localhost:3001/time', this.displayTime);
+              // }.bind(this), setRunTime);//result should run 5 seconds into the next minute.
           },
           addThemeCSS: function (fileHref) {
               var node = document.createElement("link");
