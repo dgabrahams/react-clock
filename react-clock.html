@@ -102,8 +102,11 @@
             console.log('***form action***');
             timerMain.removeTheme();
             timerMain.hideThemeSelector();
-            console.log(this.state[this.state.selectValue].fileName);//works!
-            var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
+            // console.log(this.state[this.state.selectValue].fileName);//works!
+            // var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
+
+            console.log(this.props.list[this.state.selectValue].fileName);//works!
+            var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
 
             ReactDOM.render(
               <AddJS src={scriptSrc} />,
