@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+var ntpRequestCount = 0;
 
 app.all('*', function (req, res, next) {
 	
@@ -117,6 +118,9 @@ app.get('/timezones*', function (req, res) {
 app.get('/time*', function (req, res) {
 
 	console.log('In get: /time*');
+	console.log('ntpRequestCount: '+ntpRequestCount);
+	ntpRequestCount = Math.floor(Date.now() / 1000);
+	console.log('new ntpRequestCount: '+ntpRequestCount);
 
 	var d = new Date();
 
