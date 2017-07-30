@@ -126,6 +126,7 @@ app.get('/time*', function (req, res) {
 
 	if ( parseInt(currentDate) - parseInt(ntpRequestCount) > 4 ) {
 		console.log('can send request');
+		ntpRequestCount = currentDate;
 	} else {
 		console.log('CANNOT send request');
 	}
