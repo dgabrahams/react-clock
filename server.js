@@ -175,7 +175,7 @@ app.get('/time*', function (req, res) {
 		console.log('CANNOT send request');
 		console.log('currentDate: '+currentDate);
 		console.log('ntpRequestCount: '+ntpRequestCount);
-		res.write('unable to complete request');
+		res.write('Unable to complete NTP request.');
 		res.end();
 	}//end else
 

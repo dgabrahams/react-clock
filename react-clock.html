@@ -355,6 +355,13 @@
           requestTimeLoop: function(xhttp,recieveTime,sentTime) {
               console.log('from requestTimeLoop:');
               console.log(xhttp);
+
+              // Unable to complete NTP request.
+              if ( xhttp.responseText === 'Unable to complete NTP request.' ) {
+                  console.log('complete request NOT returned');
+              } else {
+                  console.log('complete request returned');
+              }
               // setTimeout(function(){ 
               //   console.log('current second: '+ new Date().getUTCSeconds() );
               //   // self.getJSON('http://localhost:3001/time', this.displayTime);
