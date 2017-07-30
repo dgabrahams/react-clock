@@ -12,7 +12,7 @@ var DefaultClock = React.createClass({
     },
     componentWillMount: function () {
             timerMain.addThemeCSS('/css/digital-clock.css');//works!
-            this.checkTime('1');
+            this.checkTime('1', '0');
     },
     timeGetter: function () {
         return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
@@ -29,11 +29,12 @@ var DefaultClock = React.createClass({
         this.setState({ timeZoneValue: timeZoneValue }, () => {
             console.log('from theme component timezonevalue: ' + this.state.timeZoneValue );
         });
+        this.checkTime('1', '1');
     },
     timeZoneGetter: function () {
         return 'timeZone: ' + this.state.timeZone;
     },
-    checkTime: function (param) {
+    checkTime: function (param, runOnce) {
 
         console.log('----- checkTime -----');
         var setApplyTime = 0; //run in the current second
@@ -119,15 +120,25 @@ var DefaultClock = React.createClass({
             minutes = '0'+minutes;
         }
 
+        if ( runOnce === '1' ) {
+            this.setState({ hour: hours }, () => {});
+            this.setState({ minute: minutes }, () => {});
+        }
+
         console.log('Time till next minute in milliseconds: ' + setApplyTime);
         console.log('Time till next minute in seconds: ' + (setApplyTime/1000) );
+
 
         setTimeout(function () {
 
                 this.setState({ hour: hours }, () => {});
                 this.setState({ minute: minutes }, () => {});
 
-            this.checkTime('-1');
+                if () {
+
+                }
+
+                this.checkTime('-1', '0');
 
         }.bind(this), setApplyTime);
 
