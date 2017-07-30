@@ -1,11 +1,11 @@
 #clockFace {
-	width:250px;
-	height: 250px;
+	width:500px;
+	height: 500px;
 	background-color: #00ffff;
 	position: relative;
 	top:20px;
 	left: 20px;
-	border-radius: 125px;
+	border-radius: 250px;
     display: inline-block;
 }
 
@@ -13,12 +13,12 @@
 #hourHand {
 /*	width: 200px;
 	height: 16px;*/
-	width: 8px;
-	height: 100px;
+	width: 16px;
+	height: 200px;
 /*	left: 150px;
 	top: 242px;*/
-    left: 123px;
-    top: 75px;
+    left: 245px;
+    top: 150px;
 	position: absolute;
 /*    -webkit-transform: rotateZ(30deg);
     transform: rotateZ(30deg);*/
@@ -27,8 +27,8 @@
 #hourHandLeft {
 /*	width: 100px;
 	height: 16px;*/
-	width: 8px;
-	height: 50px;
+	width: 16px;
+	height: 100px;
 	display: inline-block;
 	background-color: #ff0000;
 	position: relative;
@@ -39,8 +39,8 @@
 #hourHandRight {
 /*	width: 100px;
 	height: 16px;*/
-	width: 8px;
-	height: 50px;
+	width: 16px;
+	height: 100px;
 	display: inline-block;
 	background-color: #00ffff;
 	opacity: 0;
@@ -56,20 +56,20 @@
 #minHand {
 /*	width: 350px;
 	height: 16px;*/
-	width: 8px;
-	height: 176px;
+	width: 16px;
+	height: 350px;
 /*	left: 75px;
 	top: 242px;*/
-    left: 123px;
-    top: 38px;
+    left: 245px;
+    top: 75px;
 	position: absolute;
 }
 
 #minHandLeft {
 /*	width: 175px;
 	height: 16px;*/
-	width: 8px;
-	height: 88px;
+	width: 16px;
+	height: 175px;
 	display: inline-block;
 	background-color: #DAA520;
 	position: relative;
@@ -80,8 +80,8 @@
 #minHandRight {
 /*	width: 175px;
 	height: 16px;*/
-	width: 8px;
-	height: 88px;
+	width: 16px;
+	height: 175px;
 	display: inline-block;
 
 	background-color: #00ffff;
@@ -94,10 +94,10 @@
 
 
 #secHand {
-	width: 8px;
-	height: 200px;
-	left: 123px;
-	top: 25px;
+	width: 16px;
+	height: 400px;
+	left: 245px;
+	top: 50px;
 	position: absolute;
 }
 
@@ -110,8 +110,8 @@
 }*/
 
 #secHandLeft {
-	width: 8px;
-	height: 100px;
+	width: 16px;
+	height: 200px;
 	display: inline-block;
 	background-color: #000000;
 	position: relative;
@@ -120,8 +120,8 @@
 }
 
 #secHandRight {
-	width: 8px;
-	height: 100px;
+	width: 16px;
+	height: 200px;
 	display: inline-block;
 	background-color: #00ffff;
 	opacity: 0;
@@ -194,23 +194,22 @@
 	left: 110px;
 }
 
-.singleDigit,
-.doubleDigit  {
-	font-size: 15px;
-    line-height: 15px;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-	padding: 0px 0px 0px 0px;
-	/*background-color: #ff0000;*/
-}
-
-.doubleDigit {
-/*	font-size: 30px;
+.singleDigit {
+	font-size: 30px;
 	line-height: 30px;
 	position: absolute;
 	width: 40px;
 	height: 40px;
 	padding: 0px 0px 0px 0px;
-	background-color: #ff0000;*/
+	/*background-color: #ff0000;*/
+}
+
+.doubleDigit {
+	font-size: 30px;
+	line-height: 30px;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	padding: 0px 0px 0px 0px;
+	background-color: #ff0000;
 }

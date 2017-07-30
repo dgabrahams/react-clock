@@ -390,14 +390,13 @@
                 <div>&nbsp;</div>
                 <div id="time-report"></div>
                 <div>&nbsp;</div>
-                <div id="time-display"></div>
-                <div>&nbsp;</div>
-                <div id="theme-list"></div>
-                <div>&nbsp;</div>
                 <div id="clock-display"></div>
                 <div>&nbsp;</div>
                 <div id="timezone-display"></div>
-                <button type="button" onClick={this.xhttpGetThemes.bind(this)}>Change Theme</button>
+                <div id="change-theme-button">
+                    <button type="button" onClick={this.xhttpGetThemes.bind(this)}>Change Theme</button>
+                    <div id="theme-list"></div>
+                </div>
                 <div>&nbsp;</div>
                 <div id="js-import"></div>
               </div>
@@ -410,6 +409,8 @@
       //timerMain.xhttpGetTime()
       //timerMain.removeTheme()
 
+      //<div id="time-display"></div>
+      //<div>&nbsp;</div>
 
 
     </script>
