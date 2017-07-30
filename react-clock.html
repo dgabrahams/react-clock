@@ -79,7 +79,6 @@
       var ThemeListOutput = React.createClass({
         getInitialState: function() {
           return {
-            themes: [{}],
             selectValue:'AnalogueClock'
           };
         },
@@ -106,19 +105,20 @@
             // var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
 
             console.log(this.props.list[this.state.selectValue].fileName);//works!
-            var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
+            // var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
 
-            ReactDOM.render(
-              <AddJS src={scriptSrc} />,
-              document.getElementById('js-import')
-            );
+            // ReactDOM.render(
+            //   <AddJS src={scriptSrc} />,
+            //   document.getElementById('js-import')
+            // );
         },
         handleChange: function(e) {
-            console.log(this.state);
+            // console.log(this.state);
             this.setState({selectValue: e.target.value}, () => {
                 console.log('from change handle: '+this.state.selectValue);
+                console.log(this.state);
             });
-            console.log(this.state);
+            // console.log(this.state);
         },
         render: function() {
           return (
