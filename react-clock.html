@@ -104,14 +104,14 @@
             // console.log(this.state[this.state.selectValue].fileName);//works!
             // var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
 
-            console.log(this.props.list);//works!
+            // console.log(this.props.list);//works!
             console.log(this.props.list[this.state.selectValue].fileName);//works!
-            // var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
+            var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
 
-            // ReactDOM.render(
-            //   <AddJS src={scriptSrc} />,
-            //   document.getElementById('js-import')
-            // );
+            ReactDOM.render(
+              <AddJS src={scriptSrc} />,
+              document.getElementById('js-import')
+            );
         },
         handleChange: function(e) {
             // console.log(this.state);
