@@ -355,17 +355,15 @@
           requestTimeLoop: function(xhttp,recieveTime,sentTime) {
               console.log('from requestTimeLoop:');
               console.log(xhttp);
-
-              // Unable to complete NTP request.
               if ( xhttp.responseText === 'Unable to complete NTP request.' ) {
                   console.log('complete request NOT returned');
+                  setTimeout(function(){ 
+                      this.getJSON('https://aqueous-meadow-38089.herokuapp.com/time', this.requestTimeLoop);
+                  }.bind(this), 5000);//result should run 4.5 seconds into the next minute.
               } else {
                   console.log('complete request returned');
-              }
-              // setTimeout(function(){ 
-              //   console.log('current second: '+ new Date().getUTCSeconds() );
-              //   // self.getJSON('http://localhost:3001/time', this.displayTime);
-              // }.bind(this), setRunTime);//result should run 5 seconds into the next minute.
+                  this.displayTime(xhttp,recieveTime,sentTime);
+              }//end else
           },
           addThemeCSS: function (fileHref) {
               var node = document.createElement("link");
