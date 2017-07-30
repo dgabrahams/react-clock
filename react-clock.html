@@ -385,9 +385,8 @@
           render: function() {
             return (
               <div className="App">
-                <div className="thing"><br />Do not send requests 15 seconds either side of a minute (15 seconds past to 45 seconds past)<br />Wait a minumum of 4 seconds between requests or you will get blocked!</div>
+                <div className="thing">Wait a minumum of 4 seconds between requests or you will get blocked!</div>
                 <button type="button" onClick={this.xhttpGetTime.bind(this)}>get time</button>
-                <button type="button" onClick={this.xhttpGetThemes.bind(this)}>Change Theme</button>
                 <div>&nbsp;</div>
                 <div id="time-report"></div>
                 <div>&nbsp;</div>
@@ -398,6 +397,7 @@
                 <div id="clock-display"></div>
                 <div>&nbsp;</div>
                 <div id="timezone-display"></div>
+                <button type="button" onClick={this.xhttpGetThemes.bind(this)}>Change Theme</button>
                 <div>&nbsp;</div>
                 <div id="js-import"></div>
               </div>

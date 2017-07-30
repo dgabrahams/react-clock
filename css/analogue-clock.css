@@ -134,7 +134,8 @@
 
 
 #digit-12 {
-	left: 225px;
+    left: 233px;
+    padding: 10px 0px 0px 0px;
 }
 
 #digit-1 {
@@ -164,7 +165,8 @@
 
 #digit-6 {
 	top:450px;
-	left: 225px;
+    left: 233px;
+    padding: 10px 0px 0px 0px;
 }
 
 #digit-7 {
@@ -196,9 +198,9 @@
 	font-size: 30px;
 	line-height: 30px;
 	position: absolute;
-	width: 35px;
+	width: 40px;
 	height: 40px;
-	padding: 10px 0px 0px 15px;
+	padding: 0px 0px 0px 0px;
 	/*background-color: #ff0000;*/
 }
 
@@ -208,6 +210,6 @@
 	position: absolute;
 	width: 40px;
 	height: 40px;
-	padding: 10px 0px 0px 10px;
+	padding: 0px 0px 0px 0px;
 	background-color: #ff0000;
 }

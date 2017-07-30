@@ -28,7 +28,7 @@ app.all('*', function (req, res, next) {
 	if ( req.params[0] != '/favicon.ico' ){
 
 		// console.log(req.params);
-		console.log('In request for * - setting Headers');
+		// console.log('In request for * - setting Headers');
 		// Website you wish to allow to connect
 		//res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
@@ -52,7 +52,7 @@ app.all('*', function (req, res, next) {
 });
 
 app.get('/js*', function (req, res) {
-	console.log('In get: /js*');
+	// console.log('In get: /js*');
 
     fs.readFile('./js'+req.params[0],function (err, data){
         res.status(200);
@@ -65,7 +65,7 @@ app.get('/js*', function (req, res) {
 });
 
 app.get('/css*', function (req, res) {
-	console.log('In get: /css*');
+	// console.log('In get: /css*');
 
     fs.readFile('./css'+req.params[0],function (err, data){
         res.status(200);
@@ -78,6 +78,7 @@ app.get('/css*', function (req, res) {
 });
 
 app.get('/images*', function (req, res) {
+	// console.log('In get: /images*');
 
     fs.readFile('./images'+req.params[0],function (err, data){
         res.status(200);
@@ -89,7 +90,7 @@ app.get('/images*', function (req, res) {
 
 
 app.get('/themes*', function (req, res) {
-	console.log('In get: /themes*');
+	// console.log('In get: /themes*');
 
 	fs.readFile('./js/themes.json',function (err, data){
 	    var obj = JSON.parse(data);
@@ -102,7 +103,7 @@ app.get('/themes*', function (req, res) {
 });
 
 app.get('/timezones*', function (req, res) {
-	console.log('In get: /timezones*');
+	// console.log('In get: /timezones*');
 
 	fs.readFile('./js/timezones.json',function (err, data){
 	    var obj = JSON.parse(data);
@@ -116,16 +117,13 @@ app.get('/timezones*', function (req, res) {
 
 
 app.get('/time*', function (req, res) {
-
-	console.log('In get: /time*');
-	console.log('ntpRequestCount: '+ntpRequestCount);
-	// ntpRequestCount = Math.floor(Date.now() / 1000);
-	// console.log('new ntpRequestCount: '+ntpRequestCount);
-
-	var currentDate = Math.floor(Date.now() / 1000);
+	// console.log('In get: /time*');
+	var currentDate = Math.floor(Date.now() / 1000);//retruns seconds since epoch.
 
 	//server either says yes or no then ends the request, the client gets a no and then waits to send a new one. the waiting and resent is all managed client side.
-	if ( parseInt(currentDate) - parseInt(ntpRequestCount) > 4 ) {
+	//specification is that 2 requests from the same source cannot happen within a 4 second time frame, so the service will only answer one request every 4 seconds.
+	//otherwise, the requester will be blocked (or blacklisted).
+	if ( parseInt(currentDate) - parseInt(ntpRequestCount) > 5 ) {
 		console.log('can send request');
 		console.log('currentDate: '+currentDate);
 		console.log('ntpRequestCount: '+ntpRequestCount);
@@ -182,7 +180,7 @@ app.get('/time*', function (req, res) {
 });
 
 app.get('/*', function (req, res) {
-	console.log('In get: /*');
+	// console.log('In get: /*');
 
 	switch(req.url) {
 	    case '/site':
