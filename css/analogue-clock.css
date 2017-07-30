@@ -30,7 +30,7 @@
 	width: 8px;
 	height: 50px;
 	display: inline-block;
-	background-color: #ff0000;
+	background-color: #ffffff;
 	position: relative;
 	padding: 0px;
 	margin: 0px;
@@ -71,7 +71,7 @@
 	width: 8px;
 	height: 88px;
 	display: inline-block;
-	background-color: #DAA520;
+	background-color: #ffffff;
 	position: relative;
 	padding: 0px;
 	margin: 0px;
@@ -201,7 +201,7 @@
     width: 20px;
     height: 20px;
 	padding: 0px 0px 0px 0px;
-	color: #ffffff;
+	color: #b2bdc1;
 	/*background-color: #ff0000;*/
 }
 
