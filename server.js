@@ -119,48 +119,56 @@ app.get('/time*', function (req, res) {
 
 	console.log('In get: /time*');
 	console.log('ntpRequestCount: '+ntpRequestCount);
-	ntpRequestCount = Math.floor(Date.now() / 1000);
-	console.log('new ntpRequestCount: '+ntpRequestCount);
+	// ntpRequestCount = Math.floor(Date.now() / 1000);
+	// console.log('new ntpRequestCount: '+ntpRequestCount);
+
+	var currentDate = Math.floor(Date.now() / 1000);
+
+	if ( parseInt(currentDate) - parseInt(ntpRequestCount) > 4 ) {
+		console.log('can send request');
+	} else {
+		console.log('CANNOT send request');
+	}
 
 	var d = new Date();
 
-	ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
-	    if(err) {
-	        console.error(err);
-	        return;
-	    }
+	// ntpClient.getNetworkTime("pool.ntp.org", 123, function(err, date) {
+	//     if(err) {
+	//         console.error(err);
+	//         return;
+	//     }
 	 
-	    console.log("Current time : " +date);// Mon Jul 08 2013 21:31:31 GMT+0200 (Paris, Madrid (heure d’été)) 
-		// res.write( JSON.stringify(date) );//2017-07-25T19:45:38.512Z - can be put into a new Date() object passed as a string to get: Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
-		// // res.write( date.toString() );//outputs Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
+	//     console.log("Current time : " +date);// Mon Jul 08 2013 21:31:31 GMT+0200 (Paris, Madrid (heure d’été)) 
+	// 	// res.write( JSON.stringify(date) );//2017-07-25T19:45:38.512Z - can be put into a new Date() object passed as a string to get: Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
+	// 	// // res.write( date.toString() );//outputs Tue Jul 25 2017 19:56:25 GMT+0000 (UTC)
 
-		var e = new Date();
+	// 	var e = new Date();
 
-		var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress ||req.connection.socket.remoteAddress;
-        console.log('req ip: '+ip);
-        var runTerminal_location = execSync("curl freegeoip.net/json/"+ip);//need to make sure it is ipv4 only!
-        console.log(runTerminal_location.toString('ascii'));
-        //IP will default to the cetner of a country if it is not tied to a physical address: http://splinternews.com/how-an-internet-mapping-glitch-turned-a-random-kansas-f-1793856052
-        //Also, if there is only one router in a large area, it will default to that router for exmaple.
-        //Client side Location API is more accurate (best on mobile devices with GPS), and with wifi on can be very accurate (if not moving)
-        //freegeoip should give the country with around 95%-99% accuracy, the city with 50%-80% accuracy. http://whatismyipaddress.com/geolocation-accuracy
+	// 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress ||req.connection.socket.remoteAddress;
+ //        console.log('req ip: '+ip);
+ //        var runTerminal_location = execSync("curl freegeoip.net/json/"+ip);//need to make sure it is ipv4 only!
+ //        console.log(runTerminal_location.toString('ascii'));
+ //        //IP will default to the cetner of a country if it is not tied to a physical address: http://splinternews.com/how-an-internet-mapping-glitch-turned-a-random-kansas-f-1793856052
+ //        //Also, if there is only one router in a large area, it will default to that router for exmaple.
+ //        //Client side Location API is more accurate (best on mobile devices with GPS), and with wifi on can be very accurate (if not moving)
+ //        //freegeoip should give the country with around 95%-99% accuracy, the city with 50%-80% accuracy. http://whatismyipaddress.com/geolocation-accuracy
 
-		var locationData = JSON.parse( runTerminal_location.toString('ascii') );
-		console.log( locationData );
+	// 	var locationData = JSON.parse( runTerminal_location.toString('ascii') );
+	// 	console.log( locationData );
 
-		//will utc date get issues when it is close to a change over...if used on local time the time is different, a straight off new Date() object gets the right time, new Date().getUTCHours() is wrong when local machine is in british summer time.
-		var resObj = {
-			'T3' : Math.round(+new Date()/1000),
-			'T2' : Math.round(d/1000),
-			'ntp': JSON.stringify(date).toString('ascii'),
-			'date': ( parseInt(d.getUTCMonth())+1 )+'/'+d.getUTCDate()+'/'+d.getUTCFullYear(),
-			'timeZone' : JSON.stringify(locationData)
-		}
+	// 	//will utc date get issues when it is close to a change over...if used on local time the time is different, a straight off new Date() object gets the right time, new Date().getUTCHours() is wrong when local machine is in british summer time.
+	// 	var resObj = {
+	// 		'T3' : Math.round(+new Date()/1000),
+	// 		'T2' : Math.round(d/1000),
+	// 		'ntp': JSON.stringify(date).toString('ascii'),
+	// 		'date': ( parseInt(d.getUTCMonth())+1 )+'/'+d.getUTCDate()+'/'+d.getUTCFullYear(),
+	// 		'timeZone' : JSON.stringify(locationData)
+	// 	}
 
-		res.write( JSON.stringify(resObj) );
-		res.end();
+	// 	res.write( JSON.stringify(resObj) );
+	// 	res.end();
 
-	});
+	// });
 
 });
 
