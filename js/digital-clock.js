@@ -3,7 +3,8 @@ var DefaultClock = React.createClass({
 
     getInitialState: function () {
         return {
-            timeZone: null,
+            timeZone: 'Local Timezone',
+            timeZoneValue: null,
             hour: 0,
             minute: 0,
             second: 0
@@ -21,12 +22,15 @@ var DefaultClock = React.createClass({
         this.setState({ minute: minutes }, () => {});
         this.setState({ second: seconds }, () => {});
     },
-    timeZoneSetter: function (timeZone) {
+    timeZoneSetter: function (timeZone,timeZoneValue) {
         this.setState({ timeZone: timeZone }, () => {
-            console.log('after setting timezone in theme component: ' + this.state.timeZone );
+            console.log('from theme component timezone: ' + this.state.timeZone );
+        });
+        this.setState({ timeZoneValue: timeZoneValue }, () => {
+            console.log('from theme component timezonevalue: ' + this.state.timeZoneValue );
         });
     },
-    timeZoneGetter: function (timeZone) {
+    timeZoneGetter: function () {
         return 'timeZone: ' + this.state.timeZone;
     },
     checkTime: function (param) {
@@ -42,7 +46,7 @@ var DefaultClock = React.createClass({
         var minutes = currentTime.getMinutes();
         var hours = currentTime.getHours();
 
-        if ( this.state.timeZone !== null ) {
+        if ( this.state.timeZoneValue !== null ) {
             //&& data !== undefined
             // var momentNTPtime = moment( new Date( String(dateString) ).toString() );
             // momentNTPtime.tz(timeZone.time_zone).unix();
@@ -55,19 +59,19 @@ var DefaultClock = React.createClass({
             // get time that is required to be + or -
             //+ or - that form current time and set as the state value.
 
-            console.log('this.state.timeZone: '+this.state.timeZone);
+            console.log('this.state.timeZone: '+this.state.timeZoneValue);
 
             // console.log('timeZone substring: '+this.state.timeZone.substring(1, 3) );
             // console.log('timeZone substring parseInt: '+ parseInt(this.state.timeZone.substring(1, 3)) );//works
 
 
-            if ( this.state.timeZone.match(/\+/g) ) {
+            if ( this.state.timeZoneValue.match(/\+/g) ) {
                 // console.log('contains +');//works
                 // this.state.timeZone.charAt(2);
-                hours = hours + parseInt(this.state.timeZone.substring(1, 3));
+                hours = hours + parseInt(this.state.timeZoneValue.substring(1, 3));
             } else {
                 // console.log('contains -');//works
-                hours = hours - parseInt(this.state.timeZone.substring(1, 3));
+                hours = hours - parseInt(this.state.timeZoneValue.substring(1, 3));
             }
             // console.log('char at 2: ' + this.state.timeZone.charAt(2));
 
@@ -146,7 +150,8 @@ var DefaultClock = React.createClass({
                         '.'
                     )
                 ),
-                React.createElement('div', { id: 'minutes' }, this.state.minute)
+                React.createElement('div', { id: 'minutes' }, this.state.minute),
+                React.createElement('div', { id: 'timeZone' }, this.state.timeZone)
         );
     }
 });
