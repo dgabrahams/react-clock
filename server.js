@@ -126,10 +126,14 @@ app.get('/time*', function (req, res) {
 
 	if ( parseInt(currentDate) - parseInt(ntpRequestCount) > 4 ) {
 		console.log('can send request');
+		console.log('currentDate: '+currentDate);
+		console.log('ntpRequestCount: '+ntpRequestCount);
 		ntpRequestCount = currentDate;
 	} else {
 		console.log('CANNOT send request');
-	}
+		console.log('currentDate: '+currentDate);
+		console.log('ntpRequestCount: '+ntpRequestCount);
+	}//end else
 
 	var d = new Date();
 
