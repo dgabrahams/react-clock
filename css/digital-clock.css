@@ -19,6 +19,10 @@ body {
 	height:220px;
 }
 
+.time-divider {
+    max-height: 100px;
+}
+
 .time-divider-dot {
     display: block;
     /* font-size: 150px; */

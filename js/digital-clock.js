@@ -39,6 +39,7 @@ var DefaultClock = React.createClass({
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
 
+        console.log('hours: ' + currentTime.getHours());
         console.log('minutes: ' + currentTime.getMinutes());
         console.log('seconds: ' + currentTime.getSeconds());
         console.log('milliseconds: ' + currentTime.getMilliseconds());
@@ -151,7 +152,7 @@ var DefaultClock = React.createClass({
                     )
                 ),
                 React.createElement('div', { id: 'minutes' }, this.state.minute),
-                React.createElement('div', { id: 'timeZone' }, this.state.timeZone)
+                React.createElement('div', { id: 'timeZone' }, 'Showing the time in: '+this.state.timeZone)
         );
     }
 });
