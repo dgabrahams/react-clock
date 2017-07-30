@@ -120,27 +120,24 @@ var DefaultClock = React.createClass({
             minutes = '0'+minutes;
         }
 
-        if ( runOnce === '1' ) {
-            this.setState({ hour: hours }, () => {});
-            this.setState({ minute: minutes }, () => {});
-        }
-
         console.log('Time till next minute in milliseconds: ' + setApplyTime);
         console.log('Time till next minute in seconds: ' + (setApplyTime/1000) );
 
+        if ( runOnce === '1' ) {
+            console.log('run once');
+            this.setState({ hour: hours }, () => {});
+            this.setState({ minute: minutes }, () => {});
+        } else {
+            console.log('run many');
+            setTimeout(function () {
 
-        setTimeout(function () {
+                    this.setState({ hour: hours }, () => {});
+                    this.setState({ minute: minutes }, () => {});
 
-                this.setState({ hour: hours }, () => {});
-                this.setState({ minute: minutes }, () => {});
+                    this.checkTime('-1', '0');
 
-                if () {
-
-                }
-
-                this.checkTime('-1', '0');
-
-        }.bind(this), setApplyTime);
+            }.bind(this), setApplyTime); 
+        }//end else
 
     },
     render: function () {
