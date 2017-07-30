@@ -63,19 +63,6 @@
         }
       });
 
-      // var OutputList = React.createClass({
-      //   render: function() {
-      //     return (
-      //       <ul>
-      //         {this.props.list.map(function(listValue){
-      //           return <li>{listValue.name}</li>;
-      //         })}
-      //       </ul>
-      //     )
-      //   }
-      // });
-
-// [{ name: "Analogue Clock", fileName: "analogue-clock.js", cssFile: "analogue-clock.css" },{ name: "Flip Clock", fileName: "flip-clock.js", cssFile: "flip-clock.css" }]
       var ThemeListOutput = React.createClass({
         getInitialState: function() {
           return {
@@ -83,28 +70,11 @@
           };
         },
         componentWillMount: function() {
-            // var self = this;
-
-            // var key = event.target.id;
-            // var val = event.target.value;
-            // var obj  = {};
-
-            // this.props.list.map(function(listValue) {
-            //   obj = self.state;
-            //   obj[listValue.name.replace(" ", "")] = listValue;
-            //   self.setState(obj);//had to completely override, for some reason only the last added object in 'themes' key was being kept
-            // });
-            // console.log(this.state);
         },
         formAction: function() {
-
             console.log('***form action***');
             timerMain.removeTheme();
             timerMain.hideThemeSelector();
-            // console.log(this.state[this.state.selectValue].fileName);//works!
-            // var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
-
-            // console.log(this.props.list);//works!
             console.log(this.props.list[this.state.selectValue].fileName);//works!
             var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
 
@@ -114,12 +84,10 @@
             );
         },
         handleChange: function(e) {
-            // console.log(this.state);
             this.setState({selectValue: e.target.value}, () => {
                 console.log('from change handle: '+this.state.selectValue);
                 console.log(this.state);
             });
-            // console.log(this.state);
         },
         render: function() {
           return (
@@ -136,12 +104,6 @@
           )
         }
       });
-//javascript:void(0);
-
-
-                // {this.props.list.map(function(listValue){
-                //   return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
-                // })}
 
 
 
@@ -153,49 +115,17 @@
         },
         componentWillMount: function() {
             var self = this;
-
-            // var key = event.target.id;
-            // var val = event.target.value;
-            // var obj  = {};
-
-            // console.log(this.props.list);
-            this.setState(this.props.list);
-
-            // this.props.list.map(function(listValue) {
-            //   obj = self.state;
-            //   // obj[listValue.name.replace(" ", "")] = listValue;
-            //   obj[listValue.name.replace(" ", "")] = listValue;
-            //   self.setState(obj);//had to completely override, for some reason only the last added object in 'themes' key was being kept
-            // });
-            // console.log(this.state);
+            // this.setState(this.props.list);//not required....
         },
         formAction: function() {
-
-          //selected name = this.state.selectValue
-          //name values = this.props.list[this.state.selectValue]
-
             console.log('***form action***');
-            // console.log(this.state[this.state.selectValue]);//FINISH THIS
-            // console.log(this.props.list[this.state.selectValue]);//FINISH THIS
              console.log(this.props.list[this.state.selectValue]['UTCoffset']);//works
 
             //test if we are in summer time or not to see which value applies.
-
-
-
             console.log('before attempt to set in eact-clock.html: '+ myRegistrationModal.timeZoneGetter() );
             myRegistrationModal.timeZoneSetter(this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
             // console.log( myRegistrationModal.timeZoneGetter() );
 
-            // timerMain.removeTheme();
-            // timerMain.hideThemeSelector();
-            // console.log(this.state[this.state.selectValue].fileName);//works!
-            // var scriptSrc = '/js/'+this.state[this.state.selectValue].fileName;
-
-            // ReactDOM.render(
-            //   <AddJS src={scriptSrc} />,
-            //   document.getElementById('js-import')
-            // );
         },
         handleChange: function(e) {
             console.log(this.state);
@@ -209,7 +139,6 @@
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
                   {Object.keys(this.props.list).map(function(key) {
-                      // return <div>Key: {key}, Value: {yourObject[key]}</div>;['UTCoffset'] this.state.list[key] {key.UTCoffset}
                       return <option value={key}>{key} {this.props.list[key]['UTCoffset']}</option>
                   }.bind(this))}
               </select>
@@ -219,22 +148,10 @@
         }
       });
 
-// {Object.keys(yourObject).map(function(key) {
-//     return <div>Key: {key}, Value: {yourObject[key]}</div>;
-// })}
-
-                // {this.props.list.map(function(listValue){
-                //   return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
-                // })}
-
-
 
 //MAKE IT SO THAT USES CAN CHNE THE TIME ZONE OF THE CLOCK
 //Dispaly the timezone they have selected under the clock
 //allow multiple clocks displaying multiple timezones?
-
-
-
 
 
 
@@ -394,9 +311,9 @@
           },
           handleTheme: function(xhttp,self) {
 
-              var obj = JSON.parse(xhttp.responseText);
-              console.log('from handle theme:');
-              console.log(obj);
+              // var obj = JSON.parse(xhttp.responseText);
+              // console.log('from handle theme:');
+              // console.log(obj);
               //obj = [obj];
               // var newArray = [];
 
@@ -412,43 +329,16 @@
               // );
 
               ReactDOM.render(
-                <ThemeListOutput list={obj} />,
+                <ThemeListOutput list={JSON.parse(xhttp.responseText)} />,
                 document.getElementById('theme-list')
               );
 
           },
           handleTimezone: function(xhttp,self) {
-              // var obj = JSON.parse(xhttp.responseText);
-              // this.setState({ timezones: obj }, () => {
-              //     // console.log(this.state.timezones);
-              // });
-
-              // var obj = JSON.parse(xhttp.responseText);
-              // console.log(obj);
-              //obj = [obj];
-              // var newArray = [];
-
-              // for (var prop in obj) {
-              //     //console.log(`obj.${prop} = ${obj[prop]}`);
-              //     // console.log(this.state.obj);
-              //     var newInnerObj = {};
-              //     newInnerObj[prop] = obj[prop];
-              //     //{}
-              //      // prop : obj[prop]
-              //     // newInnerArray
-              //     // newArray.push(obj[prop]);
-              //     newArray.push(newInnerObj);
-              // }
-
-              // ReactDOM.render(
-              //   <TimezoneListOutput list={newArray} />,
-              //   document.getElementById('timezone-display')
-              // );
               ReactDOM.render(
                 <TimezoneListOutput list={JSON.parse(xhttp.responseText)} />,
                 document.getElementById('timezone-display')
               );
-
           },
           getJSON: function(url,cFunction) {
         // only get needs to be implemented and tested.
