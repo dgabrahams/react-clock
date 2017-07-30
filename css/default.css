@@ -1,3 +1,7 @@
 #clock-display {
-  text-align: center;
+	text-align: center;
+}
+
+#timezone-display {
+	text-align: center;
 }
