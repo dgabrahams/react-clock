@@ -126,9 +126,11 @@
           return (
             <form action="javascript:void(0);">
               <select name="themeOptions" onChange={this.handleChange} >
-                {this.props.list.map(function(listValue){
-                  return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
-                })}
+                  {Object.keys(this.props.list).map(function(key) {
+                      // return <option value={key}>{key} {this.props.list[key]['UTCoffset']}</option>
+                      console.log('key: '+key);
+                      console.log('list[key]: '+this.props.list[key]);
+                  }.bind(this))}
               </select>
               <input type="button" value="Submit" onClick={this.formAction.bind(this)} />
             </form>
@@ -138,6 +140,9 @@
 //javascript:void(0);
 
 
+                // {this.props.list.map(function(listValue){
+                //   return <option value={listValue.name.replace(" ", "")}>{listValue.name}</option>;
+                // })}
 
 
 
@@ -391,20 +396,27 @@
           handleTheme: function(xhttp,self) {
 
               var obj = JSON.parse(xhttp.responseText);
+              console.log('from handle theme:');
               console.log(obj);
               //obj = [obj];
-              var newArray = [];
+              // var newArray = [];
 
-              for (var prop in obj) {
-                  //console.log(`obj.${prop} = ${obj[prop]}`);
-                  // console.log(this.state.obj);
-                  newArray.push(obj[prop]);
-              }
+              // for (var prop in obj) {
+              //     //console.log(`obj.${prop} = ${obj[prop]}`);
+              //     // console.log(this.state.obj);
+              //     newArray.push(obj[prop]);
+              // }
+
+              // ReactDOM.render(
+              //   <ThemeListOutput list={newArray} />,
+              //   document.getElementById('theme-list')
+              // );
 
               ReactDOM.render(
-                <ThemeListOutput list={newArray} />,
+                <ThemeListOutput list={obj} />,
                 document.getElementById('theme-list')
               );
+
           },
           handleTimezone: function(xhttp,self) {
               // var obj = JSON.parse(xhttp.responseText);
