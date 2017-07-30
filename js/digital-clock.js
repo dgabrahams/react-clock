@@ -57,18 +57,28 @@ var DefaultClock = React.createClass({
                 // console.log('contains +');//works
                 // this.state.timeZone.charAt(2);
                 hours = hours + parseInt(this.state.timeZoneValue.substring(1, 3));
+                minutes = minutes + parseInt(this.state.timeZoneValue.substring(4));
             } else {
                 // console.log('contains -');//works
                 hours = hours - parseInt(this.state.timeZoneValue.substring(1, 3));
+                minutes = minutes - parseInt(this.state.timeZoneValue.substring(4));
             }
             // console.log('char at 2: ' + this.state.timeZone.charAt(2));
             console.log('hours changed: ' + hours);
 
-            if (hours < 0) {
-                console.log('hours < 0: ' + hours);
-                console.log('new hours: ' + 24 - hours);
-                // hours = 24 - hours;
+            if ( parseInt(minutes) >= 60 ){
+                console.log('parseInt(minutes) >= 60: ' + minutes);
+                minutes = 60 - parseInt(minutes);
+                hours = parseInt(hours) + 1;
+            }//end if
 
+            if ( parseInt(hours) < 0 ) {
+                console.log('hours < 0: ' + hours);
+                console.log('new hours: ' + (24 - parseInt(hours)));
+                // hours = 24 - hours;
+            } else if ( parseInt(hours) >= 24 ) {
+                console.log('hours >= 24: ' + hours);
+                console.log('new hours: ' + (parseInt(hours) - 24));
             }
             // console.log('hours changed: ' + hours);
         }
@@ -96,8 +106,6 @@ var DefaultClock = React.createClass({
             minutes = '0'+minutes;
         }
 
-
-
         if ( runOnce === '1' ) {
             console.log('run once');
             this.setState({ hour: hours }, () => {});
@@ -110,10 +118,8 @@ var DefaultClock = React.createClass({
             var currentTimeZone = this.state.timeZone;
 
             setTimeout(function () {
-
-//when timezone change the value set here is out of date when it comes to the first minute to be changed
-//the next minute afterwards is ok
-
+                    //when timezone change the value set here is out of date when it comes to the first minute to be changed
+                    //the next minute afterwards is ok
                     if ( this.state.timeZone === currentTimeZone ) {
                         console.log('this.state.timeZone === currentTimeZone');
                         this.setState({ hour: hours }, () => {});
@@ -122,9 +128,7 @@ var DefaultClock = React.createClass({
                         console.log('this.state.timeZone !== currentTimeZone');
                         this.checkTime('1', '1');//run again for immediate apply
                     }//else
-
                     this.checkTime('-1', '0');
-
             }.bind(this), setApplyTime); 
         }//end else
 
