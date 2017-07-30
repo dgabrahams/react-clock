@@ -57,19 +57,30 @@ var DefaultClock = React.createClass({
 
             console.log('this.state.timeZone: '+this.state.timeZone);
 
-            console.log('timeZone substring: '+this.state.timeZone.substring(1, 3) );
-            console.log('timeZone substring parseInt: '+ parseInt(this.state.timeZone.substring(1, 3)) );
+            // console.log('timeZone substring: '+this.state.timeZone.substring(1, 3) );
+            // console.log('timeZone substring parseInt: '+ parseInt(this.state.timeZone.substring(1, 3)) );//works
 
 
             if ( this.state.timeZone.match(/\+/g) ) {
                 // console.log('contains +');//works
                 // this.state.timeZone.charAt(2);
-
+                hours = hours + parseInt(this.state.timeZone.substring(1, 3));
             } else {
                 // console.log('contains -');//works
+                hours = hours - parseInt(this.state.timeZone.substring(1, 3));
+            }
+            // console.log('char at 2: ' + this.state.timeZone.charAt(2));
+
+            console.log('hours changed: ' + hours);
+
+            if (hours < 0) {
+                console.log('hours < 0: ' + hours);
+                console.log('new hours: ' + 24 - hours);
+                // hours = 24 - hours;
 
             }
-            console.log('char at 2: ' + this.state.timeZone.charAt(2));
+            console.log('hours changed: ' + hours);
+
 
 
             // console.log('currentTime before: '+currentTime);
