@@ -34,7 +34,7 @@ var DefaultClock = React.createClass({
     timeZoneGetter: function () {
         return 'timeZone: ' + this.state.timeZone;
     },
-    checkTime: function (param, runOnce) {
+    checkTime: function (runImmediate, runOnce) {
 
         console.log('----- checkTime -----');
         var setApplyTime = 0; //run in the current second
@@ -73,11 +73,14 @@ var DefaultClock = React.createClass({
             // console.log('hours changed: ' + hours);
         }
 
-        if(param === '-1') {
+//check if this works with 12 hours as well as 24 hour clock
+        if(runImmediate === '-1') {
             minutes = minutes+1;
+            //check if minutes will now be greater than 60
+            //if yes then add one hour to hours
         }
 
-        if(param === '-1') {
+        if(runImmediate === '-1') {
             setApplyTime = 60000 - ( ( currentTime.getSeconds() * 1000 )+currentTime.getMilliseconds() );
         } else {
             setApplyTime = 0;
@@ -117,7 +120,7 @@ var DefaultClock = React.createClass({
                         this.setState({ minute: minutes }, () => {});   
                     } else {
                         console.log('this.state.timeZone !== currentTimeZone');
-
+                        this.checkTime('1', '1');//run again for immediate apply
                     }//else
 
                     this.checkTime('-1', '0');
