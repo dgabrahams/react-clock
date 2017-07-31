@@ -17,6 +17,10 @@ var AnalogueClock = React.createClass({
         timerMain.addThemeCSS('/css/analogue-clock.css');//works!
         this.checkTime();
     },
+    // timeSetter: function (hours, minutes) {
+    //     this.setState({ hour: hours }, () => {});
+    //     this.setState({ minute: minutes }, () => {});
+    // },
     timeZoneSetter: function (timeZone,timeZoneValue) {
         this.setState({ timeZone: timeZone }, () => {
             console.log('from theme component timezone: ' + this.state.timeZone );
@@ -46,12 +50,15 @@ var AnalogueClock = React.createClass({
 
         //also, as long as the ntp time is known to a second, then any seconds after that time can be counted, allowing correct setting of time.?
 
-
-        
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
 
         if ( this.state.timeZoneValue !== null ) {
             console.log('this.state.timeZoneValue !== null');
-            timerMain.timezoneTheme(this.state.timeZoneValue,this.state.hours,this.state.minutes);
+            var timeZoneTime = timerMain.timezoneTheme(this.state.timeZoneValue,this.state.hours,this.state.minutes);
+            console.log(timeZoneTime);
+            
         } else {
             console.log('this.state.timeZoneValue === null');
         }
@@ -62,9 +69,12 @@ var AnalogueClock = React.createClass({
         console.log('milliseconds: ' + currentTime.getMilliseconds());
 
         //calculate current time values as degrees on c clock
-        var seconds = currentTime.getSeconds() * 6; //add an extra second?
-        var minutes = currentTime.getMinutes() * 6;
-        var hours = currentTime.getHours() * 30; //there are ony 24 hours, so 30 degrees per hour
+        seconds = seconds * 6; //add an extra second?
+        minutes = minutes * 6;
+        hours = hours * 30; //there are ony 24 hours, so 30 degrees per hour
+        // var seconds = currentTime.getSeconds() * 6; //add an extra second?
+        // var minutes = currentTime.getMinutes() * 6;
+        // var hours = currentTime.getHours() * 30; //there are ony 24 hours, so 30 degrees per hour
         // console.log('seconds as degrees: '+seconds );
         // console.log('minutes as degrees: '+minutes );
         // console.log('hours as degrees: '+hours );
@@ -72,7 +82,7 @@ var AnalogueClock = React.createClass({
 
         //in any case set to start at the next second....!!!!!
 
-        if( currentTime.getMilliseconds() >= 500 ){
+        if( currentTime.getMilliseconds() >= 500 ) {
             //add one second to the time and then set timeout to start at the ms left till the next second
             //this is only to apply the time, remember that the clock will always add one second each time it runs.
             console.log('Start NEXT second');
