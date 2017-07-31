@@ -3,6 +3,8 @@ var AnalogueClock = React.createClass({
 
     getInitialState: function () {
         return {
+            timeZone: 'Local Timezone',
+            timeZoneValue: null,
             secondsStyle: null,
             minutesStyle: null,
             hoursStyle: null,
@@ -14,6 +16,18 @@ var AnalogueClock = React.createClass({
     componentWillMount: function () {
         timerMain.addThemeCSS('/css/analogue-clock.css');//works!
         this.checkTime();
+    },
+    timeZoneSetter: function (timeZone,timeZoneValue) {
+        this.setState({ timeZone: timeZone }, () => {
+            console.log('from theme component timezone: ' + this.state.timeZone );
+        });
+        this.setState({ timeZoneValue: timeZoneValue }, () => {
+            console.log('from theme component timezonevalue: ' + this.state.timeZoneValue );
+            // this.checkTime('1', '1');
+        });
+    },
+    timeZoneGetter: function () {
+        return 'timeZone: ' + this.state.timeZone;
     },
     checkTime: function () {
 
@@ -31,6 +45,11 @@ var AnalogueClock = React.createClass({
         //always wait untl the next available minute.
 
         //also, as long as the ntp time is known to a second, then any seconds after that time can be counted, allowing correct setting of time.?
+
+
+        timerMain.timezoneTheme(this.state.timeZoneValue,this.state.hours,this.state.minutes);
+
+
 
         //console.log('minutes: ' + currentTime.getMinutes());
         //console.log('hours: ' + currentTime.getHours());
@@ -100,9 +119,6 @@ var AnalogueClock = React.createClass({
                 }); //end seconds
             }); //end seconds
         }.bind(this), setApplyTime);
-    },
-    testConsole: function () {
-      console.log('from testConsole');
     },
     render: function () {
         return React.createElement(

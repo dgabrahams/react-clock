@@ -48,6 +48,12 @@ var DefaultClock = React.createClass({
         var minutes = currentTime.getMinutes();
         var hours = currentTime.getHours();
 
+
+
+
+
+
+
         if ( this.state.timeZoneValue !== null ) {
             // get current date
             // get time that is required to be + or -
@@ -63,7 +69,6 @@ var DefaultClock = React.createClass({
                 hours = hours - parseInt(this.state.timeZoneValue.substring(1, 3));
                 minutes = minutes - parseInt(this.state.timeZoneValue.substring(4));
             }
-            // console.log('char at 2: ' + this.state.timeZone.charAt(2));
             console.log('hours changed: ' + hours);
 
             if ( parseInt(minutes) >= 60 ){
@@ -83,6 +88,13 @@ var DefaultClock = React.createClass({
             }
             // console.log('hours changed: ' + hours);
         }
+
+
+
+
+
+
+
 
 //check if this works with 12 hours as well as 24 hour clock
         if(runImmediate === '-1') {

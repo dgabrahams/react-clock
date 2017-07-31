@@ -172,6 +172,51 @@
                 document.getElementById('js-import')
               );
           },
+          timezoneTheme: function(timeZoneValue,hours,minutes) {
+
+              // get current date
+              // get time that is required to be + or -
+              //+ or - that form current time and set as the state value.
+              console.log('++ timezoneTheme ++');
+              console.log('timeZone: '+timeZoneValue);
+              console.log('timeZone: '+hours);
+              console.log('timeZone: '+minutes);
+              console.log('++ ++ ++ ++ ++ ++ ++');
+              // if ( timeZoneValue.match(/\+/g) ) {
+              //     // console.log('contains +');//works
+              //     // this.state.timeZone.charAt(2);
+              //     hours = hours + parseInt(timeZoneValue.substring(1, 3));
+              //     minutes = minutes + parseInt(timeZoneValue.substring(4));
+              // } else {
+              //     // console.log('contains -');//works
+              //     hours = hours - parseInt(timeZoneValue.substring(1, 3));
+              //     minutes = minutes - parseInt(timeZoneValue.substring(4));
+              // }
+              // console.log('hours changed: ' + hours);
+
+              // if ( parseInt(minutes) >= 60 ){
+              //     console.log('parseInt(minutes) >= 60: ' + minutes);
+              //     minutes = parseInt(minutes) - 60;
+              //     hours = parseInt(hours) + 1;
+              // }//end if
+
+              // if ( parseInt(hours) < 0 ) {
+              //     console.log('hours < 0: ' + hours);
+              //     console.log('new hours: ' + (24 - parseInt(hours)));
+              //     hours = 24 - parseInt(hours);
+              // } else if ( parseInt(hours) >= 24 ) {
+              //     console.log('hours >= 24: ' + hours);
+              //     console.log('new hours: ' + (parseInt(hours) - 24));
+              //     hours = parseInt(hours) - 24;
+              // }
+              // // console.log('hours changed: ' + hours);
+
+              return {
+                'hours' : hours,
+                'minutes' : minutes
+              }
+
+          },
           displayTime: function(xhttp,recieveTime,sentTime) {
             //https://github.com/hueniverse/sntp/blob/master/lib/index.js
             // Timestamp Name          ID   When Generated
