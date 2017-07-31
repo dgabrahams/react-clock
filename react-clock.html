@@ -119,10 +119,11 @@
         },
         formAction: function() {
             console.log('***form action***');
-             console.log(this.props.list[this.state.selectValue]['UTCoffset']);//works
 
-            //test if we are in summer time or not to see which value applies.
-            console.log('before attempt to set in eact-clock.html: '+ myRegistrationModal.timeZoneGetter() );
+            //test if we are in summer time or not to see which value applies. BELOW IS STILL INCOMPLETE
+            console.log(this.props.list[this.state.selectValue]['UTCoffset']);//works
+
+            console.log('before attempt to set in react-clock.html: '+ myRegistrationModal.timeZoneGetter() );
             myRegistrationModal.timeZoneSetter(this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
             // console.log( myRegistrationModal.timeZoneGetter() );
 
