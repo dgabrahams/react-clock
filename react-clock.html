@@ -173,15 +173,64 @@
                 document.getElementById('js-import')
               );
           },
+          checkDST: function(timeZone) {
+              // moment.tz("2017-11-31", "Australia/Yancowinna").format();
+              // "Invalid date"
+              // moment.tz("2017-11-01", "Australia/Yancowinna").format();
+              // "2017-11-01T00:00:00+10:30"
+
+              // moment.tz("2017-11-01", "Europe/London").format();
+              // "2017-11-01T00:00:00Z"
+              // moment.tz("2017-07-01", "Europe/London").format();
+              // "2017-07-01T00:00:00+01:00"
+
+              var currentDate = new Date();
+              // console.log(currentDate.getUTCFullYear() );
+              // console.log(currentDate.getUTCMonth() );
+              // console.log(currentDate.getUTCDay() );
+
+              //current date: 31/07/2017
+              // new Date().getUTCFullYear()//2017
+              // new Date().getUTCMonth()//6
+              // new Date().getUTCDay()//1
+              //LIST IS 0-11 for months for example.
+
+              var year = currentDate.getUTCFullYear();
+              var month = currentDate.getUTCMonth();
+              var day = currentDate.getUTCDay();
+
+              if (month.toString().length < 2) {
+                  console.log('month is < 2');
+                  month = '0'+month;
+              }
+
+              if (day.toString().length < 2) {
+                  console.log('minutes is < 2');
+                  day = '0'+day;
+              }
+
+              console.log('date: '+year+'-'+month+'-'+day);
+
+              //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
+              return moment.tz(year+'-'+month+'-'+day, "Europe/London").format().substring(19);
+
+          },
           timezoneTheme: function(timeZoneValue,hours,minutes) {
+
+//Australia has the opposite DST, because their summer happens at a different time. So when it is DST in the UK it is NOT DST in Australia.
+//here times are different to that found in my chart on wikipedia:
+//http://www.australia.gov.au/about-australia/facts-and-figures/time-zones-and-daylight-saving
+
+
+
 
               // get current date
               // get time that is required to be + or -
               //+ or - that form current time and set as the state value.
               console.log('++ timezoneTheme ++');
               console.log('timeZone: '+timeZoneValue);
-              console.log('timeZone: '+hours);
-              console.log('timeZone: '+minutes);
+              console.log('hours: '+hours);
+              console.log('minutes: '+minutes);
               console.log('++ ++ ++ ++ ++ ++ ++');
               if ( timeZoneValue.match(/\+/g) ) {
                   // console.log('contains +');//works
