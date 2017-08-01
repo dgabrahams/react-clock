@@ -149,15 +149,21 @@ var AnalogueClock = React.createClass({
 
 //none of theses vales are needed, only the setTimeOut with checkTime inside.
             //set state to have initial values
-            this.setState({ second: parseInt(seconds, 10) }, () => {
-                this.setState({ minute: parseInt(minutes, 10) }, () => {
-                    this.setState({ hour: parseInt(hours, 10) }, () => {
+            // this.setState({ second: parseInt(seconds, 10) }, () => {
+            //     this.setState({ minute: parseInt(minutes, 10) }, () => {
+            //         this.setState({ hour: parseInt(hours, 10) }, () => {
+            //             setTimeout(function () {
+            //                 this.checkTime();
+            //             }.bind(this), setTimeoutValue); //every 15 seconds, the time is checked. maybe it should do this each second?
+            //         }); //end seconds
+            //     }); //end seconds
+            // }); //end seconds
+
                         setTimeout(function () {
                             this.checkTime();
-                        }.bind(this), setTimeoutValue); //every 15 seconds, the time is checked. maybe it should do this each second?
-                    }); //end seconds
-                }); //end seconds
-            }); //end seconds
+                        }.bind(this), setTimeoutValue); 
+
+            
         }.bind(this), setApplyTime);
     },
     render: function () {
