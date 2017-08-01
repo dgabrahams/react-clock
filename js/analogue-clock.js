@@ -76,6 +76,12 @@ var AnalogueClock = React.createClass({
 
         }
 
+        if (hour < 12) {
+            console.log('AM');
+        } else {
+            console.log('PM');
+        }
+
         //console.log('minutes: ' + currentTime.getMinutes());
         //console.log('hours: ' + currentTime.getHours());
         //console.log('seconds: ' + currentTime.getSeconds());
@@ -129,6 +135,9 @@ var AnalogueClock = React.createClass({
                 WebkitTransform: 'rotateZ(' + hours + 'deg)',
                 transform: 'rotateZ(' + hours + 'deg)'
             };
+
+            // reorder these as when they get applied the style changes!!!! currently out of sync with the time value changes...?
+            //are these not being used?
 
             //apply styles to the clock
             this.setState({ secondsStyle: setSecondsStyle }, () => {}); //moves the second hand by setting the style
