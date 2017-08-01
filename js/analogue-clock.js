@@ -50,15 +50,19 @@ var AnalogueClock = React.createClass({
 
         //also, as long as the ntp time is known to a second, then any seconds after that time can be counted, allowing correct setting of time.?
 
-        // var hours = currentTime.getHours();
-        // var minutes = currentTime.getMinutes();
-        // var seconds = currentTime.getSeconds();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
 
-        var hours = currentTime.getUTCHours();
-        var minutes = currentTime.getUTCMinutes();
-        var seconds = currentTime.getUTCSeconds();
+        // var hours = currentTime.getUTCHours();
+        // var minutes = currentTime.getUTCMinutes();
+        // var seconds = currentTime.getUTCSeconds();
 
         if ( this.state.timeZoneValue !== null ) {
+
+            hours = currentTime.getUTCHours();
+            minutes = currentTime.getUTCMinutes();
+
             console.log('this.state.timeZoneValue !== null');
             var timeZoneTime = timerMain.timezoneTheme(this.state.timeZone,hours,minutes);
             console.log(timeZoneTime);
@@ -69,6 +73,7 @@ var AnalogueClock = React.createClass({
 
         } else {
             console.log('this.state.timeZoneValue === null');
+
         }
 
         //console.log('minutes: ' + currentTime.getMinutes());
