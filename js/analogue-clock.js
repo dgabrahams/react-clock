@@ -76,7 +76,7 @@ var AnalogueClock = React.createClass({
 
         }
 
-        if (hour < 12) {
+        if (hours < 12) {
             console.log('AM');
         } else {
             console.log('PM');
