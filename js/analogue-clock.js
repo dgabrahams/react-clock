@@ -10,7 +10,8 @@ var AnalogueClock = React.createClass({
             hoursStyle: null,
             seconds: 0,
             minutes: 0,
-            hours: 0
+            hours: 0,
+            period: null
         };
     },
     componentWillMount: function () {
@@ -77,9 +78,11 @@ var AnalogueClock = React.createClass({
         }
 
         if (hours < 12) {
-            console.log('AM');
+            // console.log('AM');
+            this.state.period = 'AM';
         } else {
-            console.log('PM');
+            // console.log('PM');
+            this.state.period = 'PM';
         }
 
         //console.log('minutes: ' + currentTime.getMinutes());
@@ -286,6 +289,11 @@ var AnalogueClock = React.createClass({
                 { id: 'hourHand', style: this.state.hoursStyle },
                 React.createElement('div', { id: 'hourHandLeft' }),
                 React.createElement('div', { id: 'hourHandRight' })
+            ),
+            React.createElement(
+                'div',
+                { id: 'period' },
+                this.state.period
             )
         );
     }
