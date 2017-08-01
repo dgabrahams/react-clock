@@ -88,7 +88,7 @@ var AnalogueClock = React.createClass({
         //console.log('minutes: ' + currentTime.getMinutes());
         //console.log('hours: ' + currentTime.getHours());
         //console.log('seconds: ' + currentTime.getSeconds());
-        console.log('milliseconds: ' + currentTime.getMilliseconds());
+        // console.log('milliseconds: ' + currentTime.getMilliseconds());
 
         //calculate current time values as degrees on c clock
         seconds = seconds * 6; //add an extra second?
@@ -107,7 +107,7 @@ var AnalogueClock = React.createClass({
         if( currentTime.getMilliseconds() >= 500 ) {
             //add one second to the time and then set timeout to start at the ms left till the next second
             //this is only to apply the time, remember that the clock will always add one second each time it runs.
-            console.log('Start NEXT second');
+            // console.log('Start NEXT second');
             //this.setState({seconds: parseInt(seconds,10) + 1}, () => {});//end seconds
             //setApplyTime = 1000-currentTime.getMilliseconds();
             //console.log('Time till next second: '+setApplyTime);
@@ -118,7 +118,7 @@ var AnalogueClock = React.createClass({
 
 
         setApplyTime = 1000 - currentTime.getMilliseconds();//was: 1000 - currentTime.getMilliseconds() or 0
-        console.log('Time till next second: ' + setApplyTime);
+        // console.log('Time till next second: ' + setApplyTime);
 
 
         setTimeout(function () {
@@ -139,31 +139,15 @@ var AnalogueClock = React.createClass({
                 transform: 'rotateZ(' + hours + 'deg)'
             };
 
-            // reorder these as when they get applied the style changes!!!! currently out of sync with the time value changes...?
-            //are these not being used?
-
             //apply styles to the clock
             this.setState({ secondsStyle: setSecondsStyle }, () => {}); //moves the second hand by setting the style
             this.setState({ minutesStyle: setMinuteStyle }, () => {}); //moves minute hand by setting the style
             this.setState({ hoursStyle: setHourStyle }, () => {});
 
-//none of theses vales are needed, only the setTimeOut with checkTime inside.
-            //set state to have initial values
-            // this.setState({ second: parseInt(seconds, 10) }, () => {
-            //     this.setState({ minute: parseInt(minutes, 10) }, () => {
-            //         this.setState({ hour: parseInt(hours, 10) }, () => {
-            //             setTimeout(function () {
-            //                 this.checkTime();
-            //             }.bind(this), setTimeoutValue); //every 15 seconds, the time is checked. maybe it should do this each second?
-            //         }); //end seconds
-            //     }); //end seconds
-            // }); //end seconds
+            setTimeout(function () {
+                this.checkTime();
+            }.bind(this), setTimeoutValue); 
 
-                        setTimeout(function () {
-                            this.checkTime();
-                        }.bind(this), setTimeoutValue); 
-
-            
         }.bind(this), setApplyTime);
     },
     render: function () {
