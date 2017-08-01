@@ -195,6 +195,8 @@
               // new Date().getUTCDay()//1
               //LIST IS 0-11 for months for example.
 
+              console.log('from checkDST: timezone: ' + timeZone);
+
               var year = currentDate.getUTCFullYear();
               var month = currentDate.getUTCMonth();
               var day = currentDate.getUTCDay();
@@ -209,20 +211,19 @@
                   day = '0'+day;
               }
 
-              console.log('date: '+year+'-'+month+'-'+day);
+              console.log('from checkDST: date: '+year+'-'+month+'-'+day);
 
               //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
-              return moment.tz(year+'-'+month+'-'+day, "Europe/London").format().substring(19);
+              return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);
 
           },
-          timezoneTheme: function(timeZoneValue,hours,minutes) {
+          timezoneTheme: function(timeZone,hours,minutes) {
 
 //Australia has the opposite DST, because their summer happens at a different time. So when it is DST in the UK it is NOT DST in Australia.
 //here times are different to that found in my chart on wikipedia:
 //http://www.australia.gov.au/about-australia/facts-and-figures/time-zones-and-daylight-saving
 
-
-
+              var timeZoneValue = this.checkDST(timeZone);
 
               // get current date
               // get time that is required to be + or -
@@ -502,11 +503,13 @@
       let timerMain = ReactDOM.render(React.createElement(Timer3, null), document.getElementById('react-main'));
       //timerMain.xhttpGetTime()
       //timerMain.removeTheme()
+      //timerMain.checkDST()
 
       //<div id="time-display"></div>
       //<div>&nbsp;</div>
 
       // myRegistrationModal.timeZoneGetter()
+
 
 
     </script>

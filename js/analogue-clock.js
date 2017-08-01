@@ -56,7 +56,7 @@ var AnalogueClock = React.createClass({
 
         if ( this.state.timeZoneValue !== null ) {
             console.log('this.state.timeZoneValue !== null');
-            var timeZoneTime = timerMain.timezoneTheme(this.state.timeZoneValue,hours,minutes);
+            var timeZoneTime = timerMain.timezoneTheme(this.state.timeZone,hours,minutes);
             console.log(timeZoneTime);
             hours = parseInt(timeZoneTime.hours);
             minutes = parseInt(timeZoneTime.minutes);
