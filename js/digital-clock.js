@@ -16,7 +16,9 @@ var DefaultClock = React.createClass({
             this.checkTime('1', '0');
     },
     halt: function() {
-        this.setState({ halt: 'halt' }, () => {});
+        this.setState({ halt: 'halt' }, () => {
+            console.log('halt applied to '+this.displayName);
+        }).bind(this);
     },
     timeGetter: function () {
         return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
