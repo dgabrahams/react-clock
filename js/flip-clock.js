@@ -5,6 +5,7 @@ var FlipClock = React.createClass({
         return {
             timeZone: 'Local Timezone',
             timeZoneValue: null,
+            halt: null,
 
             hourTenTop: null,
             hourTenMiddle: null,
@@ -90,6 +91,9 @@ var FlipClock = React.createClass({
             this.setState({ minuteUnitBottom: setMinuteUnitBottomStyle }, () => {});
 
             this.checkTime('1');
+    },
+    halt: function() {
+        this.setState({ halt: 'halt' }, () => {});
     },
     timeGetter: function () {
         return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
@@ -285,26 +289,8 @@ var FlipClock = React.createClass({
 
             if ( runOnce !== '1' ) {
                 console.log('run many');
-                this.checkTime('-1', '0');
+                this.checkTime('-1', '-1');
             }//end if
-
-            // if ( runOnce !== '1' ) {
-            //     console.log('run many');
-            //     // this.checkTime('-1', '0');
-            //     if ( this.state.timeZone === currentTimeZone ) {
-            //         console.log('this.state.timeZone === currentTimeZone');
-            //         // this.setState({ hour: hours }, () => {});
-            //         // this.setState({ minute: minutes }, () => {});   
-            //     } else {
-            //         console.log('this.state.timeZone !== currentTimeZone');
-            //         // this.checkTime('1', '1');//run again for immediate apply
-            //     }//else
-            //     this.checkTime('-1', '0');
-            // }//end if
-            
-            // setTimeout(function () {
-                // this.checkTime('-1');
-            // }.bind(this), setTimeoutValue);
 
         }.bind(this), setApplyTime);
 

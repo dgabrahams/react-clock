@@ -5,6 +5,7 @@ var DefaultClock = React.createClass({
         return {
             timeZone: 'Local Timezone',
             timeZoneValue: null,
+            halt: null,
             hour: 0,
             minute: 0,
             second: 0
@@ -13,6 +14,9 @@ var DefaultClock = React.createClass({
     componentWillMount: function () {
             timerMain.addThemeCSS('/css/digital-clock.css');//works!
             this.checkTime('1', '0');
+    },
+    halt: function() {
+        this.setState({ halt: 'halt' }, () => {});
     },
     timeGetter: function () {
         return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
