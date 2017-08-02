@@ -3,6 +3,9 @@ var FlipClock = React.createClass({
 
     getInitialState: function () {
         return {
+            timeZone: 'Local Timezone',
+            timeZoneValue: null,
+
             hourTenTop: null,
             hourTenMiddle: null,
             hourTenBottom: null,
@@ -87,6 +90,21 @@ var FlipClock = React.createClass({
             this.setState({ minuteUnitBottom: setMinuteUnitBottomStyle }, () => {});
 
             this.checkTime('1');
+    },
+    timeGetter: function () {
+        return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
+    },
+    timeZoneSetter: function (timeZone,timeZoneValue) {
+        this.setState({ timeZone: timeZone }, () => {
+            console.log('from theme component timezone: ' + this.state.timeZone );
+        });
+        this.setState({ timeZoneValue: timeZoneValue }, () => {
+            console.log('from theme component timezonevalue: ' + this.state.timeZoneValue );
+            this.checkTime('1', '1');
+        });
+    },
+    timeZoneGetter: function () {
+        return 'timeZone: ' + this.state.timeZone;
     },
     checkTime: function (param) {
 
