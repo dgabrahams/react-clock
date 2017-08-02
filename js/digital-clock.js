@@ -67,42 +67,6 @@ var DefaultClock = React.createClass({
 
         }
 
-        // if ( this.state.timeZoneValue !== null ) {
-        //     // get current date
-        //     // get time that is required to be + or -
-        //     //+ or - that form current time and set as the state value.
-        //     console.log('this.state.timeZone: '+this.state.timeZoneValue);
-        //     if ( this.state.timeZoneValue.match(/\+/g) ) {
-        //         // console.log('contains +');//works
-        //         // this.state.timeZone.charAt(2);
-        //         hours = hours + parseInt(this.state.timeZoneValue.substring(1, 3));
-        //         minutes = minutes + parseInt(this.state.timeZoneValue.substring(4));
-        //     } else {
-        //         // console.log('contains -');//works
-        //         hours = hours - parseInt(this.state.timeZoneValue.substring(1, 3));
-        //         minutes = minutes - parseInt(this.state.timeZoneValue.substring(4));
-        //     }
-        //     console.log('hours changed: ' + hours);
-
-        //     if ( parseInt(minutes) >= 60 ){
-        //         console.log('parseInt(minutes) >= 60: ' + minutes);
-        //         minutes = parseInt(minutes) - 60;
-        //         hours = parseInt(hours) + 1;
-        //     }//end if
-
-        //     if ( parseInt(hours) < 0 ) {
-        //         console.log('hours < 0: ' + hours);
-        //         console.log('new hours: ' + (24 - parseInt(hours)));
-        //         hours = 24 - parseInt(hours);
-        //     } else if ( parseInt(hours) >= 24 ) {
-        //         console.log('hours >= 24: ' + hours);
-        //         console.log('new hours: ' + (parseInt(hours) - 24));
-        //         hours = parseInt(hours) - 24;
-        //     }
-        //     // console.log('hours changed: ' + hours);
-        // }
-
-
 //check if this works with 12 hours as well as 24 hour clock
         if(runImmediate === '-1') {
             minutes = minutes+1;
