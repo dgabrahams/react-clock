@@ -177,8 +177,7 @@ var FlipClock = React.createClass({
         console.log('minuteTenVal: '+minuteTenVal );
         console.log('minuteUnitVal: '+minuteUnitVal );
 
-
-
+        var currentTimeZone = this.state.timeZone;
 
         setTimeout(function () {
 
@@ -275,6 +274,15 @@ var FlipClock = React.createClass({
 
             if ( runOnce !== '1' ) {
                 console.log('run many');
+                // this.checkTime('-1', '0');
+                if ( this.state.timeZone === currentTimeZone ) {
+                    console.log('this.state.timeZone === currentTimeZone');
+                    this.setState({ hour: hours }, () => {});
+                    this.setState({ minute: minutes }, () => {});   
+                } else {
+                    console.log('this.state.timeZone !== currentTimeZone');
+                    this.checkTime('1', '1');//run again for immediate apply
+                }//else
                 this.checkTime('-1', '0');
             }//end if
             
