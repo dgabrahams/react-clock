@@ -202,16 +202,16 @@
               var day = currentDate.getUTCDay();
 
               if (month.toString().length < 2) {
-                  console.log('month is < 2');
+                  // console.log('month is < 2');
                   month = '0'+month;
               }
 
               if (day.toString().length < 2) {
-                  console.log('minutes is < 2');
+                  // console.log('day is < 2');
                   day = '0'+day;
               }
 
-              console.log('from checkDST: date: '+year+'-'+month+'-'+day);
+              // console.log('from checkDST: date: '+year+'-'+month+'-'+day);
 
               //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
               return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);

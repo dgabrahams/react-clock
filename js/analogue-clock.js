@@ -8,9 +8,6 @@ var AnalogueClock = React.createClass({
             secondsStyle: null,
             minutesStyle: null,
             hoursStyle: null,
-            seconds: 0,
-            minutes: 0,
-            hours: 0,
             period: null
         };
     },
@@ -18,10 +15,6 @@ var AnalogueClock = React.createClass({
         timerMain.addThemeCSS('/css/analogue-clock.css');//works!
         this.checkTime();
     },
-    // timeSetter: function (hours, minutes) {
-    //     this.setState({ hour: hours }, () => {});
-    //     this.setState({ minute: minutes }, () => {});
-    // },
     timeZoneSetter: function (timeZone,timeZoneValue) {
         this.setState({ timeZone: timeZone }, () => {
             console.log('from theme component timezone: ' + this.state.timeZone );
@@ -36,20 +29,10 @@ var AnalogueClock = React.createClass({
     },
     checkTime: function () {
 
-//THIS FUNCTION TICKS ALREADY! when state is set react changes the value!
-
-        //one function keeps ticking accoridng to the state values
-        //another function checks that the state values are up to date
-        //these two act asycronously (wich is great!)
         console.log('----- checkTime -----');
         var setTimeoutValue = 500; //run every 15 seconds = 15000, every 1000 was what it was set at.
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
-
-        //check milliseconds to find the correct minute to show.
-        //always wait untl the next available minute.
-
-        //also, as long as the ntp time is known to a second, then any seconds after that time can be counted, allowing correct setting of time.?
 
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
@@ -85,32 +68,12 @@ var AnalogueClock = React.createClass({
             this.state.period = 'PM';
         }
 
-        //console.log('minutes: ' + currentTime.getMinutes());
-        //console.log('hours: ' + currentTime.getHours());
-        //console.log('seconds: ' + currentTime.getSeconds());
-        // console.log('milliseconds: ' + currentTime.getMilliseconds());
-
         //calculate current time values as degrees on c clock
         seconds = seconds * 6; //add an extra second?
         minutes = minutes * 6;
         hours = hours * 30; //there are ony 24 hours, so 30 degrees per hour
-        // var seconds = currentTime.getSeconds() * 6; //add an extra second?
-        // var minutes = currentTime.getMinutes() * 6;
-        // var hours = currentTime.getHours() * 30; //there are ony 24 hours, so 30 degrees per hour
-        // console.log('seconds as degrees: '+seconds );
-        // console.log('minutes as degrees: '+minutes );
-        // console.log('hours as degrees: '+hours );
-
-
-        //in any case set to start at the next second....!!!!!
 
         if( currentTime.getMilliseconds() >= 500 ) {
-            //add one second to the time and then set timeout to start at the ms left till the next second
-            //this is only to apply the time, remember that the clock will always add one second each time it runs.
-            // console.log('Start NEXT second');
-            //this.setState({seconds: parseInt(seconds,10) + 1}, () => {});//end seconds
-            //setApplyTime = 1000-currentTime.getMilliseconds();
-            //console.log('Time till next second: '+setApplyTime);
             seconds = seconds + 6;
         } else {
             //seconds = seconds - 6;
@@ -119,7 +82,6 @@ var AnalogueClock = React.createClass({
 
         setApplyTime = 1000 - currentTime.getMilliseconds();//was: 1000 - currentTime.getMilliseconds() or 0
         // console.log('Time till next second: ' + setApplyTime);
-
 
         setTimeout(function () {
 
@@ -288,12 +250,5 @@ var AnalogueClock = React.createClass({
         );
     }
 });
-//ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));
-
-//Starts clock at run time but also allows the call of: myRegistrationModal.testConsole() - this way member functions of a component can be called from outside the component.
-//this can be considered the interface with which to access a component's member functions?
-// let myRegistrationModal = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));
+// let myRegistrationModal = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));//let didn't work?
 var myRegistrationModal = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));
-
-
-
