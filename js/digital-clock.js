@@ -96,7 +96,7 @@ var DefaultClock = React.createClass({
             minutes = '0'+minutes;
         }
 
-        if ( this.state.halt != null ) {
+        if ( this.state.halt == null ) {
             if ( runOnce === '1' ) {
                 console.log('run once');
                 this.setState({ hour: hours }, () => {});
