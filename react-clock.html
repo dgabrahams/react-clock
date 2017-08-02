@@ -157,6 +157,9 @@
 
 
 
+
+
+
       var Timer3 = React.createClass({
 
           getInitialState: function() {
@@ -473,6 +476,7 @@
           removeTheme: function() {
               ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
               ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
+              myRegistrationModal.halt();
               myRegistrationModal = '';
               document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
           },
