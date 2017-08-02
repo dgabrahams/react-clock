@@ -75,10 +75,13 @@
             console.log('***form action***');
             // timerMain.removeTheme();
 
-            myRegistrationModal.halt();
+            // myRegistrationModal.halt();
+            console.log('before: '+window.myRegistrationModal);
+            delete window.myRegistrationModal;
+            console.log('after: '+window.myRegistrationModal);
             ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
             ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
-            myRegistrationModal = '';
+            // myRegistrationModal = '';
             document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
 
             timerMain.hideThemeSelector();
