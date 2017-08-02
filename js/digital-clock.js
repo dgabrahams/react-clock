@@ -94,31 +94,33 @@ var DefaultClock = React.createClass({
             minutes = '0'+minutes;
         }
 
-        if ( runOnce === '1' ) {
-            console.log('run once');
-            this.setState({ hour: hours }, () => {});
-            this.setState({ minute: minutes }, () => {});
-        } else {
-            console.log('run many');
-            console.log('Time till next minute in milliseconds: ' + setApplyTime);
-            console.log('Time till next minute in seconds: ' + (setApplyTime/1000) );
+        if ( this.state.halt === null ) {
+            if ( runOnce === '1' ) {
+                console.log('run once');
+                this.setState({ hour: hours }, () => {});
+                this.setState({ minute: minutes }, () => {});
+            } else {
+                console.log('run many');
+                console.log('Time till next minute in milliseconds: ' + setApplyTime);
+                console.log('Time till next minute in seconds: ' + (setApplyTime/1000) );
 
-            var currentTimeZone = this.state.timeZone;
+                var currentTimeZone = this.state.timeZone;
 
-            setTimeout(function () {
-                    //when timezone change the value set here is out of date when it comes to the first minute to be changed
-                    //the next minute afterwards is ok
-                    if ( this.state.timeZone === currentTimeZone ) {
-                        console.log('this.state.timeZone === currentTimeZone');
-                        this.setState({ hour: hours }, () => {});
-                        this.setState({ minute: minutes }, () => {});   
-                    } else {
-                        console.log('this.state.timeZone !== currentTimeZone');
-                        this.checkTime('1', '1');//run again for immediate apply
-                    }//else
-                    this.checkTime('-1', '0');
-            }.bind(this), setApplyTime); 
-        }//end else
+                setTimeout(function () {
+                        //when timezone change the value set here is out of date when it comes to the first minute to be changed
+                        //the next minute afterwards is ok
+                        if ( this.state.timeZone === currentTimeZone ) {
+                            console.log('this.state.timeZone === currentTimeZone');
+                            this.setState({ hour: hours }, () => {});
+                            this.setState({ minute: minutes }, () => {});   
+                        } else {
+                            console.log('this.state.timeZone !== currentTimeZone');
+                            this.checkTime('1', '1');//run again for immediate apply
+                        }//else
+                        this.checkTime('-1', '0');
+                }.bind(this), setApplyTime); 
+            }//end else
+        }//end if
 
     },
     render: function () {
@@ -153,6 +155,7 @@ var myRegistrationModal = ReactDOM.render(React.createElement(DefaultClock, null
 // myRegistrationModal.timeSetter(22, 40, 25)
 //myRegistrationModal.timeZoneSetter('America/Lima')
 // myRegistrationModal.timeZoneGetter()
+// myRegistrationModal.halt();
 
 // moment( '2017-07-27T08:01:09.348Z' ).tz('America/Lima').format('YYYY-MM-DD HH:mm:ss')//works!
 // moment( '2017-07-27T08:01:09.348Z' ).tz('America/Lima').format()//works!
