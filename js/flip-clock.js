@@ -106,7 +106,7 @@ var FlipClock = React.createClass({
     timeZoneGetter: function () {
         return 'timeZone: ' + this.state.timeZone;
     },
-    checkTime: function (param) {
+    checkTime: function (runImmediate, runOnce) {
 
         console.log('----- checkTime -----');
         var setApplyTime = 0; //run in the current second
@@ -119,11 +119,30 @@ var FlipClock = React.createClass({
         var minutes = currentTime.getMinutes();
         var hours = currentTime.getHours();
 
-        if(param === '-1') {
+
+        if ( this.state.timeZoneValue !== null ) {
+
+            hours = currentTime.getUTCHours();
+            minutes = currentTime.getUTCMinutes();
+
+            console.log('this.state.timeZoneValue !== null');
+            var timeZoneTime = timerMain.timezoneTheme(this.state.timeZone,hours,minutes);
+            console.log(timeZoneTime);
+            hours = parseInt(timeZoneTime.hours);
+            minutes = parseInt(timeZoneTime.minutes);
+            // hours = parseInt(hours) + parseInt(timeZoneTime.hours);
+            // minutes = parseInt(minutes) + parseInt(timeZoneTime.minutes);
+
+        } else {
+            console.log('this.state.timeZoneValue === null');
+
+        }
+
+        if(runImmediate === '-1') {
             minutes = minutes+1;
         }
 
-        if(param === '-1') {
+        if(runImmediate === '-1') {
             setApplyTime = 60000 - ( ( currentTime.getSeconds() * 1000 )+currentTime.getMilliseconds() );
         } else {
             setApplyTime = 0;
@@ -157,6 +176,9 @@ var FlipClock = React.createClass({
         console.log('hoursUnitVal: '+hoursUnitVal );
         console.log('minuteTenVal: '+minuteTenVal );
         console.log('minuteUnitVal: '+minuteUnitVal );
+
+
+
 
         setTimeout(function () {
 
@@ -251,13 +273,19 @@ var FlipClock = React.createClass({
 
             }//end if
 
-            this.checkTime('-1');
-
+            if ( runOnce !== '1' ) {
+                console.log('run many');
+                this.checkTime('-1', '0');
+            }//end if
+            
             // setTimeout(function () {
                 // this.checkTime('-1');
             // }.bind(this), setTimeoutValue);
 
         }.bind(this), setApplyTime);
+
+
+
 
     // function addOne(){
 
