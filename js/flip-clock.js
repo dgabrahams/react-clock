@@ -172,119 +172,135 @@ var FlipClock = React.createClass({
             minuteUnitVal = minutes.toString().charAt(0); 
         }
 
-        console.log('hoursTenVal: '+hoursTenVal );
-        console.log('hoursUnitVal: '+hoursUnitVal );
-        console.log('minuteTenVal: '+minuteTenVal );
-        console.log('minuteUnitVal: '+minuteUnitVal );
+        // console.log('hoursTenVal: '+hoursTenVal );
+        // console.log('hoursUnitVal: '+hoursUnitVal );
+        // console.log('minuteTenVal: '+minuteTenVal );
+        // console.log('minuteUnitVal: '+minuteUnitVal );
 
         var currentTimeZone = this.state.timeZone;
 
+
+
         setTimeout(function () {
 
-            if (this.state.hour != hours) {
+            if ( this.state.timeZone === currentTimeZone ) {
+                console.log('this.state.timeZone === currentTimeZone');
 
-                this.setState({ hour: hours }, () => {});
+                if (this.state.hour != hours) {
 
-                var setHoursTenTopStyle = {
-                    backgroundImage: "url('images/"+hoursTenVal+".jpg')"
-                };
-                var setHoursTenMiddleStyle = {
-                    backgroundImage: "url('images/"+hoursTenVal+".jpg')"
-                };
-                var setHourTenBottomStyle = {
-                    backgroundImage: "url('images/"+(parseInt(hoursTenVal)+10)+".jpg')"
-                };
+                    this.setState({ hour: hours }, () => {});
 
-                var setHoursUnitTopStyle = {
-                    backgroundImage: "url('images/"+hoursUnitVal+".jpg')"
-                };
-                var setHoursUnitMiddleStyle = {
-                    backgroundImage: "url('images/"+hoursUnitVal+".jpg')"
-                };
-                var setHoursUnitBottomStyle = {
-                    backgroundImage: "url('images/"+(parseInt(hoursUnitVal)+10)+".jpg')"
-                };
+                    var setHoursTenTopStyle = {
+                        backgroundImage: "url('images/"+hoursTenVal+".jpg')"
+                    };
+                    var setHoursTenMiddleStyle = {
+                        backgroundImage: "url('images/"+hoursTenVal+".jpg')"
+                    };
+                    var setHourTenBottomStyle = {
+                        backgroundImage: "url('images/"+(parseInt(hoursTenVal)+10)+".jpg')"
+                    };
 
-                this.setState({ middleItemHourClass: 'middle' }, () => {});
+                    var setHoursUnitTopStyle = {
+                        backgroundImage: "url('images/"+hoursUnitVal+".jpg')"
+                    };
+                    var setHoursUnitMiddleStyle = {
+                        backgroundImage: "url('images/"+hoursUnitVal+".jpg')"
+                    };
+                    var setHoursUnitBottomStyle = {
+                        backgroundImage: "url('images/"+(parseInt(hoursUnitVal)+10)+".jpg')"
+                    };
 
-                this.setState({ hourTenTop: setHoursTenTopStyle }, () => {});
-                this.setState({ hourTenMiddle: setHoursTenMiddleStyle }, () => {});
+                    this.setState({ middleItemHourClass: 'middle' }, () => {});
 
-                this.setState({ hourUnitTop: setHoursUnitTopStyle }, () => {});
-                this.setState({ hourUnitMiddle: setHoursUnitMiddleStyle }, () => {});
+                    this.setState({ hourTenTop: setHoursTenTopStyle }, () => {});
+                    this.setState({ hourTenMiddle: setHoursTenMiddleStyle }, () => {});
 
-                setTimeout(function () {
-                    // middle.style.opacity = '0';
-                    // middle.removeAttribute("class");
-                    // bottom.style.backgroundImage = "url('images/"+(parseInt(regEx)+11)+".jpg')";
+                    this.setState({ hourUnitTop: setHoursUnitTopStyle }, () => {});
+                    this.setState({ hourUnitMiddle: setHoursUnitMiddleStyle }, () => {});
 
-                    this.setState({ middleItemHourClass: '' }, () => {});//this does all items!!!!!!
-                    this.setState({ hourTenBottom: setHourTenBottomStyle }, () => {});
-                    this.setState({ hourUnitBottom: setHoursUnitBottomStyle }, () => {});
+                    setTimeout(function () {
+                        // middle.style.opacity = '0';
+                        // middle.removeAttribute("class");
+                        // bottom.style.backgroundImage = "url('images/"+(parseInt(regEx)+11)+".jpg')";
 
-                }.bind(this), 100);
+                        this.setState({ middleItemHourClass: '' }, () => {});//this does all items!!!!!!
+                        this.setState({ hourTenBottom: setHourTenBottomStyle }, () => {});
+                        this.setState({ hourUnitBottom: setHoursUnitBottomStyle }, () => {});
 
-            }//end if
+                    }.bind(this), 100);
+
+                }//end if
 
 
-            if (this.state.minute != minutes) {
+                if (this.state.minute != minutes) {
 
-                this.setState({ minute: minutes }, () => {});
+                    this.setState({ minute: minutes }, () => {});
 
-                var setMinuteTenStyle = {
-                    backgroundImage: "url('images/"+minuteTenVal+".jpg')"
-                };
-                var setMinuteTenMiddleStyle = {
-                    backgroundImage: "url('images/"+minuteTenVal+".jpg')"
-                };
-                var setMinuteTenBottomStyle = {
-                    backgroundImage: "url('images/"+(parseInt(minuteTenVal)+10)+".jpg')"
-                };
+                    var setMinuteTenStyle = {
+                        backgroundImage: "url('images/"+minuteTenVal+".jpg')"
+                    };
+                    var setMinuteTenMiddleStyle = {
+                        backgroundImage: "url('images/"+minuteTenVal+".jpg')"
+                    };
+                    var setMinuteTenBottomStyle = {
+                        backgroundImage: "url('images/"+(parseInt(minuteTenVal)+10)+".jpg')"
+                    };
 
-                var setMinuteUnitTopStyle = {
-                    backgroundImage: "url('images/"+minuteUnitVal+".jpg')"
-                };
-                var setMinuteUnitMiddleStyle = {
-                    backgroundImage: "url('images/"+minuteUnitVal+".jpg')"
-                };
-                var setMinuteUnitBottomStyle = {
-                    backgroundImage: "url('images/"+(parseInt(minuteUnitVal)+10)+".jpg')"
-                };
+                    var setMinuteUnitTopStyle = {
+                        backgroundImage: "url('images/"+minuteUnitVal+".jpg')"
+                    };
+                    var setMinuteUnitMiddleStyle = {
+                        backgroundImage: "url('images/"+minuteUnitVal+".jpg')"
+                    };
+                    var setMinuteUnitBottomStyle = {
+                        backgroundImage: "url('images/"+(parseInt(minuteUnitVal)+10)+".jpg')"
+                    };
 
-                this.setState({ middleItemMinuteClass: 'middle' }, () => {});
+                    this.setState({ middleItemMinuteClass: 'middle' }, () => {});
 
-                this.setState({ minuteTenTop: setMinuteTenStyle }, () => {});
-                this.setState({ minuteTenMiddle: setMinuteTenMiddleStyle }, () => {});
+                    this.setState({ minuteTenTop: setMinuteTenStyle }, () => {});
+                    this.setState({ minuteTenMiddle: setMinuteTenMiddleStyle }, () => {});
 
-                this.setState({ minuteUnitTop: setMinuteUnitTopStyle }, () => {});
-                this.setState({ minuteUnitMiddle: setMinuteUnitMiddleStyle }, () => {});
+                    this.setState({ minuteUnitTop: setMinuteUnitTopStyle }, () => {});
+                    this.setState({ minuteUnitMiddle: setMinuteUnitMiddleStyle }, () => {});
 
-                setTimeout(function () {
-                    // middle.style.opacity = '0';
-                    // middle.removeAttribute("class");
-                    // bottom.style.backgroundImage = "url('images/"+(parseInt(regEx)+11)+".jpg')";
+                    setTimeout(function () {
+                        // middle.style.opacity = '0';
+                        // middle.removeAttribute("class");
+                        // bottom.style.backgroundImage = "url('images/"+(parseInt(regEx)+11)+".jpg')";
 
-                    this.setState({ middleItemMinuteClass: '' }, () => {});//this does all items!!!!!!
-                    this.setState({ minuteTenBottom: setMinuteTenBottomStyle }, () => {});
-                    this.setState({ minuteUnitBottom: setMinuteUnitBottomStyle }, () => {});
+                        this.setState({ middleItemMinuteClass: '' }, () => {});//this does all items!!!!!!
+                        this.setState({ minuteTenBottom: setMinuteTenBottomStyle }, () => {});
+                        this.setState({ minuteUnitBottom: setMinuteUnitBottomStyle }, () => {});
 
-                }.bind(this), 100);//was 100
+                    }.bind(this), 100);//was 100
 
-            }//end if
+                }//end if
+
+            } else {
+                console.log('this.state.timeZone !== currentTimeZone');
+                this.checkTime('1', '1');//run again for immediate apply
+            }//else
+
 
             if ( runOnce !== '1' ) {
                 console.log('run many');
-                // this.checkTime('-1', '0');
-                if ( this.state.timeZone === currentTimeZone ) {
-                    console.log('this.state.timeZone === currentTimeZone');
-                    // this.setState({ hour: hours }, () => {});
-                    // this.setState({ minute: minutes }, () => {});   
-                } else {
-                    console.log('this.state.timeZone !== currentTimeZone');
-                    // this.checkTime('1', '1');//run again for immediate apply
-                }//else
                 this.checkTime('-1', '0');
             }//end if
+
+            // if ( runOnce !== '1' ) {
+            //     console.log('run many');
+            //     // this.checkTime('-1', '0');
+            //     if ( this.state.timeZone === currentTimeZone ) {
+            //         console.log('this.state.timeZone === currentTimeZone');
+            //         // this.setState({ hour: hours }, () => {});
+            //         // this.setState({ minute: minutes }, () => {});   
+            //     } else {
+            //         console.log('this.state.timeZone !== currentTimeZone');
+            //         // this.checkTime('1', '1');//run again for immediate apply
+            //     }//else
+            //     this.checkTime('-1', '0');
+            // }//end if
             
             // setTimeout(function () {
                 // this.checkTime('-1');
