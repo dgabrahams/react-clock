@@ -285,6 +285,7 @@ var FlipClock = React.createClass({
 
             } else {
                 console.log('this.state.timeZone !== currentTimeZone');
+                console.log('this.state.halt: '+this.state.halt);
                 if ( this.state.halt == null ) {
                     this.checkTime('1', '1');//run again for immediate apply
                 }//end if

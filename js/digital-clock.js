@@ -111,6 +111,7 @@ var DefaultClock = React.createClass({
                 setTimeout(function () {
                         //when timezone change the value set here is out of date when it comes to the first minute to be changed
                         //the next minute afterwards is ok
+                        console.log('this.state.halt: '+this.state.halt);
                         if ( this.state.halt == null ) {
                             if ( this.state.timeZone === currentTimeZone ) {
                                 console.log('this.state.timeZone === currentTimeZone');
