@@ -50,10 +50,10 @@
         },
         componentDidMount: function() {
             console.log('AddAlertBox: componentDidMount');
-
         },
         handleClick: function() {
           console.log('clicked');
+          ReactDOM.unmountComponentAtNode(document.getElementById('time-report'));
         },
         render: function() {
           return (
@@ -217,12 +217,6 @@
               this.xhttpGetTimezones();
           },
           componentDidMount: function() {
-
-              ReactDOM.render(
-                <AddAlertBox />,
-                document.getElementById('time-report')
-              );
-
               this.xhttpGetThemesInit();
           },
           checkDST: function(timeZone) {
@@ -451,10 +445,16 @@
               outputString = 'There was greater than 10 seconds between the transmission and the receipt of data from the server.';
             }
 
+            // ReactDOM.render(
+            //   React.createElement('div', {id : 'time-report-content'}, outputString),
+            //   document.getElementById('time-report')
+            // );
+
             ReactDOM.render(
-              React.createElement('div', {id : 'time-report-content'}, outputString),
-              document.getElementById('time-report')
+                <AddAlertBox />,
+                document.getElementById('time-report')
             );
+
             // return outputString;
 
           },
