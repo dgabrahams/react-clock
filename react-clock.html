@@ -523,9 +523,7 @@
               console.log(window[codeRef]);//worked!
               console.log(window[domRef]);//worked!
 
-              // window[domRef].halt();
-              // window['DefaultClockRef'].halt();
-              String(domRef).halt();
+              window[domRef]['halt']();//works!!!!
               console.log('-*after calling halt*-');
 
               // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
