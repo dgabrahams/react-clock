@@ -16,9 +16,11 @@ var AnalogueClock = React.createClass({
         timerMain.addThemeCSS('/css/analogue-clock.css');//works!
         this.checkTime();
     },
-    halt: function() {
+    halt: function(params, callback) {
         this.setState({ halt: 'halt' }, () => {
-            console.log('halt applied to AnalogueClock');
+            console.log('halt applied to defaultClock');
+            // console.log('callback: '+callback);
+            callback(params);
         });
     },
     timeZoneSetter: function (timeZone,timeZoneValue) {

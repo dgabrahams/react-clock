@@ -92,9 +92,11 @@ var FlipClock = React.createClass({
 
             this.checkTime('1');
     },
-    halt: function() {
+    halt: function(params, callback) {
         this.setState({ halt: 'halt' }, () => {
-            console.log('halt applied to flipClock');
+            console.log('halt applied to defaultClock');
+            // console.log('callback: '+callback);
+            callback(params);
         });
     },
     timeGetter: function () {
