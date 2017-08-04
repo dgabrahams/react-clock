@@ -18,8 +18,7 @@ var AnalogueClock = React.createClass({
     },
     halt: function(params, callback) {
         this.setState({ halt: 'halt' }, () => {
-            console.log('halt applied to defaultClock');
-            // console.log('callback: '+callback);
+            console.log('halt applied to Analogue Clock');
             callback(params);
         });
     },
