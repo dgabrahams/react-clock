@@ -394,6 +394,7 @@ var FlipClock = React.createClass({
 //     var myRegistrationModal = {};
 // }
 // let myRegistrationModal = ReactDOM.render(React.createElement(FlipClock, null), document.getElementById('clock-display'));
-var myRegistrationModal = ReactDOM.render(React.createElement(FlipClock, null), document.getElementById('clock-display'));
+// var myRegistrationModal = ReactDOM.render(React.createElement(FlipClock, null), document.getElementById('clock-display'));
 
+var FlipClockRef = ReactDOM.render(React.createElement(FlipClock, null), document.getElementById('clock-display'));
 

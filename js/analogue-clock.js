@@ -18,7 +18,7 @@ var AnalogueClock = React.createClass({
     },
     halt: function() {
         this.setState({ halt: 'halt' }, () => {
-            console.log('halt applied to defaultClock');
+            console.log('halt applied to AnalogueClock');
         });
     },
     timeZoneSetter: function (timeZone,timeZoneValue) {
@@ -257,4 +257,7 @@ var AnalogueClock = React.createClass({
     }
 });
 // let myRegistrationModal = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));//let didn't work?
-var myRegistrationModal = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));
+// var myRegistrationModal = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));
+
+var AnalogueClockRef = ReactDOM.render(React.createElement(AnalogueClock, null), document.getElementById('clock-display'));
+

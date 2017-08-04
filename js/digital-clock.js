@@ -155,7 +155,9 @@ var DefaultClock = React.createClass({
 
 //React.createElement('div', { id: 'hourTenTop', style: this.state.hourTenTop }),
 
-var myRegistrationModal = ReactDOM.render(React.createElement(DefaultClock, null), document.getElementById('clock-display'));
+var DefaultClockRef = ReactDOM.render(React.createElement(DefaultClock, null), document.getElementById('clock-display'));
+
+// var myRegistrationModal = ReactDOM.render(React.createElement(DefaultClock, null), document.getElementById('clock-display'));
 // myRegistrationModal.timeGetter()
 // myRegistrationModal.timeSetter(22, 40, 25)
 //myRegistrationModal.timeZoneSetter('America/Lima')
