@@ -1,5 +1,5 @@
 {
 	"AnalogueClock" : { "name": "Analogue Clock", "fileName": "analogue-clock.js" },
-	"FlipClock" : { "name": "Flip Clock", "fileName": "flip-clock.js" },
-	"DigitalClock" : { "name": "Digital Clock", "fileName": "digital-clock.js" }
+	"FlipClock" : { "name": "Flip Clock", "fileName": "flip-clock.js", "varName": "FlipClock", "refName": "FlipClockRef" },
+	"DigitalClock" : { "name": "Digital Clock", "fileName": "digital-clock.js", "varName": "DefaultClock", "refName": "DefaultClockRef" }
 }

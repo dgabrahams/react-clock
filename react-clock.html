@@ -73,17 +73,17 @@
         },
         formAction: function() {
             console.log('***form action***');
-            // timerMain.removeTheme();
+            timerMain.removeTheme();
 
             // myRegistrationModal.halt();
             // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
             // console.log('before: '+window.myRegistrationModal);
             // delete window.myRegistrationModal;
             // console.log('after: '+window.myRegistrationModal);
-            ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-            ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
-            myRegistrationModal = '';
-            document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
+            // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
+            // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
+            // myRegistrationModal = '';
+            // document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
 
             timerMain.hideThemeSelector();
             console.log(this.props.list[this.state.selectValue].fileName);//works!
@@ -485,11 +485,11 @@
               document.getElementById("documentHead").appendChild(node);
           },
           removeTheme: function() {
-              // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-              // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
               // myRegistrationModal.halt();
-              // myRegistrationModal = '';
-              // document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
+              ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
+              ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
+              myRegistrationModal = '';
+              document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
           },
           hideThemeSelector: function() {
               ReactDOM.unmountComponentAtNode(document.getElementById('theme-list'));
