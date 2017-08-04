@@ -58,7 +58,7 @@
         },
         render: function() {
           return (
-            <div ref={(el) => (this.instance = el)} />
+            <div data-ref={this.props.refVar} data-codeVar={this.props.codeVar} ref={(el) => (this.instance = el)} />
           )
         }
       });
@@ -98,7 +98,7 @@
             // refVar={}
 
             ReactDOM.render(
-              <AddJS src={scriptSrc} />,
+              <AddJS src={scriptSrc} refVar={this.props.list[this.state.selectValue].refName} codeVar={this.props.list[this.state.selectValue].varName} />,
               document.getElementById('js-import')
             );
         },
