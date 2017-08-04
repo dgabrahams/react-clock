@@ -38,7 +38,31 @@
 
 
 
-      var NTPtime = 0;//global variable to pass NTP time between components.//not needed
+      // var NTPtime = 0;//global variable to pass NTP time between components.//not needed
+
+
+
+      var AddAlertBox = React.createClass({
+        getInitialState: function() {
+          return {
+            src: 'thing'
+          };
+        },
+        componentDidMount: function() {
+            console.log('AddAlertBox: componentDidMount');
+
+        },
+        handleClick: function() {
+          console.log('clicked');
+        },
+        render: function() {
+          return (
+            <div>my new alert box <div class="close-alert-box" onClick={this.handleClick}> x </div></div>
+          )
+        }
+      });
+
+
 
       var AddJS = React.createClass({
         getInitialState: function() {
@@ -140,22 +164,9 @@
             // this.setState(this.props.list);//not required....
         },
         formAction: function() {
-            console.log('***form action***');
-
-            //test if we are in summer time or not to see which value applies. BELOW IS STILL INCOMPLETE
-            console.log(this.props.list[this.state.selectValue]['UTCoffset']);//works
-
-//update for new unique vars in theme....
+            console.log('***TimezoneListOutput form action***');
             var domRef = document.getElementById('theme-js').getAttribute("data-ref");
-            console.log('domRef'+domRef);
             window[String(domRef)]['timeZoneSetter'](this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
-
-// window['FlipClockRef']['timeZoneSetter']
-// FlipClockRef
-            // console.log('before attempt to set in react-clock.html: '+ myRegistrationModal.timeZoneGetter() );
-            // myRegistrationModal.timeZoneSetter(this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
-            // console.log( myRegistrationModal.timeZoneGetter() );
-
         },
         handleChange: function(e) {
             console.log(this.state);
@@ -206,10 +217,12 @@
               this.xhttpGetTimezones();
           },
           componentDidMount: function() {
-              // ReactDOM.render(
-              //   <AddJS src='/js/digital-clock.js' />,
-              //   document.getElementById('js-import')
-              // );
+
+              ReactDOM.render(
+                <AddAlertBox />,
+                document.getElementById('time-report')
+              );
+
               this.xhttpGetThemesInit();
           },
           checkDST: function(timeZone) {
