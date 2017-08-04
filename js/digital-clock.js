@@ -19,7 +19,7 @@ var DefaultClock = React.createClass({
         this.setState({ halt: 'halt' }, () => {
             console.log('halt applied to defaultClock');
             // console.log('callback: '+callback);
-            console.log(typeof callback);
+            console.log(typeof callback);//its of type function
             callback(params);//check if this is function first
         });
     },
@@ -110,23 +110,22 @@ var DefaultClock = React.createClass({
                 console.log('Time till next minute in seconds: ' + (setApplyTime/1000) );
 
                 var currentTimeZone = this.state.timeZone;
-
-                setTimeout(function () {
-                        //when timezone change the value set here is out of date when it comes to the first minute to be changed
-                        //the next minute afterwards is ok
-                        console.log('this.state.halt: '+this.state.halt);
-                        if ( this.state.halt == null ) {
-                            if ( this.state.timeZone === currentTimeZone ) {
-                                console.log('this.state.timeZone === currentTimeZone');
-                                this.setState({ hour: hours }, () => {});
-                                this.setState({ minute: minutes }, () => {});   
-                            } else {
-                                console.log('this.state.timeZone !== currentTimeZone');
-                                this.checkTime('1', '1');//run again for immediate apply
-                            }//else
-                            this.checkTime('-1', '0');
-                        }//end if
-                }.bind(this), setApplyTime); 
+                console.log('this.state.halt: '+this.state.halt);
+                if ( this.state.halt == null ) {
+                        setTimeout(function () {
+                                //when timezone change the value set here is out of date when it comes to the first minute to be changed
+                                //the next minute afterwards is ok
+                                    if ( this.state.timeZone === currentTimeZone ) {
+                                        console.log('this.state.timeZone === currentTimeZone');
+                                        this.setState({ hour: hours }, () => {});
+                                        this.setState({ minute: minutes }, () => {});   
+                                    } else {
+                                        console.log('this.state.timeZone !== currentTimeZone');
+                                        this.checkTime('1', '1');//run again for immediate apply
+                                    }//else
+                                    this.checkTime('-1', '0');
+                        }.bind(this), setApplyTime); 
+                }//end if
             }//end else
         
 

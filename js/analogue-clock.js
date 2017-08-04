@@ -36,7 +36,7 @@ var AnalogueClock = React.createClass({
     },
     checkTime: function () {
 
-        console.log('----- checkTime -----');
+        console.log('----- checkTime from Analogue Clock -----');
         var setTimeoutValue = 500; //run every 15 seconds = 15000, every 1000 was what it was set at.
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
@@ -89,6 +89,8 @@ var AnalogueClock = React.createClass({
 
         setApplyTime = 1000 - currentTime.getMilliseconds();//was: 1000 - currentTime.getMilliseconds() or 0
         // console.log('Time till next second: ' + setApplyTime);
+
+        console.log('this.state.halt: '+this.state.halt);
         if ( this.state.halt == null ) {
                 setTimeout(function () {
 

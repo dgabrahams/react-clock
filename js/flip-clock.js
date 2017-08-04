@@ -115,7 +115,7 @@ var FlipClock = React.createClass({
     },
     checkTime: function (runImmediate, runOnce) {
 
-        console.log('----- checkTime -----');
+        console.log('----- checkTime Flip Clock -----');
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
 
