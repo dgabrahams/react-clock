@@ -15,16 +15,16 @@
 }
 
 .close-alert-box {
-    position: absolute;
+	position: absolute;
     padding: 10px 10px;
     line-height: 10px;
-    top: -10px;
+    top: 0px;
     right: 0px;
     background-color: #eaf5f2;
 }
 
 .alert-box {
-	padding: 20px;
+	padding: 25px;
     background-color: #97e9d2;
     position: relative;
 }
