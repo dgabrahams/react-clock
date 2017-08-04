@@ -440,11 +440,13 @@
               );
           },
           handleThemeInit: function(xhttp) {
-              console.log(JSON.parse(xhttp.responseText));
-              // ReactDOM.render(
-              //   <ThemeListOutput list={JSON.parse(xhttp.responseText)} />,
-              //   document.getElementById('theme-list')
-              // );
+              // var themes = JSON.parse(xhttp.responseText);
+              this.setState({ themes: JSON.parse(xhttp.responseText) }, () => {
+                  ReactDOM.render(
+                      <AddJS src={scriptSrc} refVar={this.state.themes.DigitalClock.refName} codeVar={this.state.themes.DigitalClock.varName} />,
+                      document.getElementById('js-import')
+                  );
+              });
           },
           handleTimezone: function(xhttp) {
               ReactDOM.render(
