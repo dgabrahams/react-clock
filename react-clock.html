@@ -63,6 +63,8 @@
         }
       });
 
+
+//the list prop has json file in it
       var ThemeListOutput = React.createClass({
         getInitialState: function() {
           return {
@@ -70,6 +72,8 @@
           };
         },
         componentWillMount: function() {
+            console.log('theme list:');
+            console.log(this.props.list);
         },
         formAction: function() {
             console.log('***form action***');
