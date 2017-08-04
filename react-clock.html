@@ -186,17 +186,19 @@
 
           getInitialState: function() {
             return {
-                timezones : null
+                timezones : null,
+                themes : null
             };
           },
           componentWillMount: function () {
               this.xhttpGetTimezones();
           },
           componentDidMount: function() {
-              ReactDOM.render(
-                <AddJS src='/js/digital-clock.js' />,
-                document.getElementById('js-import')
-              );
+              // ReactDOM.render(
+              //   <AddJS src='/js/digital-clock.js' />,
+              //   document.getElementById('js-import')
+              // );
+              this.xhttpGetThemesInit();
           },
           checkDST: function(timeZone) {
               // moment.tz("2017-11-31", "Australia/Yancowinna").format();
@@ -437,6 +439,13 @@
                 document.getElementById('theme-list')
               );
           },
+          handleThemeInit: function(xhttp) {
+              console.log(JSON.parse(xhttp.responseText);
+              // ReactDOM.render(
+              //   <ThemeListOutput list={JSON.parse(xhttp.responseText)} />,
+              //   document.getElementById('theme-list')
+              // );
+          },
           handleTimezone: function(xhttp) {
               ReactDOM.render(
                 <TimezoneListOutput list={JSON.parse(xhttp.responseText)} />,
@@ -470,6 +479,9 @@
           xhttpGetThemes: function(state) {
               // this.getJSON('http://localhost:3001/themes', this.handleTheme);
               this.getJSON('https://aqueous-meadow-38089.herokuapp.com/themes', this.handleTheme);
+          },
+          xhttpGetThemesInit: function(state) {
+              this.getJSON('https://aqueous-meadow-38089.herokuapp.com/themes', this.handleThemeInit);
           },
           xhttpGetTimezones: function(state) {
               this.getJSON('https://aqueous-meadow-38089.herokuapp.com/timezones', this.handleTimezone);
