@@ -53,12 +53,17 @@
                 let s = document.createElement('script');
                 s.type = 'text/javascript';
                 s.src = this.state.src;
+
+                // data-ref={this.props.refVar}
+                // data-codeVar={this.props.codeVar}
+                s.data-ref= this.props.refVar;
+
                 this.instance.appendChild(s);
             });
         },
         render: function() {
           return (
-            <div data-ref={this.props.refVar} data-codeVar={this.props.codeVar} ref={(el) => (this.instance = el)} />
+            <div ref={(el) => (this.instance = el)} />
           )
         }
       });
@@ -90,11 +95,11 @@
             // document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
 
             timerMain.hideThemeSelector();
-            console.log(this.props.list[this.state.selectValue].fileName);//works!
+            // console.log(this.props.list[this.state.selectValue].fileName);//works!
             var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
 
-            console.log('varName: '+this.props.list[this.state.selectValue].varName);
-            console.log('refName: '+this.props.list[this.state.selectValue].refName);
+            // console.log('varName: '+this.props.list[this.state.selectValue].varName);
+            // console.log('refName: '+this.props.list[this.state.selectValue].refName);
             // refVar={}
 
             ReactDOM.render(
@@ -494,9 +499,10 @@
           },
           removeTheme: function() {
               // myRegistrationModal.halt();
+              var codeRef = document.getElementById('js-import').getAttribute("class");
               ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
               ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
-              myRegistrationModal = '';
+              // myRegistrationModal = '';
               document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
           },
           hideThemeSelector: function() {
