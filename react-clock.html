@@ -95,9 +95,10 @@
 
             console.log('varName: '+this.props.list[this.state.selectValue].varName);
             console.log('refName: '+this.props.list[this.state.selectValue].refName);
+            // refVar={}
 
             ReactDOM.render(
-              <AddJS src={scriptSrc} refVar={} />,
+              <AddJS src={scriptSrc} />,
               document.getElementById('js-import')
             );
         },
