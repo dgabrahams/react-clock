@@ -89,35 +89,36 @@ var AnalogueClock = React.createClass({
 
         setApplyTime = 1000 - currentTime.getMilliseconds();//was: 1000 - currentTime.getMilliseconds() or 0
         // console.log('Time till next second: ' + setApplyTime);
+        if ( this.state.halt == null ) {
+                setTimeout(function () {
 
-        setTimeout(function () {
+                    //form styles to be added to the clock
+                    var setSecondsStyle = {
+                        WebkitTransform: 'rotateZ(' + seconds + 'deg)',
+                        transform: 'rotateZ(' + seconds + 'deg)'
+                    };
 
-            //form styles to be added to the clock
-            var setSecondsStyle = {
-                WebkitTransform: 'rotateZ(' + seconds + 'deg)',
-                transform: 'rotateZ(' + seconds + 'deg)'
-            };
+                    var setMinuteStyle = {
+                        WebkitTransform: 'rotateZ(' + minutes + 'deg)',
+                        transform: 'rotateZ(' + minutes + 'deg)'
+                    };
 
-            var setMinuteStyle = {
-                WebkitTransform: 'rotateZ(' + minutes + 'deg)',
-                transform: 'rotateZ(' + minutes + 'deg)'
-            };
+                    var setHourStyle = {
+                        WebkitTransform: 'rotateZ(' + hours + 'deg)',
+                        transform: 'rotateZ(' + hours + 'deg)'
+                    };
 
-            var setHourStyle = {
-                WebkitTransform: 'rotateZ(' + hours + 'deg)',
-                transform: 'rotateZ(' + hours + 'deg)'
-            };
+                    //apply styles to the clock
+                    this.setState({ secondsStyle: setSecondsStyle }, () => {}); //moves the second hand by setting the style
+                    this.setState({ minutesStyle: setMinuteStyle }, () => {}); //moves minute hand by setting the style
+                    this.setState({ hoursStyle: setHourStyle }, () => {});
 
-            //apply styles to the clock
-            this.setState({ secondsStyle: setSecondsStyle }, () => {}); //moves the second hand by setting the style
-            this.setState({ minutesStyle: setMinuteStyle }, () => {}); //moves minute hand by setting the style
-            this.setState({ hoursStyle: setHourStyle }, () => {});
+                    setTimeout(function () {
+                        this.checkTime();
+                    }.bind(this), setTimeoutValue); 
 
-            setTimeout(function () {
-                this.checkTime();
-            }.bind(this), setTimeoutValue); 
-
-        }.bind(this), setApplyTime);
+                }.bind(this), setApplyTime);
+        }//end check halt state
     },
     render: function () {
         return React.createElement(
