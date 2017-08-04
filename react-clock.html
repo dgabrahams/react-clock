@@ -53,11 +53,9 @@
                 let s = document.createElement('script');
                 s.type = 'text/javascript';
                 s.src = this.state.src;
-
+                s.dataef = this.props.refVar;
                 // data-ref={this.props.refVar}
                 // data-codeVar={this.props.codeVar}
-                s.data-ref= this.props.refVar;
-
                 this.instance.appendChild(s);
             });
         },
