@@ -42,7 +42,7 @@ var DefaultClock = React.createClass({
     },
     checkTime: function (runImmediate, runOnce) {
 
-        console.log('----- checkTime -----');
+        console.log('----- checkTime from Digital Clock -----'+new Date() );
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
 
