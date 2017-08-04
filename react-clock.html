@@ -97,7 +97,7 @@
             // console.log('domRef: '+domRef);
             // console.log('codeRef: '+codeRef);
             // console.log(window[domRef]['halt']);//worked!
-            window[String(domRef)]['halt'](params,'ThemeListOutput.renderTheme');
+            window[String(domRef)]['halt'](params, ThemeListOutput.renderTheme);//try this.renderTheme ???
             console.log('-*after calling halt*-');
 
             // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
