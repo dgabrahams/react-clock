@@ -127,7 +127,7 @@ var FlipClock = React.createClass({
             var images = [];
             for (var i = 0; i < args.length; i++) {
                 images[i] = new Image();
-                images[i].src = preload.arguments[i];
+                images[i].src = args[i];
             }//end for
             this.setState({ imgPreload: images }, () => {
                 console.log('from set imgPreload:');
