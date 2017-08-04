@@ -523,8 +523,9 @@
               console.log(window[codeRef]);//worked!
 
               window[domRef].halt();
+              console.log('-*after calling halt*-');
 
-              ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
+              // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
               ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
               // myRegistrationModal = '';
               document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
