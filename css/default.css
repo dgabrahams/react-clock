@@ -15,9 +15,16 @@
 }
 
 .close-alert-box {
-
+    position: absolute;
+    padding: 10px 10px;
+    line-height: 10px;
+    top: -10px;
+    right: 0px;
+    background-color: #eaf5f2;
 }
 
 .alert-box {
-
+	padding: 20px;
+    background-color: #97e9d2;
+    position: relative;
 }

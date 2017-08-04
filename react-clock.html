@@ -57,7 +57,7 @@
         },
         render: function() {
           return (
-              <div className="alert-box">{this.props.text}<div class="close-alert-box" onClick={this.handleClick}> x </div></div>
+              <div className="alert-box">{this.props.text}<div className="close-alert-box" onClick={this.handleClick}> x </div></div>
           )
         }
       });
@@ -540,7 +540,6 @@
           render: function() {
             return (
               <div className="App">
-                <div>&nbsp;</div>
                 <div id="time-report"></div>
                 <div>&nbsp;</div>
                 <div id="clock-display"></div>
