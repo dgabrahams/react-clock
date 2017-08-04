@@ -511,10 +511,11 @@
           },
           removeTheme: function() {
               // myRegistrationModal.halt();
+              var domRef = document.getElementById('theme-js').getAttribute("data-ref");
+              var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
+              console.log('domRef: '+domRef);
+              console.log('codeRef: '+codeRef);
 
-
-
-              var codeRef = document.getElementById('js-import').getAttribute("class");
               ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
               ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
               // myRegistrationModal = '';
