@@ -524,11 +524,12 @@
               // console.log(window[domRef]);//worked!
               console.log(window[domRef]['halt']);//worked!
 
-              window[String(domRef)]['halt']();//works!!!!
+              // window[String(domRef)]['halt']();
+              window['DefaultClockRef']['halt']();
               console.log('-*after calling halt*-');
 
               // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-              ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
+              // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
               // myRegistrationModal = '';
               document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
           },
