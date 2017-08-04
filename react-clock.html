@@ -51,12 +51,11 @@
             this.setState({src: this.props.src}, () => {
                 console.log(this.state.src);
                 let s = document.createElement('script');
+                s.id = 'theme-js';
                 s.type = 'text/javascript';
                 s.src = this.state.src;
                 s.setAttribute("data-ref", this.props.refVar);
                 s.setAttribute("data-codeVar", this.props.codeVar);
-                // data-ref={this.props.refVar}
-                // data-codeVar={this.props.codeVar}
                 this.instance.appendChild(s);
             });
         },
@@ -498,6 +497,9 @@
           },
           removeTheme: function() {
               // myRegistrationModal.halt();
+
+
+
               var codeRef = document.getElementById('js-import').getAttribute("class");
               ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
               ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
