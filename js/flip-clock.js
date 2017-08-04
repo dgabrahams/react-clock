@@ -6,6 +6,7 @@ var FlipClock = React.createClass({
             timeZone: 'Local Timezone',
             timeZoneValue: null,
             halt: null,
+            imgPreload: [],
 
             hourTenTop: null,
             hourTenMiddle: null,
@@ -90,6 +91,30 @@ var FlipClock = React.createClass({
             this.setState({ minuteUnitMiddle: setMinuteUnitMiddleStyle }, () => {});
             this.setState({ minuteUnitBottom: setMinuteUnitBottomStyle }, () => {});
 
+            var images = [
+                "images/0.jpg",
+                "images/1.jpg",
+                "images/2.jpg",
+                "images/3.jpg",
+                "images/4.jpg",
+                "images/5.jpg",
+                "images/6.jpg",
+                "images/7.jpg",
+                "images/8.jpg",
+                "images/9.jpg",
+                "images/10.jpg",
+                "images/11.jpg",
+                "images/12.jpg",
+                "images/13.jpg",
+                "images/14.jpg",
+                "images/15.jpg",
+                "images/16.jpg",
+                "images/17.jpg",
+                "images/18.jpg",
+                "images/19.jpg"
+            ];
+            this.preloadImages(images);
+
             this.checkTime('1');
     },
     halt: function(params, callback) {
@@ -97,6 +122,17 @@ var FlipClock = React.createClass({
             console.log('halt applied to flip-clock');
             callback(params);
         });
+    },
+    preloadImages: function(args) {
+            var images = [];
+            for (var i = 0; i < args.length; i++) {
+                images[i] = new Image();
+                images[i].src = preload.arguments[i];
+            }//end for
+            this.setState({ imgPreload: images }, () => {
+                console.log('from set imgPreload:');
+                console.log(this.state.imgPreload);
+            });
     },
     timeGetter: function () {
         return 'hours: '+this.state.hour+' -- minutes: '+this.state.minute+' -- seconds: '+this.state.second;
