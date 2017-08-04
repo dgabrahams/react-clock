@@ -80,17 +80,22 @@
         },
         formAction: function() {
             console.log('***form action***');
-            timerMain.removeTheme();
+            // timerMain.removeTheme();
 
-            // myRegistrationModal.halt();
-            // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-            // console.log('before: '+window.myRegistrationModal);
-            // delete window.myRegistrationModal;
-            // console.log('after: '+window.myRegistrationModal);
-            // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-            // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
-            // myRegistrationModal = '';
-            // document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
+              // var domRef = document.getElementById('theme-js').getAttribute("data-ref");
+              // var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
+              // console.log('domRef: '+domRef);
+              // console.log('codeRef: '+codeRef);
+              // console.log(window[domRef]['halt']);//worked!
+
+              // window['DefaultClockRef']['halt']();//works - issue was that the component was unmounted by the clock-display before it could run
+              // console.log('-*after calling halt*-');
+
+              // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
+              // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
+              // myRegistrationModal = '';
+              document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
+
 
             timerMain.hideThemeSelector();
             // console.log(this.props.list[this.state.selectValue].fileName);//works!
@@ -525,7 +530,8 @@
               console.log(window[domRef]['halt']);//worked!
 
               // window[String(domRef)]['halt']();
-              window['DefaultClockRef']['halt']();
+              // window['DefaultClockRef']['halt']();//works - issue was that the component was unmounted by the clock-display before it could run
+              window[String(domRef)]['halt']();
               console.log('-*after calling halt*-');
 
               // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
