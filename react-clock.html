@@ -83,12 +83,21 @@
             // timerMain.removeTheme();
             timerMain.hideThemeSelector();
 
+            // console.log(this.props.list[this.state.selectValue].fileName);//works!
+            // var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
+
+            var params = {
+              "scriptSrc" : '/js/'+this.props.list[this.state.selectValue].fileName,
+              "refName" : this.props.list[this.state.selectValue].refName,
+              "varName" : this.props.list[this.state.selectValue].varName
+            };
+
             var domRef = document.getElementById('theme-js').getAttribute("data-ref");
             var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
-            console.log('domRef: '+domRef);
-            console.log('codeRef: '+codeRef);
-            console.log(window[domRef]['halt']);//worked!
-            window[String(domRef)]['halt']('thing','myCallback');
+            // console.log('domRef: '+domRef);
+            // console.log('codeRef: '+codeRef);
+            // console.log(window[domRef]['halt']);//worked!
+            window[String(domRef)]['halt'](params,'ThemeListOutput.renderTheme');
             console.log('-*after calling halt*-');
 
             // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
@@ -99,8 +108,7 @@
 
 
 
-            // console.log(this.props.list[this.state.selectValue].fileName);//works!
-            var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
+
 
             // console.log('varName: '+this.props.list[this.state.selectValue].varName);
             // console.log('refName: '+this.props.list[this.state.selectValue].refName);
@@ -112,6 +120,8 @@
             // );
         },
         renderTheme: function(params) {
+          console.log('params:');
+          console.log(params);
           // <AddJS src={scriptSrc} refVar={this.props.list[this.state.selectValue].refName} codeVar={this.props.list[this.state.selectValue].varName} />
             ReactDOM.render(
               <AddJS src={params.scriptSrc} refVar={params.refName} codeVar={params.varName} />,
