@@ -23,6 +23,10 @@
     background-color: #eaf5f2;
 }
 
+.close-alert-box:hover {
+	cursor: pointer;
+}
+
 .alert-box {
 	padding: 25px;
     background-color: #97e9d2;
