@@ -80,40 +80,16 @@
         },
         formAction: function() {
             console.log('***form action***');
-            // timerMain.removeTheme();
+            //cannot move all this out to a removeTheme function in timerMain as there is a call to this.renderTheme for the callback
             timerMain.hideThemeSelector();
-
-            // console.log(this.props.list[this.state.selectValue].fileName);//works!
-            // var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
-
             var params = {
               "scriptSrc" : '/js/'+this.props.list[this.state.selectValue].fileName,
               "refName" : this.props.list[this.state.selectValue].refName,
               "varName" : this.props.list[this.state.selectValue].varName
             };
-
             var domRef = document.getElementById('theme-js').getAttribute("data-ref");
             var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
-            // console.log('domRef: '+domRef);
-            // console.log('codeRef: '+codeRef);
-            // console.log(window[domRef]['halt']);//worked!
             window[String(domRef)]['halt'](params, this.renderTheme);//try this.renderTheme ??? -- ThemeListOutput.renderTheme - didn't work
-            console.log('-*after calling halt*-');
-
-            // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-            // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
-            // myRegistrationModal = '';
-            // document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
-
-
-            // console.log('varName: '+this.props.list[this.state.selectValue].varName);
-            // console.log('refName: '+this.props.list[this.state.selectValue].refName);
-            // refVar={}
-
-            // ReactDOM.render(
-            //   <AddJS src={scriptSrc} refVar={this.props.list[this.state.selectValue].refName} codeVar={this.props.list[this.state.selectValue].varName} />,
-            //   document.getElementById('js-import')
-            // );
         },
         renderTheme: function(params) {
 
@@ -170,8 +146,14 @@
             console.log(this.props.list[this.state.selectValue]['UTCoffset']);//works
 
 //update for new unique vars in theme....
-            console.log('before attempt to set in react-clock.html: '+ myRegistrationModal.timeZoneGetter() );
-            myRegistrationModal.timeZoneSetter(this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
+            var domRef = document.getElementById('theme-js').getAttribute("data-ref");
+            console.log('domRef'+domRef);
+            window[String(domRef)]['timeZoneSetter'](this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
+
+// window['FlipClockRef']['timeZoneSetter']
+// FlipClockRef
+            // console.log('before attempt to set in react-clock.html: '+ myRegistrationModal.timeZoneGetter() );
+            // myRegistrationModal.timeZoneSetter(this.state.selectValue,this.props.list[this.state.selectValue]['UTCoffset']);
             // console.log( myRegistrationModal.timeZoneGetter() );
 
         },
@@ -207,6 +189,7 @@
 //each theme needs a different var name for both the code containing the component and the ReactDOM reference that calls it
 //this way calls can be make to this code when the js is removed and this can take action during the time waiting for a settimeout to call
 //immediately a new js theme can be added to the page without waiting for the old one to finish
+//becaue of the callback this can now be factored out so that they all use a single function
 
 //slowness of the flip clock at beginning could just be the images loading.
 
@@ -537,27 +520,6 @@
               node.setAttribute("type", "text/css");
               node.setAttribute("href", String(fileHref));
               document.getElementById("documentHead").appendChild(node);
-          },
-          removeTheme: function() {
-              // myRegistrationModal.halt();
-              // var domRef = document.getElementById('theme-js').getAttribute("data-ref");
-              // var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
-              // console.log('domRef: '+domRef);
-              // console.log('codeRef: '+codeRef);
-              // // console.log('windowTest:');
-              // // console.log(window[codeRef]);//worked!
-              // // console.log(window[domRef]);//worked!
-              // console.log(window[domRef]['halt']);//worked!
-
-              // // window[String(domRef)]['halt']();
-              // // window['DefaultClockRef']['halt']();//works - issue was that the component was unmounted by the clock-display before it could run
-              // window[String(domRef)]['halt']();
-              // console.log('-*after calling halt*-');
-
-              // // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
-              // // ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
-              // // myRegistrationModal = '';
-              // document.getElementById('documentHead').removeChild(document.getElementById('themeCSS'));
           },
           hideThemeSelector: function() {
               ReactDOM.unmountComponentAtNode(document.getElementById('theme-list'));

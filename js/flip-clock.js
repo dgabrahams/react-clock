@@ -223,7 +223,8 @@ var FlipClock = React.createClass({
         var currentTimeZone = this.state.timeZone;
 
 
-
+//reorder so it doesn't apply styles after being halted
+//it doesn't actually do that because it will always (mostly) be called by run many?
         setTimeout(function () {
 
             if ( this.state.timeZone === currentTimeZone ) {
