@@ -521,6 +521,7 @@
               console.log('codeRef: '+codeRef);
               console.log('windowTest:');
               console.log(window[codeRef]);//worked!
+              console.log(window[domRef]);//worked!
 
               window[domRef].halt();
               console.log('-*after calling halt*-');
