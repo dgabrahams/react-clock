@@ -519,11 +519,12 @@
               var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
               console.log('domRef: '+domRef);
               console.log('codeRef: '+codeRef);
-              console.log('windowTest:');
-              console.log(window[codeRef]);//worked!
-              console.log(window[domRef]);//worked!
+              // console.log('windowTest:');
+              // console.log(window[codeRef]);//worked!
+              // console.log(window[domRef]);//worked!
+              console.log(window[domRef]['halt']);//worked!
 
-              window[domRef]['halt']();//works!!!!
+              window[String(domRef)]['halt']();//works!!!!
               console.log('-*after calling halt*-');
 
               // ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
