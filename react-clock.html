@@ -178,7 +178,10 @@
 
 
 
-
+//notes:
+//each theme needs a different var name for both the code containing the component and the ReactDOM reference that calls it
+//this way calls can be make to this code when the js is removed and this can take action during the time waiting for a settimeout to call
+//immediately a new js theme can be added to the page without waiting for the old one to finish
 
 
 
@@ -515,6 +518,8 @@
               var codeRef = document.getElementById('theme-js').getAttribute("data-codevar");
               console.log('domRef: '+domRef);
               console.log('codeRef: '+codeRef);
+              console.log('windowTest:');
+              console.log(window[codeRef]);
 
               ReactDOM.unmountComponentAtNode(document.getElementById('js-import'));
               ReactDOM.unmountComponentAtNode(document.getElementById('clock-display'));
