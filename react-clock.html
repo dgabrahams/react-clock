@@ -443,7 +443,7 @@
               // var themes = JSON.parse(xhttp.responseText);
               this.setState({ themes: JSON.parse(xhttp.responseText) }, () => {
                   ReactDOM.render(
-                      <AddJS src={scriptSrc} refVar={this.state.themes.DigitalClock.refName} codeVar={this.state.themes.DigitalClock.varName} />,
+                      <AddJS src={this.state.themes.DigitalClock.fileName} refVar={this.state.themes.DigitalClock.refName} codeVar={this.state.themes.DigitalClock.varName} />,
                       document.getElementById('js-import')
                   );
               });
