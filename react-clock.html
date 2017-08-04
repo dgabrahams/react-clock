@@ -93,8 +93,11 @@
             console.log(this.props.list[this.state.selectValue].fileName);//works!
             var scriptSrc = '/js/'+this.props.list[this.state.selectValue].fileName;
 
+            console.log('varName: '+this.props.list[this.state.selectValue].varName);
+            console.log('refName: '+this.props.list[this.state.selectValue].refName);
+
             ReactDOM.render(
-              <AddJS src={scriptSrc} />,
+              <AddJS src={scriptSrc} refVar={} />,
               document.getElementById('js-import')
             );
         },
