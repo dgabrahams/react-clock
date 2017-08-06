@@ -49,8 +49,6 @@
           };
         },
         componentDidMount: function() {
-            console.log('AddAlertBox: componentDidMount');
-
             const s = document.createElement('script');
             s.type = 'text/javascript';
             s.async = true;
@@ -59,15 +57,10 @@
                   document.getElementById('ntp-alert-box').className += " alert-box-animation";
                   setTimeout(function () {
                       var css = document.getElementById('ntp-alert-box').className;
-                      // console.log(css);
-                      //console.log( css.split(" ") );
-                      // css = css.split(" ")[0];
-                      // console.log(css);
                       document.getElementById('ntp-alert-box').className = css.split(" ")[0];
                   }.bind(this), 1000);
             `;
             this.instance.appendChild(s);
-
         },
         handleClick: function() {
           console.log('clicked');
@@ -295,11 +288,11 @@
               // get current date
               // get time that is required to be + or -
               //+ or - that form current time and set as the state value.
-              // console.log('++ timezoneTheme ++');
-              // console.log('timeZone: '+timeZoneValue);
-              // console.log('hours: '+hours);
-              // console.log('minutes: '+minutes);
-              // console.log('++ ++ ++ ++ ++ ++ ++');
+              console.log('++ timezoneTheme ++');
+              console.log('timeZone: '+timeZoneValue);
+              console.log('hours: '+hours);
+              console.log('minutes: '+minutes);
+              console.log('++ ++ ++ ++ ++ ++ ++');
               if ( timeZoneValue.match(/\+/g) ) {
                   // console.log('contains +');//works
                   // this.state.timeZone.charAt(2);
