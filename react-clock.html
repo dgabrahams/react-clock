@@ -63,7 +63,7 @@
                   ntpAlertBox.elem = document.getElementById('ntp-alert-box');
                   ntpAlertBox.elem.className += " alert-box-animation";
 
-                  // document.getElementById('time-report').style.height = parseInt(ntpAlertBox.elem.offsetHeight) +'px';
+                  document.getElementById('time-report').style.height = parseInt(ntpAlertBox.elem.offsetHeight) +'px';
 
                   setTimeout(function () {
                       ntpAlertBox.elem.className = ntpAlertBox.elem.className.split(" ")[0];
