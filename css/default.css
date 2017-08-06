@@ -4,6 +4,7 @@ body {
 	padding: 0;
 	max-width: 900px;
 	/*height: 100%;*/
+	font-family: Helvetica, sans-serif;
 }
 
 #App-Root {
