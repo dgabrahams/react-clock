@@ -59,10 +59,11 @@
                   document.getElementById('ntp-alert-box').className += " alert-box-animation";
                   setTimeout(function () {
                       var css = document.getElementById('ntp-alert-box').className;
-                      console.log(css);
+                      // console.log(css);
                       //console.log( css.split(" ") );
-                      css = css.split(" ")[0];
-                      console.log(css);
+                      // css = css.split(" ")[0];
+                      // console.log(css);
+                      document.getElementById('ntp-alert-box').className = css.split(" ")[0];
                   }.bind(this), 1000);
             `;
             this.instance.appendChild(s);
