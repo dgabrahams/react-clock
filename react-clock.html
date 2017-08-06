@@ -50,6 +50,13 @@
         },
         componentDidMount: function() {
             console.log('AddAlertBox: componentDidMount');
+
+            const s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.innerHTML = "document.write('This is output by document.write()!')";
+            this.instance.appendChild(s);
+
         },
         handleClick: function() {
           console.log('clicked');
