@@ -54,7 +54,8 @@
             const s = document.createElement('script');
             s.type = 'text/javascript';
             s.async = true;
-            s.innerHTML = "document.write('This is output by document.write()!')";
+            // s.innerHTML = "document.write('This is output by document.write()!')";
+            s.innerHTML = "alert('hello');";
             this.instance.appendChild(s);
 
         },
