@@ -60,8 +60,9 @@
                   setTimeout(function () {
                       var css = document.getElementById('ntp-alert-box').className;
                       console.log(css);
-                      alert(css);
-                      console.log( css.split(" ") );
+                      //console.log( css.split(" ") );
+                      css = css.split(" ")[0];
+                      console.log(css);
                   }.bind(this), 1000);
             `;
             this.instance.appendChild(s);
