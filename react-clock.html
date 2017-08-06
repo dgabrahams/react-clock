@@ -40,6 +40,8 @@
 
       // var NTPtime = 0;//global variable to pass NTP time between components.//not needed
 
+//software tech readiness level
+//https://www.nasa.gov/pdf/458490main_TRL_Definitions.pdf
 
 
       var AddAlertBox = React.createClass({
@@ -55,7 +57,9 @@
             // s.innerHTML = "document.write('This is output by document.write()!')";
             s.innerHTML = `
                   document.getElementById('ntp-alert-box').className += " alert-box-animation";
+                  console.log('height: '+document.getElementById('ntp-alert-box').offsetHeight);
                   setTimeout(function () {
+                    //time-report
                       var css = document.getElementById('ntp-alert-box').className;
                       document.getElementById('ntp-alert-box').className = css.split(" ")[0];
                   }.bind(this), 1000);
@@ -555,7 +559,7 @@
           render: function() {
             return (
               <div className="App">
-                <div id="time-report"></div>
+                
                 <div>&nbsp;</div>
                 <div id="clock-display"></div>
                 <div>&nbsp;</div>
@@ -565,6 +569,7 @@
                     <div id="theme-list"></div>
                 </div>
                 <div>&nbsp;</div>
+                <div id="time-report"></div>
                 <div id="js-import"></div>
               </div>
             );
