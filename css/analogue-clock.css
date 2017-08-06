@@ -3,13 +3,12 @@
 	height: 250px;
 	background-color: #292929;
 	position: relative;
-	top:20px;
-	left: 20px;
+/*	top:20px;
+	left: 20px;*/
 	border-radius: 125px;
     display: inline-block;
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 25px 0px;
 }
-
 
 #hourHand {
 /*	width: 200px;
@@ -225,4 +224,9 @@
 	position: absolute;
     left: 215px;
     top: 0px;
+}
+
+#timeZone {
+	position: absolute;
+	bottom: -35px;
 }
