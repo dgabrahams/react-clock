@@ -84,3 +84,8 @@ body {
 .green {
 	background-color: #97e9d2;
 }
+
+.alert-p {
+	margin: 0;
+    padding: 0 20px 0 20px;
+}
