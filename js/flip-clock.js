@@ -423,7 +423,8 @@ var FlipClock = React.createClass({
                 React.createElement('div', { id: 'minuteUnitTop', style: this.state.minuteUnitTop }),
                 React.createElement('div', { id: 'minuteUnitMiddle', className: this.state.middleItemMinuteClass, style: this.state.minuteUnitMiddle }),
                 React.createElement('div', { id: 'minuteUnitBottom', style: this.state.minuteUnitBottom })
-            )
+            ),
+            React.createElement('div', { id: 'timeZone' }, 'Showing the time in: '+this.state.timeZone)
         );
     }
 });

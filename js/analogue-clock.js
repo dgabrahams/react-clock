@@ -256,7 +256,8 @@ var AnalogueClock = React.createClass({
                 'div',
                 { id: 'period' },
                 this.state.period
-            )
+            ),
+            React.createElement('div', { id: 'timeZone' }, 'Showing the time in: '+this.state.timeZone)
         );
     }
 });
