@@ -56,7 +56,7 @@
             s.async = true;
             // s.innerHTML = "document.write('This is output by document.write()!')";
             s.innerHTML = `
-                  document.getElementById('alert-box').className += " otherclass";
+                  document.getElementById('ntp-alert-box').className += " otherclass";
                   setTimeout(function () {
                       var css = document.getElementById('alert-box').className;
                       console.log(css);
@@ -72,7 +72,7 @@
         },
         render: function() {
           return (
-              <div className="alert-box">{this.props.text}
+              <div id="ntp-alert-box" className="alert-box">{this.props.text}
                   <div className="close-alert-box" onClick={this.handleClick}> x </div>
                   <div ref={(el) => (this.instance = el)} />
               </div>
