@@ -89,6 +89,11 @@ var DefaultClock = React.createClass({
             setApplyTime = 0;
         }
 
+        //required as +1 minute can be added above
+        if (minutes >= 60) {
+            minutes = 0;
+        }
+
         if (hours.toString().length < 2) {
             console.log('hours is < 2');
             hours = '0'+hours;

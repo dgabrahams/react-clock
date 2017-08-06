@@ -1,3 +1,10 @@
+html,
+body {
+	margin: 0px;
+	padding: 0px;
+	max-width: 900px;
+}
+
 #clock-display {
 	text-align: center;
 }
@@ -15,12 +22,13 @@
 }
 
 .close-alert-box {
-	position: absolute;
+    position: absolute;
     padding: 10px 10px;
     line-height: 10px;
-    top: 0px;
+    top: -30px;
     right: 0px;
     background-color: #eaf5f2;
+    height: 10px;
 }
 
 .close-alert-box:hover {
@@ -28,7 +36,19 @@
 }
 
 .alert-box {
-	padding: 25px;
+	max-width: 810px;
+    padding: 2.5%;
     background-color: #97e9d2;
-    position: relative;
+    position: absolute;
+    width: 90%;
+    left: 2.5%;
+    /*top: 2.5%;*/
+    bottom: 2.5%;
+
+    -webkit-transition: bottom 2s; /* Safari */
+    transition: bottom 2s;    
+}
+
+.alert-box-animation {
+    bottom: -10%;  
 }
