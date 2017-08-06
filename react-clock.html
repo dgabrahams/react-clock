@@ -74,7 +74,8 @@
         },
         render: function() {
           return (
-              <div id="ntp-alert-box" className={"alert-box " + this.props.colour}>{this.props.text}
+              <div id="ntp-alert-box" className={"alert-box " + this.props.colour}>
+                  <p className="alert-p">{this.props.text}</p>
                   <div className="close-alert-box" onClick={this.handleClick}> x </div>
                   <div ref={(el) => (this.instance = el)} />
               </div>
