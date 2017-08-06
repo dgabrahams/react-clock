@@ -3,6 +3,12 @@ body {
 	margin: 0 auto 0 auto;
 	padding: 0;
 	max-width: 900px;
+	height: 100%;
+}
+
+#App-Root,
+#react-main {
+	height: 100%;
 }
 
 #clock-display {
@@ -62,4 +68,5 @@ body {
 #time-report {
 	position: relative;
 	overflow: hidden;
+	height: 100%;
 }

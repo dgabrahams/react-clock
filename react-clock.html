@@ -63,15 +63,9 @@
                   ntpAlertBox.elem = document.getElementById('ntp-alert-box');
                   ntpAlertBox.elem.className += " alert-box-animation";
 
-                  document.getElementById('time-report').style.height = (parseInt(ntpAlertBox.elem.offsetHeight) + 30) +'px';
-
-                  // document.getElementById('ntp-alert-box').className += " alert-box-animation";
-                  // console.log('height: '+document.getElementById('ntp-alert-box').offsetHeight);
-                  // document.getElementById('ntp-alert-box').offsetHeight
+                  // document.getElementById('time-report').style.height = parseInt(ntpAlertBox.elem.offsetHeight) +'px';
 
                   setTimeout(function () {
-                      // var css = document.getElementById('ntp-alert-box').className;
-                      // document.getElementById('ntp-alert-box').className = css.split(" ")[0];
                       ntpAlertBox.elem.className = ntpAlertBox.elem.className.split(" ")[0];
                   }.bind(this), 1000);
             `;
@@ -569,9 +563,7 @@
           },
           render: function() {
             return (
-              <div className="App">
-                
-                <div>&nbsp;</div>
+              <div id="App-Root" className="App">
                 <div id="clock-display"></div>
                 <div>&nbsp;</div>
                 <div id="timezone-display"></div>
