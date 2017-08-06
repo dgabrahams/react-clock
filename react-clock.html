@@ -55,7 +55,14 @@
             s.type = 'text/javascript';
             s.async = true;
             // s.innerHTML = "document.write('This is output by document.write()!')";
-            s.innerHTML = "alert('hello');";
+            s.innerHTML = `
+                  document.getElementById('alert-box').className += " otherclass";
+                  setTimeout(function () {
+                      var css = document.getElementById('alert-box').className;
+                      console.log(css);
+                      alert(css);
+                  }.bind(this), 1000);
+            `;
             this.instance.appendChild(s);
 
         },
