@@ -258,8 +258,8 @@
               console.log('from checkDST: timezone: ' + timeZone);
 
               var year = currentDate.getUTCFullYear();
-              var month = currentDate.getUTCMonth();
-              var day = currentDate.getUTCDay();
+              var month = parstInt(currentDate.getUTCMonth()) + 1;//retuns the month where jan is 0 and dec is 11 +1
+              var day = currentDate.getUTCDate();//retuns the date of the month
 
               if (month.toString().length < 2) {
                   // console.log('month is < 2');
@@ -271,8 +271,8 @@
                   day = '0'+day;
               }
 
-              console.log('from checkDST: date: '+year+'-'+month+'-'+day);
-              console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19) );
+              // console.log('from checkDST: date: '+year+'-'+month+'-'+day);
+              // console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19) );
 
               //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
               return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);
@@ -289,11 +289,11 @@
               // get current date
               // get time that is required to be + or -
               //+ or - that form current time and set as the state value.
-              console.log('++ timezoneTheme ++');
-              console.log('timeZone: '+timeZoneValue);
-              console.log('hours: '+hours);
-              console.log('minutes: '+minutes);
-              console.log('++ ++ ++ ++ ++ ++ ++');
+              // console.log('++ timezoneTheme ++');
+              // console.log('timeZone: '+timeZoneValue);
+              // console.log('hours: '+hours);
+              // console.log('minutes: '+minutes);
+              // console.log('++ ++ ++ ++ ++ ++ ++');
               if ( timeZoneValue.match(/\+/g) ) {
                   // console.log('contains +');//works
                   // this.state.timeZone.charAt(2);
