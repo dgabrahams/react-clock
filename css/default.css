@@ -61,4 +61,5 @@ body {
 
 #time-report {
 	position: relative;
+	overflow: hidden;
 }
