@@ -56,11 +56,12 @@
             s.async = true;
             // s.innerHTML = "document.write('This is output by document.write()!')";
             s.innerHTML = `
-                  document.getElementById('ntp-alert-box').className += " otherclass";
+                  document.getElementById('ntp-alert-box').className += " alert-box-animation";
                   setTimeout(function () {
-                      var css = document.getElementById('alert-box').className;
+                      var css = document.getElementById('ntp-alert-box').className;
                       console.log(css);
                       alert(css);
+                      console.log( css.split(" ") );
                   }.bind(this), 1000);
             `;
             this.instance.appendChild(s);
