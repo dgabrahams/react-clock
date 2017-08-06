@@ -258,7 +258,7 @@
               console.log('from checkDST: timezone: ' + timeZone);
 
               var year = currentDate.getUTCFullYear();
-              var month = parstInt(currentDate.getUTCMonth()) + 1;//retuns the month where jan is 0 and dec is 11 +1
+              var month = parseInt(currentDate.getUTCMonth()) + 1;//retuns the month where jan is 0 and dec is 11 +1
               var day = currentDate.getUTCDate();//retuns the date of the month
 
               if (month.toString().length < 2) {
