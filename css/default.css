@@ -75,3 +75,11 @@ body {
 	overflow: hidden;
 	/*height: 100%;*/
 }
+
+.red {
+	background-color: #ff6566;
+}
+
+.green {
+	background-color: #97e9d2;
+}

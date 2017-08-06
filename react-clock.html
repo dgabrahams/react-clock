@@ -72,7 +72,7 @@
         },
         render: function() {
           return (
-              <div id="ntp-alert-box" className="alert-box">{this.props.text}
+              <div id="ntp-alert-box" className={"alert-box" + this.props.colour}>{this.props.text}
                   <div className="close-alert-box" onClick={this.handleClick}> x </div>
                   <div ref={(el) => (this.instance = el)} />
               </div>
@@ -359,7 +359,7 @@
 
             // var response = '';
             // var T2, T3, output, outputString;
-            var response, outputString;
+            var response, outputString, colour;
 
             //if it doesn't take longer than 15 seconds
             if (totalTrip <= 10) {
@@ -455,18 +455,24 @@
                     differenceHours = '+' + String(differenceHours);
                 }
 
-                outputString = 'Time difference in seconds between NTP time and the time on your machine is: ' + localDifference + ' seconds ('+ differenceHours +' hours).';//60*60 = 3600 ... then divide new time by this to get hours
+                // outputString = 'Time difference in seconds between NTP time and the time on your machine is: ' + localDifference + ' seconds ('+ differenceHours +' hours).';//60*60 = 3600 ... then divide new time by this to get hours
                 //outputString += 'This was gathered by comparing the IP address of the country your computer was located against the time currently set on your machine. You might need to adjust your time zone settings or the time your machine is set to.';
 
                 if ( localDifference < -50 || localDifference > 50 ) {
-                    outputString += ' localDifference < -50 || localDifference > 50';
-                }//end if
+                    // outputString += ' localDifference < -50 || localDifference > 50';
+                    outputString = 'Time difference in seconds between NTP time and the time on your machine is: ' + localDifference + ' seconds ('+ differenceHours +' hours).';
+                    colour = 'red';
+                } else {
+                    outputString = 'Your computer time is set correctly against your current geographic area.';
+                    colour = 'green';
+                }
 
 
             } else {
-              //this means any part of the date could be wrong as the seconds since 1st Jan 1970 were measured. - it doesn't as the two measurements were taken from the local time
-              //but - could the timezone do this?
-              outputString = 'There was greater than 10 seconds between the transmission and the receipt of data from the server.';
+                //this means any part of the date could be wrong as the seconds since 1st Jan 1970 were measured. - it doesn't as the two measurements were taken from the local time
+                //but - could the timezone do this?
+                outputString = 'There was greater than 10 seconds between the transmission and the receipt of data from the server.';
+                colour = 'red';
             }
 
             // ReactDOM.render(
@@ -475,7 +481,7 @@
             // );
 
             ReactDOM.render(
-                <AddAlertBox text={outputString} />,
+                <AddAlertBox text={outputString} colour={colour} />,
                 document.getElementById('time-report')
             );
 
