@@ -45,10 +45,12 @@ body {
     /*top: 2.5%;*/
     bottom: 2.5%;
 
-    -webkit-transition: bottom 2s; /* Safari */
-    transition: bottom 2s;    
+    -webkit-transition: bottom 1s;
+    transition: bottom 1s;
 }
 
 .alert-box-animation {
-    bottom: -10%;  
+    bottom: -50%;
+/*    -webkit-transition: bottom 1s;
+    transition: bottom 1s;*/
 }

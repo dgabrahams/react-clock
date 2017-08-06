@@ -57,11 +57,14 @@
         },
         render: function() {
           return (
-              <div className="alert-box">{this.props.text}<div className="close-alert-box" onClick={this.handleClick}> x </div></div>
+              <div className="alert-box">{this.props.text}
+                  <div className="close-alert-box" onClick={this.handleClick}> x </div>
+                  <script>alert('hello world');</script>
+              </div>
           )
         }
       });
-
+//alert-box-animation - add via js as soon as it comes in, then remove to see the animation, cannot be there on entry as if js off it will always remain off screen
 
 
       var AddJS = React.createClass({
