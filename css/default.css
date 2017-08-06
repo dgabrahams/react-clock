@@ -48,7 +48,8 @@ body {
 
 .alert-box {
 	max-width: 810px;
-    padding: 2.5%;
+    /*padding: 2.5%;*/
+    padding: 3.5% 2.5%;
     background-color: #97e9d2;
     text-align: center;
     position: absolute;
