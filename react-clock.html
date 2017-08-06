@@ -56,15 +56,10 @@
             s.async = true;
             // s.innerHTML = "document.write('This is output by document.write()!')";
             s.innerHTML = `
-                  // function() ntpAlertBox {
-
-                  // }
                   var ntpAlertBox = {};
                   ntpAlertBox.elem = document.getElementById('ntp-alert-box');
                   ntpAlertBox.elem.className += " alert-box-animation";
-
                   document.getElementById('time-report').style.height = parseInt(ntpAlertBox.elem.offsetHeight) +'px';
-
                   setTimeout(function () {
                       ntpAlertBox.elem.className = ntpAlertBox.elem.className.split(" ")[0];
                   }.bind(this), 1000);
@@ -460,8 +455,13 @@
                     differenceHours = '+' + String(differenceHours);
                 }
 
-                outputString = 'Time difference in seconds between NTP time gathered from the server and current local time is: ' + localDifference + ' or '+ differenceHours +' hours.';//60*60 = 3600 ... then divide new time by this to get hours
-                outputString += 'This was gathered by comparing the IP address of the country your computer was located against the time currently set on your machine. You might need to adjust your time zone settings or the time your machine is set to.';
+                outputString = 'Time difference in seconds between NTP time and the time on your machine is: ' + localDifference + ' seconds ('+ differenceHours +' hours).';//60*60 = 3600 ... then divide new time by this to get hours
+                //outputString += 'This was gathered by comparing the IP address of the country your computer was located against the time currently set on your machine. You might need to adjust your time zone settings or the time your machine is set to.';
+
+                if ( localDifference < -50 || localDifference > 50 ) {
+                    outputString += ' localDifference < -50 || localDifference > 50';
+                }//end if
+
 
             } else {
               //this means any part of the date could be wrong as the seconds since 1st Jan 1970 were measured. - it doesn't as the two measurements were taken from the local time
