@@ -1,7 +1,7 @@
 html,
 body {
-	margin: 0px;
-	padding: 0px;
+	margin: 0 auto 0 auto;
+	padding: 0;
 	max-width: 900px;
 }
 
@@ -42,15 +42,19 @@ body {
     position: absolute;
     width: 90%;
     left: 2.5%;
-    /*top: 2.5%;*/
-    bottom: 2.5%;
+    top: 40%;
+    /*bottom: 2.5%;*/
 
-    -webkit-transition: bottom 1s;
-    transition: bottom 1s;
+/*    -webkit-transition: bottom 1s;
+    transition: bottom 1s;*/
+
+    -webkit-transition: top 1s;
+    transition: top 1s;
 }
 
 .alert-box-animation {
-    bottom: -50%;
+    /*bottom: -50%;*/
+    top: 150%;
 /*    -webkit-transition: bottom 1s;
     transition: bottom 1s;*/
 }
