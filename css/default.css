@@ -91,3 +91,7 @@ body {
     padding: 0 20px 0 20px;
     line-height: 21px;
 }
+
+#timeZone {
+	font-size: 13px;
+}
