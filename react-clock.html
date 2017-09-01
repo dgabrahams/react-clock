@@ -244,6 +244,7 @@
           },
           componentDidMount: function() {
               this.xhttpGetThemesInit();
+              this.xhttpGetTime();//checks the timezone is correct
           },
           checkDST: function(timeZone) {
               // moment.tz("2017-11-31", "Australia/Yancowinna").format();

@@ -18,6 +18,7 @@ body {
 
 #clock-display {
 	text-align: center;
+	white-space: nowrap;
 }
 
 #timezone-display {
