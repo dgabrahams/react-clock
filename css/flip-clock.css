@@ -95,4 +95,14 @@
         width: 66px;
     	height: 55px;
     }
+
+	.time-divider {
+	    height: 110px;
+	}
+
+	.time-divider-dot {
+		font-size: 80px;
+	    line-height: 35px;
+	}
+
 }
