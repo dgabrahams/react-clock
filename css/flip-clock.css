@@ -81,3 +81,18 @@
 #timeZone {
 	padding: 20px 0 0 0;
 }
+
+
+@media only screen and (min-width: 0px) and (max-width: 650px) {
+	#hourTenTop,
+	#hourTenBottom,
+	#hourUnitTop,
+	#hourUnitBottom,
+	#minuteTenTop,
+	#minuteTenBottom,
+	#minuteUnitTop,
+	#minuteUnitBottom {
+        width: 66px;
+    	height: 55px;
+    }
+}

@@ -170,6 +170,7 @@ app.get('/time*', function (req, res) {
 		});
 
 	} else {
+		//settimeout loop runs on the client.
 		console.log('CANNOT send request');
 		console.log('currentDate: '+currentDate);
 		console.log('ntpRequestCount: '+ntpRequestCount);
