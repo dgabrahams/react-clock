@@ -49,14 +49,15 @@ var DefaultClock = React.createClass({
         var setApplyTime = 0; //run in the current second
         var currentTime = new Date();
 
-        console.log('hours: ' + currentTime.getHours());
-        console.log('minutes: ' + currentTime.getMinutes());
+        // console.log('hours: ' + currentTime.getHours());
+        // console.log('minutes: ' + currentTime.getMinutes());
         // console.log('seconds: ' + currentTime.getSeconds());
         // console.log('milliseconds: ' + currentTime.getMilliseconds());
 
-        var minutes = currentTime.getMinutes();
         var hours = currentTime.getHours();
-
+        var minutes = currentTime.getMinutes();
+        console.log('hours: ' + hours);
+        console.log('minutes: ' + minutes);
 
         if ( this.state.timeZoneValue !== null ) {
 
