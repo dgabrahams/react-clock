@@ -78,6 +78,7 @@ body {
 	overflow: hidden;
 	/*height: 100%;*/
 	width: 75%;
+	margin: auto;
 }
 
 .red {
