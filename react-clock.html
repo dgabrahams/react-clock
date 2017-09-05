@@ -287,14 +287,15 @@
               }
 
 
-              console.log('from checkDST: date: '+year+'-'+month+'-'+day);
-              console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19) );
-              console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format() );
+              // console.log('from checkDST: date: '+year+'-'+month+'-'+day);
+              // console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19) );
+              // console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format() );
               console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format('Z') );
-              console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).isValid() );
+              // console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).isValid() );
 
               //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
-              return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);
+              // return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);
+              return moment.tz(year+'-'+month+'-'+day, timeZone).format('Z');
 
           },
           timezoneTheme: function(timeZone,hours,minutes) {
