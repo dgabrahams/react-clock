@@ -295,6 +295,7 @@
 
               //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
               // return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);
+              //above was returning 'Z': 2017-09-05T00:00:00Z when timezone was +00:00 - expecting something like 2017-09-05T00:00:00+03:00, substring extracts the +03:00
               return moment.tz(year+'-'+month+'-'+day, timeZone).format('Z');
 
           },
@@ -304,8 +305,8 @@
 //here times are different to that found in my chart on wikipedia:
 //http://www.australia.gov.au/about-australia/facts-and-figures/time-zones-and-daylight-saving
 
-              console.log('timezoneTheme: hours: '+hours);
-              console.log('timezoneTheme: minutes: '+minutes);
+              // console.log('timezoneTheme: hours: '+hours);
+              // console.log('timezoneTheme: minutes: '+minutes);
 
               var timeZoneValue = this.checkDST(timeZone);//a change in time happens here!
 
@@ -314,14 +315,14 @@
               //+ or - that form current time and set as the state value.
               // console.log('++ timezoneTheme ++');
               // console.log('timeZone: '+timeZoneValue);
-              console.log('timezoneTheme: hours: '+hours);
-              console.log('timezoneTheme: minutes: '+minutes);
+              // console.log('timezoneTheme: hours: '+hours);
+              // console.log('timezoneTheme: minutes: '+minutes);
               // console.log('++ ++ ++ ++ ++ ++ ++');
 
 
               //NaN error happens here!
-              console.log('hours before changed: ' + hours);
-              console.log('mins before changed: ' + minutes);
+              // console.log('hours before changed: ' + hours);
+              // console.log('mins before changed: ' + minutes);
               if ( timeZoneValue.match(/\+/g) ) {
                   // console.log('contains +');//works
                   // this.state.timeZone.charAt(2);
@@ -332,8 +333,8 @@
                   hours = hours - parseInt(timeZoneValue.substring(1, 3));
                   minutes = minutes - parseInt(timeZoneValue.substring(4));
               }
-              console.log('hours changed: ' + hours);
-              console.log('mins changed: ' + minutes);
+              // console.log('hours changed: ' + hours);
+              // console.log('mins changed: ' + minutes);
 
               if ( parseInt(minutes) >= 60 ) {
                   // console.log('parseInt(minutes) >= 60: ' + minutes);
