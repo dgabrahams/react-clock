@@ -286,8 +286,9 @@
                   day = '0'+day;
               }
 
-              // console.log('from checkDST: date: '+year+'-'+month+'-'+day);
-              // console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19) );
+            
+              console.log('from checkDST: date: '+year+'-'+month+'-'+day);
+              console.log('from checkDST: date: ' + moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19) );
 
               //return moment.tz("2017-07-01", "Europe/London").format().substring(19);
               return moment.tz(year+'-'+month+'-'+day, timeZone).format().substring(19);
@@ -299,7 +300,10 @@
 //here times are different to that found in my chart on wikipedia:
 //http://www.australia.gov.au/about-australia/facts-and-figures/time-zones-and-daylight-saving
 
-              var timeZoneValue = this.checkDST(timeZone);
+              console.log('timezoneTheme: hours: '+hours);
+              console.log('timezoneTheme: minutes: '+minutes);
+
+              var timeZoneValue = this.checkDST(timeZone);//a change in time happens here!
 
               // get current date
               // get time that is required to be + or -
